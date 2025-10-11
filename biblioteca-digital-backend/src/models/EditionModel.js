@@ -26,5 +26,5 @@ const EditionSchema = new mongoose.Schema(
   { versionKey: false }
 );
 
-const EditionModel = mongoose.model(COLLECTION_NAMES.EVENT, EditionSchema);
+const EditionModel = mongoose.model(COLLECTION_NAMES.EDITION, EditionSchema);
 export default EditionModel;

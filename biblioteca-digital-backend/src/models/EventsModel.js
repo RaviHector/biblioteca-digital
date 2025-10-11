@@ -27,11 +27,11 @@ const EventsSchema = new mongoose.Schema(
 );
 
 // Delete all products inside the removed category
-CategorySchema.pre(
+EventsSchema.pre(
   "deleteOne",
   { document: true, query: false }, // More details on https://mongoosejs.com/docs/api/schema.html#schema_Schema-pre
   async function (next) {
-    await EditionModel.deleteMany({ category: this._id }).exec();
+    await EditionModel.deleteMany({ entity: this._id }).exec();
     next();
   }
 ); // More details on https://stackoverflow.com/questions/14348516/cascade-style-delete-in-mongoose
