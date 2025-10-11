@@ -4,6 +4,6 @@ export const Container = styled.div`
   min-height: 100dvh;
   min-height: 100vh;
 
-  display: grod;
+  display: grid;
   grid-template-rows: auto 1fr auto;
 `;

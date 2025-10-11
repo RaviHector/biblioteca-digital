@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
@@ -39,18 +39,17 @@ export const Icon = styled.div`
 `;
 
 export const Input = styled.input.withConfig({
-  shouldForwardProp: (prop) => prop !== 'error',
+  shouldForwardProp: (prop) => prop !== "error",
 })`
   height: 4rem;
   font-size: 1.8rem;
   padding: 0.8rem 1.6rem;
   padding-left: 4rem;
-  border-radius: ${(props) => props.borderradius ?? '0.4rem'};
+  border-radius: ${(props) => props.borderradius ?? "0.4rem"};
   width: 100%;
-
-  border: ${(props) => (props.error ? '0.2rem red solid' : 'none')};
+  border: ${(props) => (props.error ? "0.2rem red solid" : "none")};
   background-color: ${(props) =>
-    props.backgroundcolor ? props.backgroundcolor : 'transparent'};
+    props.backgroundcolor ? props.backgroundcolor : "transparent"};
 
   @media (max-width: 700px) {
     font-weight: 400;

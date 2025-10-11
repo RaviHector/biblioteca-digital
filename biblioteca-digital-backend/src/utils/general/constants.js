@@ -15,12 +15,12 @@ export const ERROR_CODES = {
   INTERNAL_SERVER: 500,
 };
 export const ERROR_NAMES = {
-  BAD_REQUEST: 'BadRequest',
-  UNAUTHORIZED: 'Unauthorized',
-  FORBIDDEN: 'Forbidden',
-  NOT_FOUND: 'NotFound',
-  VALIDATION_ERROR: 'ValidationError',
-  INTERNAL_SERVER: 'InternalServerError',
+  BAD_REQUEST: "BadRequest",
+  UNAUTHORIZED: "Unauthorized",
+  FORBIDDEN: "Forbidden",
+  NOT_FOUND: "NotFound",
+  VALIDATION_ERROR: "ValidationError",
+  INTERNAL_SERVER: "InternalServerError",
 };
 
 // Application supported exit status
@@ -31,7 +31,8 @@ export const EXIT_STATUS = {
 
 // Table names
 export const COLLECTION_NAMES = {
-  USER: 'users',
-  USER_SESSION_TOKEN: 'usersessiontokens',
-  EMAIL_LINK: 'emaillinks',
+  USER: "users",
+  USER_SESSION_TOKEN: "usersessiontokens",
+  EVENT: "events",
+  EDITION: "editions",
 };

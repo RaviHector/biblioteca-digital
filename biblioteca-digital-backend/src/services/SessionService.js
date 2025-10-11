@@ -1,24 +1,21 @@
-import { ForbiddenError, UnauthorizedError } from '../errors/baseErrors.js';
-import UserModel from '../models/UserModel.js';
-import UserSessionTokenModel from '../models/UserSessionTokenModel.js';
-import formatExpiresAt from '../utils/general/formatExpiresAt.js';
-import { comparePasswords } from '../utils/libs/bcrypt.js';
-import { decodeRefreshToken, signSessionJwts } from '../utils/libs/jwt.js';
+import { ForbiddenError, UnauthorizedError } from "../errors/baseErrors.js";
+import UserModel from "../models/UserModel.js";
+import UserSessionTokenModel from "../models/UserSessionTokenModel.js";
+import formatExpiresAt from "../utils/general/formatExpiresAt.js";
+import { comparePasswords } from "../utils/libs/bcrypt.js";
+import { decodeRefreshToken, signSessionJwts } from "../utils/libs/jwt.js";
 
 export async function processLogin({ email, password, token }) {
   const foundUser = await UserModel.findOne({ email })
-    .select('+password')
+    .select("+password")
     .lean()
     .exec();
-  if (!foundUser) throw new UnauthorizedError('Wrong email or password.');
+  if (!foundUser) throw new UnauthorizedError("Wrong email or password.");
   if (!foundUser.isGoogleUser) {
     // Evaluate password
     const isMatch = await comparePasswords(password, foundUser.password);
-    if (!isMatch) throw new UnauthorizedError('Wrong email or password.');
+    if (!isMatch) throw new UnauthorizedError("Wrong email or password.");
   }
-
-  // Evaluate if the user activated its account after registration
-  if (!foundUser.emailVerified) throw new ForbiddenError('Account inactive');
 
   // Evaluate token reuse
   if (token) {
@@ -49,7 +46,7 @@ export async function processLogin({ email, password, token }) {
 }
 
 export async function processRefreshToken(token) {
-  if (!token) throw new UnauthorizedError('Unauthorized');
+  if (!token) throw new UnauthorizedError("Unauthorized");
 
   const decoded = await decodeRefreshToken(token);
   const foundToken = await UserSessionTokenModel.findOne({ token }).exec();
@@ -60,11 +57,11 @@ export async function processRefreshToken(token) {
     }).exec();
 
     await UserSessionTokenModel.deleteMany({ user: hackedUser._id }).exec();
-    throw new ForbiddenError('Token reuse');
+    throw new ForbiddenError("Token reuse");
   }
 
   const userId = foundToken.user._id.toString();
-  if (userId !== decoded.userId) throw new ForbiddenError('Tampered token');
+  if (userId !== decoded.userId) throw new ForbiddenError("Tampered token");
 
   // Refresh token still valid
   await foundToken.deleteOne(); // Invalidate actual refresh token

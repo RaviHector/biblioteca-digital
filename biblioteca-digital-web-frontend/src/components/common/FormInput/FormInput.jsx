@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 import {
   Container,
@@ -7,7 +7,7 @@ import {
   Input,
   ErrorMessage,
   Icon,
-} from './Styles';
+} from "./Styles";
 
 export default function FormInput({
   name,
@@ -17,6 +17,7 @@ export default function FormInput({
   register,
   backgroundcolor,
   borderRadius,
+  type,
   icon: IconComponent,
 }) {
   const errorMessage = errors?.[name]?.message;
@@ -28,6 +29,7 @@ export default function FormInput({
         {IconComponent && <Icon as={IconComponent} />}
         <Input
           id={name}
+          type={type}
           error={!!errorMessage}
           placeholder={placeholder}
           {...register(name)}

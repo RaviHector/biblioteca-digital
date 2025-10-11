@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import { IoIosArrowDown } from 'react-icons/io';
-import { useMediaQuery } from 'react-responsive';
-import { Link, useNavigate } from 'react-router-dom';
-import { useTheme } from 'styled-components';
+import { IoIosArrowDown } from "react-icons/io";
+import { useMediaQuery } from "react-responsive";
+import { Link, useNavigate } from "react-router-dom";
+import { useTheme } from "styled-components";
 
-import { Logo } from '..';
+import { Logo } from "..";
 import {
   Content,
   Menu,
@@ -19,7 +19,10 @@ import {
   MenuProfile,
   Divider,
   MyProfile,
-} from './Styles';
+} from "./Styles";
+import useAuthStore from "../../../stores/auth";
+import { useLogout } from "../../../hooks/query/sessions";
+import { toast } from "react-toastify";
 
 export default function Header() {
   // State variables
@@ -34,10 +37,18 @@ export default function Header() {
     setBar(false);
     setCollapseLogout(false);
   };
-  const user = {
-    name: 'Rian Rero',
-  };
-  // const user = undefined;
+  const user = useAuthStore((state) => state.auth?.user);
+
+  const { mutate: logout } = useLogout({
+    onSuccess: () => {
+      closeHeader();
+      toast.success("Logout realizado com sucesso!");
+      navigate("/");
+    },
+    onError: () => {
+      toast.error("Erro ao realizar logout. Tente novamente mais tarde.");
+    },
+  });
 
   // Component
   const welcomeSectionComponent = (() => {
@@ -49,7 +60,7 @@ export default function Header() {
               type="button"
               onClick={() => {
                 closeHeader();
-                navigate('/perfil');
+                navigate("/perfil");
               }}
             >
               Meu Perfil
@@ -60,20 +71,24 @@ export default function Header() {
             />
           </MyProfile>
           <Divider $collapse={collapseLogout && bar} />
-          <LogoutBtn $collapse={collapseLogout && bar}>Deslogar</LogoutBtn>
+          <LogoutBtn onClick={logout} $collapse={collapseLogout && bar}>
+            Deslogar
+          </LogoutBtn>
         </MenuProfile>
       );
 
-    const firstName = user?.name?.split(' ')?.[0];
+    const firstName = user?.name?.split(" ")?.[0];
     const nameLengthLimit = 10;
 
     const isLessThanEqualLimit = firstName?.length <= nameLengthLimit;
     return (
       <>
         <Link to="/perfil" onClick={() => setBar(false)}>
-          {isLessThanEqualLimit ? `Olá, ${firstName}!` : 'Meu Perfil'}
+          {isLessThanEqualLimit ? `Olá, ${firstName}!` : "Meu Perfil"}
         </Link>
-        <LogoutBtn $collapse={collapseLogout}>Deslogar</LogoutBtn>
+        <LogoutBtn onClick={logout} $collapse={collapseLogout}>
+          Deslogar
+        </LogoutBtn>
       </>
     );
   })();
@@ -83,12 +98,10 @@ export default function Header() {
         <Logo />
         <Menu>
           <Nav $bar={bar}>
-            <Link to="/login" onClick={closeHeader}>
-              Login
+            <Link to="/events" onClick={closeHeader}>
+              Eventos
             </Link>
-            <Link to="/u" onClick={closeHeader}>
-              NotFound
-            </Link>
+
             <InvertItems>
               {user ? (
                 <Welcome>{welcomeSectionComponent}</Welcome>
@@ -107,7 +120,7 @@ export default function Header() {
                   $collapse={bar}
                   onClick={() => {
                     closeHeader();
-                    navigate('/login');
+                    navigate("/login");
                   }}
                 >
                   Login
