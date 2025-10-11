@@ -1,5 +1,5 @@
 import { LinkContainer, Image } from './Styles';
-import imageLogo from '../../../assets/logo-ctvacinas.png';
+import imageLogo from '../../../assets/brasao.jpg';
 
 export default function Logo() {
   return (
