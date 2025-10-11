@@ -1,0 +1,43 @@
+{
+  "name": "biblioteca-digital-backend",
+  "version": "1.0.0",
+  "description": "Backend da aplicação Biblioteca Digital",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "npx env-cmd -f .env.development nodemon --watch src src/index.js",
+    "prod": "npx env-cmd -f .env.production node src/index.js",
+    "start": "node src/index.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cluster": "^0.7.7",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.19.1",
+    "morgan": "^1.10.1",
+    "multer": "^2.0.2",
+    "nodemon": "^3.1.10",
+    "pino": "^10.0.0",
+    "pino-pretty": "^13.1.2",
+    "prettier": "^3.6.2",
+    "zod": "^4.1.12"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "node_modules/*",
+      "logs",
+      "/uploads/*",
+      "uploads/*",
+      "yarn.lock",
+      "package-lock.json",
+      ".git"
+    ]
+  }
+}
