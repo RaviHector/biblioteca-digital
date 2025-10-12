@@ -41,6 +41,13 @@ export const searchByNameEvents = async (name) => {
 
   return data;
 };
+export const searchByEvents = async (searchTerm) => {
+  const { data } = await api.get("/events/search-events", {
+    params: { searchTerm },
+  });
+
+  return data;
+};
 export const createEvent = async (newEvent) => {
   const { data } = await api.post("/events", newEvent);
 

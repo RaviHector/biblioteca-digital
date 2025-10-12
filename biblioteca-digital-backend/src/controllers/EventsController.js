@@ -47,3 +47,18 @@ export const searchByName = asyncHandler(async (req, res) => {
 
   res.status(SUCCESS_CODES.OK).json(categories);
 });
+
+export const searchEvents = asyncHandler(async (req, res) => {
+  // 1. Valida e extrai o 'searchTerm' e os outros filtros da requisição (req.query)
+  const { searchTerm, ...inputFilters } = EventsValidator.searchEvents(req);
+
+
+  // 2. Chama a função do Service com os parâmetros validados
+  const events = await EventsService.searchEvents({
+    searchTerm,
+    inputFilters,
+  });
+
+  // 3. Retorna a lista de eventos encontrados com o status 200 (OK)
+  res.status(SUCCESS_CODES.OK).json(events);
+});

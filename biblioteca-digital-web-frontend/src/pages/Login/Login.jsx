@@ -3,11 +3,13 @@ import { FormInput } from "../../components/common";
 import { useLogin } from "../../hooks/query/sessions";
 import { Button, Container, Form, InputsBox } from "./Styles";
 import { useForm } from "react-hook-form";
+//import useAuthStore from "../../stores/auth";
+import { useLocation, useNavigate } from "react-router-dom";
 import useAuthStore from "../../stores/auth";
-import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const navigate = useNavigate();
+  const {state} = useLocation();
   // Form handlers
   const {
     handleSubmit,
@@ -18,10 +20,10 @@ export default function Login() {
     onSuccess: () => {
       toast.success("Login realizado com sucesso!");
 
-      // const { auth } = useAuthStore.getState();
-      // const isAdminPath = auth?.user?.isAdmin ? "/administrador" : "/perfil";
-      // const redirectTo = state?.from || isAdminPath;
-      navigate("/");
+      const { auth } = useAuthStore.getState();
+      const isAdminPath = auth?.user?.isAdmin ? "/adminpage" : "/events";
+      const redirectTo = state?.from || isAdminPath;
+      navigate(redirectTo);
     },
   });
   const onSubmit = (data) => login(data);

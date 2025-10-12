@@ -7,6 +7,7 @@ import {
   createEvent,
   updateEvent,
   deleteEvent,
+  searchByEvents,
 } from "../../services/api/endpoints";
 
 export function useGetEvents({
@@ -43,6 +44,19 @@ export function useSearchByNameEvents({
   return useQuery({
     queryKey: ["Events", name],
     queryFn: () => searchByNameEvents(name),
+    onSuccess,
+    onError,
+  });
+}
+
+export function useSearchEvents({
+  searchTerm,
+  onSuccess = () => {},
+  onError = (err) => console.log(err),
+} = {}) {
+  return useQuery({
+    queryKey: ["Events", searchTerm],
+    queryFn: () => searchByEvents(searchTerm),
     onSuccess,
     onError,
   });

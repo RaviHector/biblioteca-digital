@@ -101,7 +101,11 @@ export default function Header() {
             <Link to="/events" onClick={closeHeader}>
               Eventos
             </Link>
-
+            {user?.isAdmin && (
+              <Link to="/adminpage" onClick={closeHeader}>
+              Administrador
+            </Link>
+            )}
             <InvertItems>
               {user ? (
                 <Welcome>{welcomeSectionComponent}</Welcome>

@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 
 import { AppLayout } from "./layouts";
-import { Home, Login, Events, Event } from "./pages";
+import { Home, Login, Events, Event, AdminPage } from "./pages";
 import useAuthStore from "./stores/auth";
 
 // For the routes that need the user to be logged in
@@ -20,6 +20,13 @@ function PrivateRoutes() {
   return !auth ? <Navigate to="/login" state={{ from }} /> : <Outlet />;
 }
 
+function AdminRoutes() {
+  const isAdmin = useAuthStore((state) => state?.auth?.user?.isAdmin);
+  const { pathname: from } = useLocation();
+
+  return !isAdmin ? <Navigate to="/" state={{ from }} /> : <Outlet />;
+}
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
@@ -27,11 +34,15 @@ const router = createBrowserRouter(
         <Route index element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="events" element={<Events />} />
-        <Route path="event/:_id" element={<Event />} />
+        <Route path="event/:_id" element={<Event />} />     
+
+        <Route element={<PrivateRoutes />}>
+        </Route>
+         <Route element={<AdminRoutes />}>
+          <Route path="adminpage" element={<AdminPage />} />
+        </Route>
       </Route>
-      <Route element={<PrivateRoutes />}>
-        {/* O que for privado colcoar aqui */}
-      </Route>
+      
     </Route>
   )
 );

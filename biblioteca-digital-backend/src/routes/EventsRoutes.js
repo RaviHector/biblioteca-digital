@@ -12,6 +12,8 @@ EventsRoutes.route("/")
 
 EventsRoutes.get("/search-by-name", EventsController.searchByName);
 
+EventsRoutes.get("/search-events", EventsController.searchEvents);
+
 EventsRoutes.route("/:_id")
   .get(EventsController.getById)
   .put(verifyJWT, verifyAdmin, EventsController.update)
