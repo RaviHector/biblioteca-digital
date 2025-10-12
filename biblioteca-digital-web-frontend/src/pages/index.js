@@ -3,3 +3,5 @@ export { default as Login } from "./Login/Login";
 export { default as Events } from "./Events/Events";
 export { default as Event } from "./Event/Event";
 export { default as AdminPage } from "./AdminPage/AdminPage";
+export { default as Author } from "./Author/Author";
+export { default as UserProfile } from "./UserProfile/UserProfile";

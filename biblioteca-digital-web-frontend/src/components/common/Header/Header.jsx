@@ -60,7 +60,7 @@ export default function Header() {
               type="button"
               onClick={() => {
                 closeHeader();
-                navigate("/");
+                navigate("/profile");
               }}
             >
               Meu Perfil
@@ -83,7 +83,7 @@ export default function Header() {
     const isLessThanEqualLimit = firstName?.length <= nameLengthLimit;
     return (
       <>
-        <Link to="/" onClick={() => setBar(false)}>
+        <Link to="/profile" onClick={() => setBar(false)}>
           {isLessThanEqualLimit ? `Olá, ${firstName}!` : "Meu Perfil"}
         </Link>
         <LogoutBtn onClick={logout} $collapse={collapseLogout}>

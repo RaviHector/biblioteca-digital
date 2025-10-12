@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 
 import { AppLayout } from "./layouts";
-import { Home, Login, Events, Event, AdminPage} from "./pages";
+import { Home, Login, Events, Event, AdminPage, Author, UserProfile} from "./pages";
 import useAuthStore from "./stores/auth";
 
 // For the routes that need the user to be logged in
@@ -34,7 +34,9 @@ const router = createBrowserRouter(
         <Route index element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="events" element={<Events />} />
-        <Route path="event/:_id" element={<Event />} />     
+        <Route path="event/:_id" element={<Event />} />
+        <Route path="authors/:authorName" element={<Author />} />
+        <Route path="profile" element={<UserProfile />} />
 
         <Route element={<PrivateRoutes />}>
         </Route>

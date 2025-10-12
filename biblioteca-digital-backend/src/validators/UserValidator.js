@@ -28,7 +28,7 @@ export const create = validate(
       name: z
         .string({ required_error: "Nome é obrigatório" })
         .min(3, "Nome deve ter pelo menos 3 caracteres")
-        .max(40, "Nome deve ter no máximo 40 caracteres"),
+        .max(100, "Nome deve ter no máximo 40 caracteres"),
       email: z
         .string({ required_error: "Email é obrigatório" })
         .email("Email deve ser válido")
@@ -37,10 +37,7 @@ export const create = validate(
         .string({ required_error: "Senha é obrigatória" })
         .min(6, "Senha deve ter pelo menos 6 caracteres")
         .max(16, "Senha deve ter no máximo 16 caracteres"),
-      isAdmin: z
-        .boolean()
-        .default(false)
-        .optional(),
+      isAdmin: z.boolean().default(false).optional(),
     }),
   })
 );
@@ -80,7 +77,7 @@ export const update = validate(
       name: z
         .string()
         .min(3, "User name must be atleast 3 characters")
-        .max(40, "User name must be a maximum of 40 characters")
+        .max(100, "User name must be a maximum of 40 characters")
         .optional(),
       role: z
         .string()

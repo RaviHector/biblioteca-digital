@@ -39,7 +39,7 @@ export const create = validate(
       author: z
         .string({ required_error: "Article author is required" })
         .min(2, "Article author must be atleast 3 characters")
-        .max(30, "Article author must be a maximum of 5 characters"),
+        .max(100, "Article author must be a maximum of 5 characters"),
       edition: objectIdSchema("Edition _id"),
       first_page: z
         .string({ required_error: "Article page is required" })
