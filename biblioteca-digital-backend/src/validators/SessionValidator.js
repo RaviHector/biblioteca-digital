@@ -29,7 +29,7 @@ export const logout = validate(
 export const refresh = validate(
   z.object({
     signedCookies: z.object({
-      token: z.string({ required_error: "Refresh token é obrigatório" }).min(1, "Token não pode estar vazio"),
+      token: z.string().optional(),
     }),
   }),
 );

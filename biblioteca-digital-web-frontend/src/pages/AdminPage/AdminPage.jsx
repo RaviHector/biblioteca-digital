@@ -29,6 +29,7 @@ import { useCreateEdition, useUpdateEdition } from "../../hooks/query/editions";
 import { useDeleteEdition } from "../../hooks/query/editions";
 import EditionEditForm from "../../components/common/EditionEditForm/EditionEditForm";
 import { useDeleteArticle, useUpdateArticle, useCreateArticle, useGetArticle } from "../../hooks/query/article";
+
 import { useQueryClient } from "@tanstack/react-query";
 
 export default function AdminPage() {
@@ -61,6 +62,7 @@ export default function AdminPage() {
   const [openCreateEvent, setOpenCreateEvent] = useState(false);
   const [openCreateEdition, setOpenCreateEdition] = useState(false);
   const [openBulkUpload, setOpenBulkUpload] = useState(false);
+
   const { mutate: createEdition } = useCreateEdition({
     onSuccess: () => {
       toast.success("Edição cadastrada com sucesso!");
@@ -105,6 +107,8 @@ export default function AdminPage() {
     enabled: searchType === "artigos" && Boolean(debouncedSearchTerm),
     onError: (err) => toast.error(`Erro ao buscar artigos: ${err.message}`),
   });
+
+
 
   // Determinar quais artigos mostrar
   const article = searchType === "artigos" ? 
@@ -162,6 +166,10 @@ export default function AdminPage() {
     onError: (err) => toast.error(`Erro ao cadastrar evento: ${err.message}`),
   });
 
+
+
+
+
   const handleSaveEvent = (newData) => {
     updateEvent({
       _id: selectedEvent._id,
@@ -187,6 +195,10 @@ export default function AdminPage() {
   const handleCreateEdition = (newData) => {
     createEdition(newData);
   };
+
+
+
+
 
   const renderContent = () => {
     if (searchType === "artigos") {
@@ -449,6 +461,7 @@ export default function AdminPage() {
             📂 Upload em Massa
           </button>
         )}
+
       </div>
       {renderContent()}
       <Popup
@@ -564,6 +577,10 @@ export default function AdminPage() {
           }}
         />
       </Popup>
+
+
+
+
     </Container>
   );
 }

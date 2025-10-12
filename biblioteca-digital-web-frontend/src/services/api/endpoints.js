@@ -177,6 +177,27 @@ export const bulkUploadArticles = async (formData) => {
 };
 
 export const createUser = async (userData) => {
+  const { data } = await api.post("/users/register", userData);
+  return data;
+};
+
+// Admin user management
+export const getUsers = async (filters = {}) => {
+  const { data } = await api.get("/users", { params: filters });
+  return data;
+};
+
+export const createUserByAdmin = async (userData) => {
   const { data } = await api.post("/users", userData);
+  return data;
+};
+
+export const updateUser = async ({ _id, ...userData }) => {
+  const { data } = await api.put(`/users/${_id}`, userData);
+  return data;
+};
+
+export const deleteUser = async (_id) => {
+  const { data } = await api.delete(`/users/${_id}`);
   return data;
 };

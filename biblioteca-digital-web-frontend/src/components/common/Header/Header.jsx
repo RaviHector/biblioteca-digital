@@ -22,12 +22,15 @@ import {
 } from "./Styles";
 import useAuthStore from "../../../stores/auth";
 import { useLogout } from "../../../hooks/query/sessions";
+import { useCreateUserByAdmin } from "../../../hooks/query/users";
+import { Popup, UserCreateForm } from "../";
 import { toast } from "react-toastify";
 
 export default function Header() {
   // State variables
   const [bar, setBar] = useState(false);
   const [collapseLogout, setCollapseLogout] = useState(false);
+  const [openCreateUser, setOpenCreateUser] = useState(false);
 
   const theme = useTheme();
   const navigate = useNavigate();
@@ -50,6 +53,18 @@ export default function Header() {
     },
   });
 
+  const { mutate: createUserByAdmin } = useCreateUserByAdmin({
+    onSuccess: () => {
+      toast.success("Usuário criado com sucesso!");
+      setOpenCreateUser(false);
+    },
+    onError: (err) => toast.error(`Erro ao criar usuário: ${err.message}`),
+  });
+
+  const handleCreateUser = (newData) => {
+    createUserByAdmin(newData);
+  };
+
   // Component
   const welcomeSectionComponent = (() => {
     if (isSmallScreen)
@@ -71,6 +86,15 @@ export default function Header() {
             />
           </MyProfile>
           <Divider $collapse={collapseLogout && bar} />
+          {user?.isAdmin && (
+            <LogoutBtn 
+              onClick={() => setOpenCreateUser(true)} 
+              $collapse={collapseLogout && bar}
+              style={{ marginBottom: '0.5rem' }}
+            >
+              Cadastrar Usuário
+            </LogoutBtn>
+          )}
           <LogoutBtn onClick={logout} $collapse={collapseLogout && bar}>
             Deslogar
           </LogoutBtn>
@@ -86,6 +110,15 @@ export default function Header() {
         <Link to="/" onClick={() => setBar(false)}>
           {isLessThanEqualLimit ? `Olá, ${firstName}!` : "Meu Perfil"}
         </Link>
+        {user?.isAdmin && (
+          <LogoutBtn 
+            onClick={() => setOpenCreateUser(true)} 
+            $collapse={collapseLogout}
+            style={{ marginRight: '0.5rem' }}
+          >
+            Cadastrar Usuário
+          </LogoutBtn>
+        )}
         <LogoutBtn onClick={logout} $collapse={collapseLogout}>
           Deslogar
         </LogoutBtn>
@@ -137,6 +170,20 @@ export default function Header() {
           </Bar>
         </Menu>
       </InternContainer>
+      
+      {/* Popup de criação de usuário */}
+      <Popup
+        title="Cadastrar Usuário"
+        openPopup={openCreateUser}
+        setOpenPopup={(v) => {
+          setOpenCreateUser(v);
+        }}
+      >
+        <UserCreateForm
+          onSave={handleCreateUser}
+          onCancel={() => setOpenCreateUser(false)}
+        />
+      </Popup>
     </Content>
   );
 }

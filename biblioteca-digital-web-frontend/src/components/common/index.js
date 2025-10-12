@@ -9,3 +9,4 @@ export { default as EventEditForm } from "./EventEditForm/EventEditForm";
 export { default as ArticleEditForm } from "./ArticleEditForm/ArticleEditForm";
 export { default as ArticleCreateForm } from "./ArticleCreateForm/ArticleCreateForm";
 export { default as BulkUploadForm } from "./BulkUploadForm/BulkUploadForm";
+export { default as UserCreateForm } from "./UserCreateForm/UserCreateForm";

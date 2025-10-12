@@ -19,7 +19,8 @@ export const getById = asyncHandler(async (req, res) => {
 
 export const create = asyncHandler(async (req, res) => {
   const inputData = UserValidator.create(req);
-  const newUser = await UserService.create(inputData);
+  const currentUser = req.user; // Obtém o usuário atual do token JWT (se existir)
+  const newUser = await UserService.create(inputData, currentUser);
   res.status(SUCCESS_CODES.CREATED).json(newUser);
 });
 
