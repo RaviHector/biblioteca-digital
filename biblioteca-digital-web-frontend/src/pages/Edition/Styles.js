@@ -61,15 +61,7 @@ export const Title = styled.h1`
   }
 `;
 
-export const Description = styled.p`
-  font-size: 1.1rem;
-  color: #94a3b8;
-  text-align: center;
-  line-height: 1.6;
-  margin: 0;
-`;
-
-export const EventInfo = styled.div`
+export const EditionInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -108,7 +100,7 @@ export const LoaderWrapper = styled.div`
 
 export const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 1.5rem;
   width: 100%;
   max-width: 1000px;

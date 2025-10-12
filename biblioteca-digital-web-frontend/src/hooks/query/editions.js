@@ -25,14 +25,15 @@ export function useGetEditions({
 
 export function useGetEditionById({
   _id,
-  onSucess = () => {},
+  onSuccess = () => {},
   onError = (err) => console.log(err),
 } = {}) {
   return useQuery({
-    queryKey: ["eventID", _id],
+    queryKey: ["editionID", _id],
     queryFn: () => getEditionById(_id),
-    onSucess,
+    onSuccess,
     onError,
+    enabled: !!_id, // Só executa se _id existir
   });
 }
 

@@ -29,27 +29,29 @@ export default function Author() {
   const decodedAuthorName = decodeURIComponent(authorName || "");
 
   // Hook para buscar artigos por nome do autor
-  const { data: articles, isLoading: isLoadingArticles } = useSearchByNameArticle({
-    name: decodedAuthorName,
-    onError: (err) => {
-      toast.error("Erro ao buscar artigos do autor", err);
-      setIsLoading(false);
-    },
-  });
+  const { data: articles, isLoading: isLoadingArticles } =
+    useSearchByNameArticle({
+      name: decodedAuthorName,
+      onError: (err) => {
+        toast.error("Erro ao buscar artigos do autor", err);
+        setIsLoading(false);
+      },
+    });
 
   // Efeito para agrupar artigos por ano quando os dados chegarem
   useEffect(() => {
     if (!isLoadingArticles) {
       setIsLoading(false);
-      
+
       if (articles && articles.length > 0) {
         // Filtra artigos que realmente pertencem ao autor
-        const authorArticles = articles.filter(article => 
-          article.author && 
-          Array.isArray(article.author) && 
-          article.author.some(author => 
-            author.toLowerCase().includes(decodedAuthorName.toLowerCase())
-          )
+        const authorArticles = articles.filter(
+          (article) =>
+            article.author &&
+            Array.isArray(article.author) &&
+            article.author.some((author) =>
+              author.toLowerCase().includes(decodedAuthorName.toLowerCase())
+            )
         );
 
         // Agrupa artigos por ano (ordem decrescente)
@@ -83,7 +85,8 @@ export default function Author() {
 
   // Calcula estatísticas
   const totalArticles = Object.values(groupedArticles).reduce(
-    (total, yearArticles) => total + yearArticles.length, 0
+    (total, yearArticles) => total + yearArticles.length,
+    0
   );
   const totalYears = Object.keys(groupedArticles).length;
   const latestYear = Object.keys(groupedArticles)[0];
@@ -108,9 +111,7 @@ export default function Author() {
     return (
       <Container>
         <Title>Artigos de {decodedAuthorName}</Title>
-        <Message>
-          Nenhum artigo encontrado para este autor.
-        </Message>
+        <Message>Nenhum artigo encontrado para este autor.</Message>
       </Container>
     );
   }
@@ -118,7 +119,7 @@ export default function Author() {
   return (
     <Container>
       <Title>Artigos de {decodedAuthorName}</Title>
-      
+
       <AuthorStats>
         <StatItem>
           <span className="number">{totalArticles}</span>
@@ -173,7 +174,9 @@ export default function Author() {
                   {article.first_page && article.last_page && (
                     <ArticleInfo>
                       <BookOpen size={16} />
-                      <span>Páginas: {article.first_page} - {article.last_page}</span>
+                      <span>
+                        Páginas: {article.first_page} - {article.last_page}
+                      </span>
                     </ArticleInfo>
                   )}
                 </ArticleDetails>

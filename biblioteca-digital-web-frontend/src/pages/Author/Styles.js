@@ -17,7 +17,7 @@ export const Title = styled.h1`
   margin-bottom: 2rem;
   color: #f8fafc;
   text-align: center;
-  
+
   @media (max-width: 768px) {
     font-size: 2rem;
   }
@@ -47,7 +47,7 @@ export const YearTitle = styled.h2`
   margin-bottom: 1.5rem;
   padding-bottom: 0.5rem;
   border-bottom: 2px solid rgba(56, 189, 248, 0.3);
-  
+
   @media (max-width: 768px) {
     font-size: 1.5rem;
   }
@@ -96,7 +96,7 @@ export const ArticleInfo = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  
+
   svg {
     color: #38bdf8;
   }
@@ -118,7 +118,7 @@ export const AuthorStats = styled.div`
   background: rgba(255, 255, 255, 0.05);
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  
+
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 1rem;
@@ -128,14 +128,14 @@ export const AuthorStats = styled.div`
 
 export const StatItem = styled.div`
   text-align: center;
-  
+
   .number {
     font-size: 1.5rem;
     font-weight: 700;
     color: #38bdf8;
     display: block;
   }
-  
+
   .label {
     font-size: 0.9rem;
     color: #94a3b8;
