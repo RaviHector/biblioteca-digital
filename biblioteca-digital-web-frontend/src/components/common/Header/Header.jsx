@@ -98,9 +98,11 @@ export default function Header() {
         <Logo />
         <Menu>
           <Nav $bar={bar}>
-            <Link to="/events" onClick={closeHeader}>
-              Eventos
-            </Link>
+            {user && (
+              <Link to="/events" onClick={closeHeader}>
+                Eventos
+              </Link>
+            )}
             {user?.isAdmin && (
               <Link to="/adminpage" onClick={closeHeader}>
                 Administrador

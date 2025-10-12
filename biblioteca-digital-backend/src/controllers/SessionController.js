@@ -1,12 +1,12 @@
-import * as SessionService from '../services/SessionService.js';
-import asyncHandler from '../utils/general/asyncHandler.js';
-import { SUCCESS_CODES } from '../utils/general/constants.js';
+import * as SessionService from "../services/SessionService.js";
+import asyncHandler from "../utils/general/asyncHandler.js";
+import { SUCCESS_CODES } from "../utils/general/constants.js";
 import {
   cookieAuthName,
   createCookieOptions,
   deleteCookieOptions,
-} from '../utils/general/cookieAuth.js';
-import * as SessionValidator from '../validators/SessionValidator.js';
+} from "../utils/general/cookieAuth.js";
+import * as SessionValidator from "../validators/SessionValidator.js";
 
 export const handleLogin = asyncHandler(async (req, res) => {
   const inputData = SessionValidator.login(req);
@@ -22,6 +22,7 @@ export const handleLogin = asyncHandler(async (req, res) => {
 
 export const handleRefreshToken = asyncHandler(async (req, res) => {
   const { token } = SessionValidator.refresh(req);
+  console.log("Refresh token recebido:", req.signedCookies);
 
   // Deletes any cookie with a name that matches the authentication one
   res.clearCookie(cookieAuthName, deleteCookieOptions);

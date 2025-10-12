@@ -4,10 +4,7 @@ import { COLLECTION_NAMES } from "../utils/general/constants.js";
 import convertStringToRegexp from "../utils/general/convertStringToRegexp.js";
 
 export async function get(inputFilters) {
-  return EditionsModel.find(inputFilters)
-    .populate("event")
-    .lean()
-    .exec();
+  return EditionsModel.find(inputFilters).populate("event").lean().exec();
 }
 
 export async function getById(_id) {
@@ -41,11 +38,7 @@ export async function searchByName({ name, inputFilters }) {
   const query = { ...inputFilters };
   if (name) query.name = { $regex: convertStringToRegexp(name) };
 
-  return EditionsModel.find(query)
-    .populate("event")
-    .sort("name")
-    .lean()
-    .exec();
+  return EditionsModel.find(query).populate("event").sort("name").lean().exec();
 }
 
 export async function searchEditions({ name, inputFilters = {} }) {
