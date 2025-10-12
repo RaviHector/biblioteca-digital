@@ -26,23 +26,21 @@ export const create = validate(
   z.object({
     body: z.object({
       name: z
-        .string({ required_error: "User name is required" })
-        .min(3, "User name must be atleast 3 characters")
-        .max(40, "User name must be a maximum of 40 characters"),
-      isAdmin: z.boolean().default(false),
+        .string({ required_error: "Nome é obrigatório" })
+        .min(3, "Nome deve ter pelo menos 3 caracteres")
+        .max(40, "Nome deve ter no máximo 40 caracteres"),
       email: z
-        .string({ required_error: "User email is required" })
-        .email("User email must be valid")
-        .min(6, "User password must be at least 3 characters")
-        .max(160, "User password must be a maximum of 30 characters"),
+        .string({ required_error: "Email é obrigatório" })
+        .email("Email deve ser válido")
+        .max(160, "Email deve ter no máximo 160 caracteres"),
       password: z
-        .string()
-        .min(6, "User password must be at least 3 characters")
-        .max(16, "User password must be a maximum of 30 characters"),
-      userName: z
-        .string({ required_error: "User username is required" })
-        .min(3, "User username must be atleast 3 characters")
-        .max(30, "User username must be a maximum of 30 characters"),
+        .string({ required_error: "Senha é obrigatória" })
+        .min(6, "Senha deve ter pelo menos 6 caracteres")
+        .max(16, "Senha deve ter no máximo 16 caracteres"),
+      isAdmin: z
+        .boolean()
+        .default(false)
+        .optional(),
     }),
   })
 );

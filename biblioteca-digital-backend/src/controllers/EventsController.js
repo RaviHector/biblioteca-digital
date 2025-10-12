@@ -19,9 +19,8 @@ export const getById = asyncHandler(async (req, res) => {
 
 export const create = asyncHandler(async (req, res) => {
   const inputData = EventsValidator.create(req);
-  const newEvents = await EventsService.create(inputData);
-
-  res.status(SUCCESS_CODES.CREATED).json(newEvents);
+  const newEvent = await EventsService.create(inputData);
+  res.status(SUCCESS_CODES.CREATED).json(newEvent);
 });
 
 export const update = asyncHandler(async (req, res) => {

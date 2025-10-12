@@ -6,16 +6,30 @@ import { comparePasswords } from "../utils/libs/bcrypt.js";
 import { decodeRefreshToken, signSessionJwts } from "../utils/libs/jwt.js";
 
 export async function processLogin({ email, password, token }) {
+  console.log('Login attempt:', { email, hasPassword: !!password });
+
   const foundUser = await UserModel.findOne({ email })
     .select("+password")
     .lean()
     .exec();
-  if (!foundUser) throw new UnauthorizedError("Wrong email or password.");
-  if (!foundUser.isGoogleUser) {
-    // Evaluate password
-    const isMatch = await comparePasswords(password, foundUser.password);
-    if (!isMatch) throw new UnauthorizedError("Wrong email or password.");
-  }
+  
+  console.log('Found user:', { 
+    found: !!foundUser, 
+    hasStoredPassword: foundUser ? !!foundUser.password : false 
+  });
+  
+  if (!foundUser) throw new UnauthorizedError("Email ou senha incorretos");
+  
+  // Evaluate password
+  console.log('Comparing passwords:', {
+    inputPasswordLength: password?.length,
+    storedPasswordLength: foundUser.password?.length
+  });
+  
+  const isMatch = await comparePasswords(password, foundUser.password);
+  console.log('Password comparison:', { isMatch });
+  
+  if (!isMatch) throw new UnauthorizedError("Email ou senha incorretos");
 
   // Evaluate token reuse
   if (token) {

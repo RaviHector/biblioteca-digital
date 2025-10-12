@@ -1,6 +1,11 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 
-import { login, logout, refresh } from '../../services/api/endpoints';
+import {
+  login,
+  logout,
+  refresh,
+  createUser,
+} from '../../services/api/endpoints';
 import useAuthStore from '../../stores/auth';
 
 export function useLogin({
@@ -9,6 +14,17 @@ export function useLogin({
 } = {}) {
   return useMutation({
     mutationFn: login,
+    onError,
+    onSuccess,
+  });
+}
+
+export function useCreateUser({
+  onSuccess = () => {},
+  onError = (err) => console.error(err),
+} = {}) {
+  return useMutation({
+    mutationFn: createUser,
     onError,
     onSuccess,
   });

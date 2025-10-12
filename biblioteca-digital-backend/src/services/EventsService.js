@@ -40,7 +40,8 @@ export async function getById(_id) {
 }
 
 export async function create(inputData) {
-  return EventsModel.create(inputData);
+  const event = await EventsModel.create(inputData);
+  return event.toObject();
 }
 
 export async function update({ _id, inputData }) {

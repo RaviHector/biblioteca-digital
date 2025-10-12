@@ -48,9 +48,8 @@ export const searchByEvents = async (name) => {
 
   return data;
 };
-export const createEvent = async (newEvent) => {
-  const { data } = await api.post("/events", newEvent);
-
+export const createEvent = async (eventData) => {
+  const { data } = await api.post("/events", eventData);
   return data;
 };
 export const updateEvent = async ({ _id, newEventData }) => {
@@ -145,5 +144,10 @@ export const updateArticle = async ({ _id, newArticleData }) => {
 export const deleteArticle = async (_id) => {
   const { data } = await api.delete(`/article/${_id}`);
 
+  return data;
+};
+
+export const createUser = async (userData) => {
+  const { data } = await api.post("/users", userData);
   return data;
 };

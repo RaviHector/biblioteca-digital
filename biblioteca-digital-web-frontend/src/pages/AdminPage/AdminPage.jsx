@@ -23,7 +23,10 @@ import { CalendarDays, Building2, Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import useDebounce from "../../hooks/query/useDebounce";
 import { EventEditForm, Popup } from "../../components/common";
-import { useDeleteEvent, useUpdateEvent } from "../../hooks/query/events";
+import EventCreateForm from "../../components/common/EventCreateForm/EventCreateForm";
+import { useDeleteEvent, useUpdateEvent, useCreateEvent } from "../../hooks/query/events";
+import EditionCreateForm from "../../components/common/EditionCreateForm/EditionCreateForm";
+import { useCreateEdition } from "../../hooks/query/editions";
 import { useDeleteEdition } from "../../hooks/query/editions";
 import { useDeleteArticle } from "../../hooks/query/article";
 import { useQueryClient } from "@tanstack/react-query";
@@ -33,6 +36,16 @@ export default function AdminPage() {
   const [searchType, setSearchType] = useState("eventos");
   const [openPopup, setOpenPopup] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [openCreateEvent, setOpenCreateEvent] = useState(false);
+  const [openCreateEdition, setOpenCreateEdition] = useState(false);
+  const { mutate: createEdition } = useCreateEdition({
+    onSuccess: () => {
+      toast.success("Edição cadastrada com sucesso!");
+      setOpenCreateEdition(false);
+      queryClient.invalidateQueries(["Editions"]);
+    },
+    onError: (err) => toast.error(`Erro ao cadastrar edição: ${err.message}`),
+  });
   const navigate = useNavigate();
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
   const queryClient = useQueryClient();
@@ -76,6 +89,15 @@ export default function AdminPage() {
   const { mutate: deleteArticle } = useDeleteArticle({
     onSuccess: () => toast.success("Artigo deletado"),
     onError: (err) => toast.error(`Erro ao deletar artigo: ${err.message}`),
+  });
+
+  const { mutate: createEvent } = useCreateEvent({
+    onSuccess: () => {
+      toast.success("Evento cadastrado com sucesso!");
+      setOpenCreateEvent(false);
+      queryClient.invalidateQueries(["Events"]);
+    },
+    onError: (err) => toast.error(`Erro ao cadastrar evento: ${err.message}`),
   });
 
   const handleSaveEvent = (newData) => {
@@ -244,9 +266,52 @@ export default function AdminPage() {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </SearchInput>
-
+      <div style={{ marginBottom: 16 }}>
+        {searchType === "eventos" && (
+          <button
+            onClick={() => setOpenCreateEvent(true)}
+            style={{
+              background: "#22c55e",
+              color: "#fff",
+              padding: "8px 16px",
+              borderRadius: "4px",
+              border: "none",
+              cursor: "pointer",
+            }}
+          >
+            Cadastrar Evento
+          </button>
+        )}
+        {searchType === "edicoes" && (
+          <button
+            onClick={() => setOpenCreateEdition(true)}
+            style={{
+              background: "#22c55e",
+              color: "#fff",
+              padding: "8px 16px",
+              borderRadius: "4px",
+              border: "none",
+              cursor: "pointer",
+              marginLeft: searchType === "eventos" ? 8 : 0,
+            }}
+          >
+            Cadastrar Edição
+          </button>
+        )}
+      </div>
+      {openCreateEvent && (
+        <EventCreateForm
+          onSubmit={(data) => createEvent(data)}
+          onCancel={() => setOpenCreateEvent(false)}
+        />
+      )}
+      {openCreateEdition && (
+        <EditionCreateForm
+          onSubmit={(data) => createEdition(data)}
+          onCancel={() => setOpenCreateEdition(false)}
+        />
+      )}
       {renderContent()}
-
       <Popup
         title={selectedEvent ? `Editar: ${selectedEvent?.name}` : "Editar"}
         openPopup={openPopup}

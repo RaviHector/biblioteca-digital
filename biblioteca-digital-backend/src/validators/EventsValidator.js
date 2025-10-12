@@ -25,18 +25,10 @@ export const getById = validate(
 export const create = validate(
   z.object({
     body: z.object({
-      name: z
-        .string({ required_error: "Events name is required" })
-        .min(3, "Events name must be atleast 3 characters")
-        .max(100, "Events name must be a maximum of 100 characters"),
-      sigla: z
-        .string({ required_error: "Sigla name is required" })
-        .min(2, "Sigla name must be atleast 3 characters")
-        .max(5, "Sigla name must be a maximum of 5 characters"),
-      entity: z
-        .string({ required_error: "Entity name is required" })
-        .min(3, "Entity name must be atleast 3 characters")
-        .max(100, "Entity name must be a maximum of 100 characters"),
+      name: z.string().min(3),
+      entity: z.string().min(2),
+      sigla: z.string().optional(),
+      date: z.string().optional(),
     }),
   })
 );

@@ -19,14 +19,13 @@ const UserSchema = new mongoose.Schema(
     },
     userName: {
       type: String,
-      required: true,
-      unique: true,
+      required: false,
       trim: true,
     },
     password: {
       type: String,
-      required: false,
-      select: false,
+      required: true,
+      select: false, // A senha só será incluída em consultas quando explicitamente solicitada
     },
 
     isAdmin: {
@@ -38,14 +37,7 @@ const UserSchema = new mongoose.Schema(
   { timestamps: true, versionKey: false }
 );
 
-UserSchema.pre("save", async function (next) {
-  // only hash the password if it has been modified or it is new
-  if (this.isModified("password")) {
-    this.password = await hashPassword(this.password);
-  }
-
-  next();
-});
+// Removido o middleware de hash de senha, pois isso já é feito no UserService
 
 UserSchema.pre(
   "deleteOne",

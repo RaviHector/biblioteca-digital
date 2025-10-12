@@ -9,8 +9,14 @@ const routes = Router();
 routes
   .use("/", SessionRoutes)
   .use("/users", UserRoutes)
+
   .use("/events", EventsRoutes)
   .use("/editions", EditionsRoutes)
-  .use("/article", ArticleRoutes);
+  .use("/article", ArticleRoutes)
+
+  .use("/events", EventsRoutes);
+  //.use("/editions", EditionsRoutes);
+  //.use("/articles", ArticleRoutes); 
+
 
 export default routes;

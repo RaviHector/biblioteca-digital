@@ -8,7 +8,7 @@ const EventsRoutes = Router();
 
 EventsRoutes.route("/")
   .get(EventsController.get)
-  .post(verifyJWT, verifyAdmin, EventsController.create);
+  .post(EventsController.create);
 
 EventsRoutes.get("/search-by-name", EventsController.searchByName);
 

@@ -32,7 +32,7 @@ export const create = validate(
       place: z
         .string({ required_error: "Sigla place is required" })
         .min(2, "Sigla place must be atleast 3 characters")
-        .max(5, "Sigla place must be a maximum of 5 characters"),
+        .max(100, "Sigla place must be a maximum of 5 characters"),
       event: objectIdSchema("Event _id"),
     }),
   })

@@ -12,9 +12,34 @@ export async function getById(_id) {
   return foundUser;
 }
 
+import { hashPassword } from '../utils/libs/bcrypt.js';
+
 export async function create(inputData) {
+  // Verifica se já existe um usuário com este email
+  const existingUser = await UserModel.findOne({ email: inputData.email }).lean().exec();
+  if (existingUser) {
+    throw new Error('Email já está em uso');
+  }
+
+  // Gera o userName a partir do email
+  const userName = inputData.email.split('@')[0];
+  
+  // Criptografa a senha usando bcrypt diretamente
+  const hashedPassword = await hashPassword(inputData.password);
+  
+  console.log('Criando usuário:', {
+    email: inputData.email,
+    hashedPassword: !!hashedPassword,
+    passwordLength: hashedPassword?.length
+  });
+
+  // Cria o usuário com a senha criptografada
   const { password, ...newUser } = (
-    await UserModel.create(inputData)
+    await UserModel.create({
+      ...inputData,
+      userName,
+      password: hashedPassword
+    })
   ).toObject();
 
   return newUser;
