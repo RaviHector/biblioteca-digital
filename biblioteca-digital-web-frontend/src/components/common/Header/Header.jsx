@@ -60,7 +60,7 @@ export default function Header() {
               type="button"
               onClick={() => {
                 closeHeader();
-                navigate("/perfil");
+                navigate("/");
               }}
             >
               Meu Perfil
@@ -83,7 +83,7 @@ export default function Header() {
     const isLessThanEqualLimit = firstName?.length <= nameLengthLimit;
     return (
       <>
-        <Link to="/perfil" onClick={() => setBar(false)}>
+        <Link to="/" onClick={() => setBar(false)}>
           {isLessThanEqualLimit ? `Olá, ${firstName}!` : "Meu Perfil"}
         </Link>
         <LogoutBtn onClick={logout} $collapse={collapseLogout}>
@@ -103,8 +103,8 @@ export default function Header() {
             </Link>
             {user?.isAdmin && (
               <Link to="/adminpage" onClick={closeHeader}>
-              Administrador
-            </Link>
+                Administrador
+              </Link>
             )}
             <InvertItems>
               {user ? (

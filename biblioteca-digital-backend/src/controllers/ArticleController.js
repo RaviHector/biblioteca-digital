@@ -14,21 +14,21 @@ export const getById = asyncHandler(async (req, res) => {
   const { _id } = ArticleValidator.getById(req);
   const Article = await ArticleService.getById(_id);
 
-  res.status(SUCCESS_CODES.OK).json(Edition);
+  res.status(SUCCESS_CODES.OK).json(Article);
 });
 
 export const create = asyncHandler(async (req, res) => {
   const inputData = ArticleValidator.create(req);
   const newArticle = await ArticleService.create(inputData);
 
-  res.status(SUCCESS_CODES.CREATED).json(newEdition);
+  res.status(SUCCESS_CODES.CREATED).json(newArticle);
 });
 
 export const update = asyncHandler(async (req, res) => {
   const { _id, ...inputData } = ArticleValidator.update(req);
-  const updatedEdition = await ArticleService.update({ _id, inputData });
+  const updatedArticle = await ArticleService.update({ _id, inputData });
 
-  res.status(SUCCESS_CODES.OK).json(updatedEdition);
+  res.status(SUCCESS_CODES.OK).json(updatedArticle);
 });
 
 export const destroy = asyncHandler(async (req, res) => {
@@ -49,10 +49,10 @@ export const searchByName = asyncHandler(async (req, res) => {
 });
 
 export const searchArticle = asyncHandler(async (req, res) => {
-    const { searchTerm, ...inputFilters } = ArticleValidator.searchArticle(req);
-    const editions = await ArticleService.searchArticle({
-    searchTerm,
+  const { name, ...inputFilters } = ArticleValidator.searchByName(req);
+  const articles = await ArticleService.searchArticle({
+    name,
     inputFilters,
   });
-  res.status(SUCCESS_CODES.OK).json(editions);
+  res.status(SUCCESS_CODES.OK).json(articles);
 });

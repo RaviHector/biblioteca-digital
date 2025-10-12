@@ -1,11 +1,10 @@
 /**
  * Busca eventos por nome, sigla ou entidade.
  * @param {object} params - Os parâmetros da função.
- * @param {string} params.searchTerm - O termo a ser buscado nos campos name, sigla e entity.
+ * @param {string} params.name - O termo a ser buscado nos campos name, sigla e entity.
  * @param {object} params.inputFilters - Filtros adicionais para a query do MongoDB.
  * @returns {Promise<Array>} Uma promessa que resolve para uma lista de eventos.
  */
-
 
 import { Query } from "mongoose";
 import { NotFoundError } from "../errors/baseErrors.js";
@@ -65,15 +64,11 @@ export async function searchByName({ name, inputFilters }) {
   return EventsModel.find(query).sort("name").lean().exec();
 }
 
-export async function searchEvents({ searchTerm, inputFilters }) {
-    const query = { ...inputFilters };
-    if (searchTerm) {
-    const regex = convertStringToRegexp(searchTerm); 
-      query.$or = [
-      { name: regex },
-      { sigla: regex },
-      { entity: regex },
-    ];
+export async function searchEvents({ name, inputFilters }) {
+  const query = { ...inputFilters };
+  if (name) {
+    const regex = convertStringToRegexp(name);
+    query.$or = [{ name: regex }, { sigla: regex }, { entity: regex }];
   }
   return EventsModel.find(query).sort("name").lean().exec();
 }

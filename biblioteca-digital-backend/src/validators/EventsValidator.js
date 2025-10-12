@@ -85,17 +85,11 @@ export const searchByName = validate(
 
 export const searchEvents = validate(
   z.object({
-    // Valida o objeto 'query' da requisição (req.query)
     query: z
       .object({
-        // O termo de busca principal. É opcional para permitir buscas apenas com filtros.
-        searchTerm: z.string().optional(),
-
-        // Mantém outros filtros que você queira validar explicitamente.
+        name: z.string().optional(),
         _id: objectIdSchema("Events _id").optional(),
       })
-      // Permite que quaisquer outros campos de query sejam passados sem gerar erro.
-      // Essencial para que os '...inputFilters' funcionem.
       .passthrough(),
   })
 );

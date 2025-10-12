@@ -49,9 +49,9 @@ export const searchByName = asyncHandler(async (req, res) => {
 });
 
 export const searchEvents = asyncHandler(async (req, res) => {
-    const { searchTerm, ...inputFilters } = EventsValidator.searchEvents(req);
-    const events = await EventsService.searchEvents({
-    searchTerm,
+  const { name, ...inputFilters } = EventsValidator.searchEvents(req);
+  const events = await EventsService.searchEvents({
+    name,
     inputFilters,
   });
   res.status(SUCCESS_CODES.OK).json(events);

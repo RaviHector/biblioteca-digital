@@ -9,7 +9,7 @@ export const get = validate(
       _id: objectIdSchema("Edition _id").optional(),
       year: z.string().optional(),
       place: z.string().optional(),
-      event: z.objectIdSchema("EventId").optional(),
+      event: objectIdSchema("EventId").optional(),
     }),
   })
 );
@@ -33,7 +33,7 @@ export const create = validate(
         .string({ required_error: "Sigla place is required" })
         .min(2, "Sigla place must be atleast 3 characters")
         .max(5, "Sigla place must be a maximum of 5 characters"),
-      event: z.objectIdSchema("Event _id"),
+      event: objectIdSchema("Event _id"),
     }),
   })
 );
@@ -51,7 +51,7 @@ export const update = validate(
         .min(2, "Sigla name must be atleast 3 characters")
         .max(5, "Sigla name must be a maximum of 5 characters")
         .optional(),
-      event: z.objectIdSchema("Event _id"),
+      event: objectIdSchema("Event _id"),
     }),
     params: z.object({
       _id: objectIdSchema("Edition _id"),
@@ -70,8 +70,7 @@ export const destroy = validate(
 export const searchByName = validate(
   z.object({
     query: z.object({
-      name: z.string().default(""),
-      _id: objectIdSchema("Edition _id").optional(),
+      name: z.string().default("").optional(),
     }),
   })
 );

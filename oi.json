@@ -1,0 +1,11 @@
+`{{
+  "title": "Teste de Artigo",
+  "author": "João Silva",
+  "edition": "68eb30dc0e25029f7b89d876",
+  "year": "2024",
+  "first_page": "10",
+  "last_page": "20"
+},
+{
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY4ZWFhMTBmYWFhZTlmMDkzMWExMzUxMCIsIm5hbWUiOiJSYXZpIEhlY3RvciBMb3BlcyBKZXJpY8OzIFZpZWlyYSIsImVtYWlsIjoicmF2aWhlY3RvcjJAZ21haWwuY29tIiwidXNlck5hbWUiOiJyYXZpaGVjdG9yIiwiaXNBZG1pbiI6dHJ1ZX0sImlhdCI6MTc2MDI4NTc3NSwiZXhwIjoxNzYwMjg5Mzc1fQ.eMGtjbtTww1TQUrGHTzABR-KmgGxcIbAIcO5SJ2LaU4"
+};}`

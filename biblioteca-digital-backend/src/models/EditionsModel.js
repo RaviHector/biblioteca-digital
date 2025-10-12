@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 import { COLLECTION_NAMES } from "../utils/general/constants.js";
 import { ObjectId } from "../config/mongo.js";
+import ArticleModel from "./ArticleModel.js";
 
 const EditionsSchema = new mongoose.Schema(
   {
@@ -30,7 +31,7 @@ EditionsSchema.pre(
   "deleteOne",
   { document: true, query: false }, // More details on https://mongoosejs.com/docs/api/schema.html#schema_Schema-pre
   async function (next) {
-    await ArticleModel.deleteMany({ year: this._id }).exec();
+    await ArticleModel.deleteMany({ edition: this._id }).exec();
     next();
   }
 ); // More details on https://stackoverflow.com/questions/14348516/cascade-style-delete-in-mongoose

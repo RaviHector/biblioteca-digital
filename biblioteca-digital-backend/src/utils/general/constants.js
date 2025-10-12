@@ -35,4 +35,5 @@ export const COLLECTION_NAMES = {
   USER_SESSION_TOKEN: "usersessiontokens",
   EVENT: "events",
   EDITION: "editions",
+  ARTICLE: "articles",
 };

@@ -50,13 +50,13 @@ export function useSearchByNameArticle({
 }
 
 export function useSearchArticle({
-  searchTerm,
+  name,
   onSuccess = () => {},
   onError = (err) => console.log(err),
 } = {}) {
   return useQuery({
-    queryKey: ["Article", searchTerm],
-    queryFn: () => searchByArticle(searchTerm),
+    queryKey: ["Article", name],
+    queryFn: () => searchByArticle(name),
     onSuccess,
     onError,
   });
@@ -81,7 +81,7 @@ export function useUpdateArticle({
   return useMutation({
     mutationFn: updateArticle,
     onSuccess: (...args) => {
-      queryClient.invalidateQueries({ queryKey: ['Article'] });
+      queryClient.invalidateQueries({ queryKey: ["Article"] });
       onSuccess(...args);
     },
     onError,
@@ -96,7 +96,7 @@ export function useDeleteArticle({
   return useMutation({
     mutationFn: deleteArticle,
     onSuccess: (...args) => {
-      queryClient.invalidateQueries({ queryKey: ['Article'] });
+      queryClient.invalidateQueries({ queryKey: ["Article"] });
       onSuccess(...args);
     },
     onError,

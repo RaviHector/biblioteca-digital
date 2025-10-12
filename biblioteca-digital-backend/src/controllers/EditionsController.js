@@ -49,9 +49,9 @@ export const searchByName = asyncHandler(async (req, res) => {
 });
 
 export const searchEditions = asyncHandler(async (req, res) => {
-    const { searchTerm, ...inputFilters } = EditionsValidator.searchEditions(req);
-    const editions = await EditionsService.searchEditions({
-    searchTerm,
+  const { name, ...inputFilters } = EditionsValidator.searchByName(req);
+  const editions = await EditionsService.searchEditions({
+    name,
     inputFilters,
   });
   res.status(SUCCESS_CODES.OK).json(editions);

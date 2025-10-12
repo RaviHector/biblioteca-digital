@@ -1,18 +1,18 @@
 import mongoose from "mongoose";
 
 import { COLLECTION_NAMES } from "../utils/general/constants.js";
-import EditionModel from "./EditionsModel.js";
+import { ObjectId } from "../config/mongo.js";
 
 const ArticleSchema = new mongoose.Schema(
   {
     title: {
       type: String,
       required: true,
+      unique: true,
       trim: true,
-
     },
     author: {
-      type: String,
+      type: Array,
       required: true,
       trim: true,
     },
@@ -41,5 +41,5 @@ const ArticleSchema = new mongoose.Schema(
   { versionKey: false }
 );
 
-const EventsModel = mongoose.model(COLLECTION_NAMES.EVENT, EventsSchema);
-export default EventsModel;
+const ArticleModel = mongoose.model(COLLECTION_NAMES.ARTICLE, ArticleSchema);
+export default ArticleModel;

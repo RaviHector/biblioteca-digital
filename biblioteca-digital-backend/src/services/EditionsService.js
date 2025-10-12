@@ -48,15 +48,39 @@ export async function searchByName({ name, inputFilters }) {
     .exec();
 }
 
-export async function searchEditions({ searchTerm, inputFilters }) {
-    const query = { ...inputFilters };
-    if (searchTerm) {
-    const regex = convertStringToRegexp(searchTerm); 
-      query.$or = [
-      { year: regex },
-      { place: regex },
-      { event: regex },
-    ];
+export async function searchEditions({ name, inputFilters = {} }) {
+  if (!name) {
+    return EditionsModel.find(inputFilters)
+      .populate("event")
+      .sort("year")
+      .lean()
+      .exec();
   }
-  return EditionsModel.find(query).sort("name").lean().exec();
+  const regex = convertStringToRegexp(name);
+  const pipeline = [
+    {
+      $lookup: {
+        from: COLLECTION_NAMES.EVENT,
+        localField: "event",
+        foreignField: "_id",
+        as: "event",
+      },
+    },
+    { $unwind: "$event" },
+
+    {
+      $match: {
+        $or: [
+          { year: { $regex: regex } },
+          { place: { $regex: regex } },
+          { "event.name": { $regex: regex } },
+          { "event.sigla": { $regex: regex } },
+        ],
+        ...inputFilters,
+      },
+    },
+    { $sort: { year: 1 } },
+  ];
+  const results = await EditionsModel.aggregate(pipeline);
+  return results;
 }

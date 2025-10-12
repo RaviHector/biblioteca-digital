@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import Button from '../Button/Button';
+import Button from "../Button/Button";
 
-const menuBreak = '900px';
+const menuBreak = "900px";
 
 export const Content = styled.div`
   display: flex;
@@ -50,7 +50,7 @@ export const Nav = styled.div`
     font-size: 2.2rem;
     font-family: ${(props) => props.theme.fonts.artnoova};
     text-decoration: none;
-    color: ${(props) => props.theme.colors.font.black};
+    color: ${({ theme }) => theme.colors.font.black};
     position: relative;
     flex-direction: row;
     flex-grow: 1;
@@ -77,9 +77,9 @@ export const Nav = styled.div`
     align-items: center;
     gap: 1rem;
     top: 10rem;
-    padding: ${({ $bar }) => ($bar ? '1rem 0' : '0rem')};
+    padding: ${({ $bar }) => ($bar ? "1rem 0" : "0rem")};
     height: auto;
-    max-height: ${({ $bar }) => ($bar ? '50rem' : '0rem')};
+    max-height: ${({ $bar }) => ($bar ? "50rem" : "0rem")};
     left: 0%;
     right: 0%;
     transition: all 400ms ease;
@@ -120,13 +120,13 @@ export const Bar = styled.div`
     width: 100%;
     height: 0.2rem;
     background-color: ${({ $bar, theme }) =>
-      $bar ? 'transparent' : theme.colors.softGreen};
+      $bar ? "transparent" : theme.colors.softGreen};
     border-radius: 0.5rem;
     transition: all 400ms ease-in-out;
 
     &::before,
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       width: 100%;
       height: 0.2rem;
@@ -137,11 +137,11 @@ export const Bar = styled.div`
 
     &::before {
       transform: ${({ $bar }) =>
-        $bar ? 'rotate(-45deg)' : 'translateY(-8px)'};
+        $bar ? "rotate(-45deg)" : "translateY(-8px)"};
     }
 
     &::after {
-      transform: ${({ $bar }) => ($bar ? 'rotate(45deg)' : 'translateY(8px)')};
+      transform: ${({ $bar }) => ($bar ? "rotate(45deg)" : "translateY(8px)")};
     }
   }
 `;
@@ -154,7 +154,7 @@ export const ButtonLogin = styled(Button)`
     width: 12rem;
   }
   @media (max-width: ${menuBreak}) {
-    display: ${({ $collapse }) => ($collapse ? 'flex' : 'none')};
+    display: ${({ $collapse }) => ($collapse ? "flex" : "none")};
   }
 `;
 
@@ -195,7 +195,7 @@ export const Divider = styled.div`
   background-color: white;
   height: 0.2rem;
   display: flex;
-  max-height: ${({ $collapse }) => ($collapse ? '1rem' : '0rem')};
+  max-height: ${({ $collapse }) => ($collapse ? "1rem" : "0rem")};
   align-self: stretch;
   overflow-y: hidden;
   transition: all 400ms ease-in-out;
@@ -211,7 +211,7 @@ export const MenuProfile = styled.div`
   div {
     svg {
       transform: ${({ $collapse }) =>
-        $collapse ? 'rotate(180deg)' : 'rotate(0deg)'};
+        $collapse ? "rotate(180deg)" : "rotate(0deg)"};
       transition: all 400ms ease-in-out;
     }
   }
@@ -246,7 +246,7 @@ export const LogoutBtn = styled.button`
   border: none;
   border-left: 0.2rem solid ${(props) => props.theme.colors.white};
   color: ${(props) => props.theme.colors.font.black};
-  font-family: ${(props) => props.theme.fonts.artnoova};
+  font-family: ${({ theme }) => theme.fonts.artnoova};
   font-weight: 500;
   text-decoration: none;
   background-color: transparent;
@@ -254,7 +254,7 @@ export const LogoutBtn = styled.button`
   display: flex;
   align-items: center;
   font-size: 2.2rem;
-  :hover {
+  &:hover {
     text-decoration: underline solid ${(props) => props.theme.colors.softGreen}
       0.2rem;
     cursor: pointer;
@@ -266,7 +266,7 @@ export const LogoutBtn = styled.button`
     font-weight: 500;
     padding-left: 0rem;
     display: flex;
-    max-height: ${({ $collapse }) => ($collapse ? '10rem' : '0rem')};
+    max-height: ${({ $collapse }) => ($collapse ? "10rem" : "0rem")};
     overflow-y: hidden;
     :hover {
       text-decoration-color: white;

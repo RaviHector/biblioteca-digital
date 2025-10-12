@@ -50,13 +50,13 @@ export function useSearchByNameEvents({
 }
 
 export function useSearchEvents({
-  searchTerm,
+  name,
   onSuccess = () => {},
   onError = (err) => console.log(err),
 } = {}) {
   return useQuery({
-    queryKey: ["Events", searchTerm],
-    queryFn: () => searchByEvents(searchTerm),
+    queryKey: ["Events", name],
+    queryFn: () => searchByEvents(name),
     onSuccess,
     onError,
   });
@@ -77,13 +77,9 @@ export function useUpdateEvent({
   onSuccess = () => {},
   onError = (err) => console.log(err),
 } = {}) {
-  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: updateEvent,
-    onSuccess: (...args) => {
-      queryClient.invalidateQueries({ queryKey: ['Events'] });
-      onSuccess(...args);
-    },
+    onSuccess,
     onError,
   });
 }
@@ -96,7 +92,7 @@ export function useDeleteEvent({
   return useMutation({
     mutationFn: deleteEvent,
     onSuccess: (...args) => {
-      queryClient.invalidateQueries({ queryKey: ['Events'] });
+      queryClient.invalidateQueries({ queryKey: ["Events"] });
       onSuccess(...args);
     },
     onError,

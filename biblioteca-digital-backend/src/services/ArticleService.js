@@ -1,5 +1,7 @@
+import mongoose from "mongoose";
 import { NotFoundError } from "../errors/baseErrors.js";
 import ArticleModel from "../models/ArticleModel.js";
+import EditionsModel from "../models/EditionsModel.js";
 import { COLLECTION_NAMES } from "../utils/general/constants.js";
 import convertStringToRegexp from "../utils/general/convertStringToRegexp.js";
 
@@ -48,16 +50,83 @@ export async function searchByName({ name, inputFilters }) {
     .exec();
 }
 
-export async function searchArticle({ searchTerm, inputFilters }) {
-    const query = { ...inputFilters };
-    if (searchTerm) {
-    const regex = convertStringToRegexp(searchTerm); 
-      query.$or = [
-      { title: regex },
-      { author: regex },
-      { edition: regex },
-      { year: regex },
-    ];
+export async function searchArticle({ name, inputFilters = {} }) {
+  const query = { ...inputFilters };
+
+  // popula sempre a edição e o evento
+  const populateOpts = {
+    path: "edition",
+    populate: { path: "event" },
+  };
+
+  if (!name) {
+    return ArticleModel.find(query)
+      .populate(populateOpts)
+      .sort("title")
+      .lean()
+      .exec();
   }
-  return ArticleModel.find(query).sort("name").lean().exec();
+
+  const regex = convertStringToRegexp(name);
+
+  // Busca direta em Article: title OU algum elemento do array author
+  const directQuery = {
+    ...query,
+    $or: [
+      { title: { $regex: regex } },
+      { author: { $elemMatch: { $regex: regex } } },
+    ],
+  };
+
+  const directMatches = await ArticleModel.find(directQuery)
+    .populate(populateOpts)
+    .lean()
+    .exec();
+
+  // Busca Events por name ou sigla
+  const EventModel = mongoose.model(COLLECTION_NAMES.EVENT);
+  const events = await EventModel.find({
+    $or: [{ name: { $regex: regex } }, { sigla: { $regex: regex } }],
+  })
+    .lean()
+    .exec();
+
+  // Se não encontrou events, não há edições indiretas — mas não retornamos cedo, apenas prosseguimos
+  const eventIds = events.length ? events.map((e) => e._id) : [];
+  console.log("eventIds encontrados:", eventIds);
+
+  // Busca Editions das events encontradas (pode resultar em [] sem problemas)
+  const EditionModel = mongoose.model(COLLECTION_NAMES.EDITION);
+  const editions = eventIds.length
+    ? await EditionModel.find({ event: { $in: eventIds } })
+        .lean()
+        .exec()
+    : [];
+  console.log("Events encontrados:", editions);
+
+  const editionIds = editions.length ? editions.map((ed) => ed._id) : [];
+
+  // Busca artigos dessas edições (se editionIds vazio, a query resulta em [])
+  const indirectMatches = editionIds.length
+    ? await ArticleModel.find({ edition: { $in: editionIds } })
+        .populate(populateOpts)
+        .lean()
+        .exec()
+    : [];
+
+  // Junta diretos + indiretos removendo duplicados por _id
+  const map = new Map();
+  directMatches.forEach((a) => map.set(String(a._id), a));
+  indirectMatches.forEach((a) => map.set(String(a._id), a)); // sobrescreve apenas se não existir
+
+  const allMatches = Array.from(map.values());
+
+  // Ordena por title (ou outro campo se preferir)
+  allMatches.sort((x, y) => {
+    if (!x.title) return -1;
+    if (!y.title) return 1;
+    return x.title.localeCompare(y.title);
+  });
+
+  return allMatches;
 }

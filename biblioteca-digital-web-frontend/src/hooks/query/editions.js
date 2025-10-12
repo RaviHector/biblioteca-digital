@@ -50,13 +50,13 @@ export function useSearchByNameEditions({
 }
 
 export function useSearchEditions({
-  searchTerm,
+  name,
   onSuccess = () => {},
   onError = (err) => console.log(err),
 } = {}) {
   return useQuery({
-    queryKey: ["Editions", searchTerm],
-    queryFn: () => searchByEditions(searchTerm),
+    queryKey: ["Editions", name],
+    queryFn: () => searchByEditions(name),
     onSuccess,
     onError,
   });
@@ -81,7 +81,7 @@ export function useUpdateEdition({
   return useMutation({
     mutationFn: updateEdition,
     onSuccess: (...args) => {
-      queryClient.invalidateQueries({ queryKey: ['Editions'] });
+      queryClient.invalidateQueries({ queryKey: ["Editions"] });
       onSuccess(...args);
     },
     onError,
@@ -96,7 +96,7 @@ export function useDeleteEdition({
   return useMutation({
     mutationFn: deleteEdition,
     onSuccess: (...args) => {
-      queryClient.invalidateQueries({ queryKey: ['Editions'] });
+      queryClient.invalidateQueries({ queryKey: ["Editions"] });
       onSuccess(...args);
     },
     onError,
