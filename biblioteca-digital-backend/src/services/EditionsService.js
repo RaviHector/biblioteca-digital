@@ -5,14 +5,14 @@ import convertStringToRegexp from "../utils/general/convertStringToRegexp.js";
 
 export async function get(inputFilters) {
   return EditionsModel.find(inputFilters)
-    .populate(COLLECTION_NAMES.EVENT)
+    .populate("event")
     .lean()
     .exec();
 }
 
 export async function getById(_id) {
   const foundEditions = await EditionsModel.findById(_id)
-    .populate(COLLECTION_NAMES.EVENT)
+    .populate("event")
     .lean()
     .exec();
   if (!foundEditions) throw new NotFoundError("Edition not found");
@@ -42,7 +42,7 @@ export async function searchByName({ name, inputFilters }) {
   if (name) query.name = { $regex: convertStringToRegexp(name) };
 
   return EditionsModel.find(query)
-    .populate(COLLECTION_NAMES.EVENT)
+    .populate("event")
     .sort("name")
     .lean()
     .exec();

@@ -20,18 +20,31 @@ import {
 } from "./Styles";
 import { PropagateLoader } from "react-spinners";
 import { CalendarDays, Building2, Search } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 import useDebounce from "../../hooks/query/useDebounce";
-import { EventEditForm, Popup } from "../../components/common";
+import { EventEditForm, Popup, ArticleEditForm } from "../../components/common";
 import EventCreateForm from "../../components/common/EventCreateForm/EventCreateForm";
 import { useDeleteEvent, useUpdateEvent, useCreateEvent } from "../../hooks/query/events";
 import EditionCreateForm from "../../components/common/EditionCreateForm/EditionCreateForm";
-import { useCreateEdition } from "../../hooks/query/editions";
+import { useCreateEdition, useUpdateEdition } from "../../hooks/query/editions";
 import { useDeleteEdition } from "../../hooks/query/editions";
-import { useDeleteArticle } from "../../hooks/query/article";
+import EditionEditForm from "../../components/common/EditionEditForm/EditionEditForm";
+import { useDeleteArticle, useUpdateArticle } from "../../hooks/query/article";
 import { useQueryClient } from "@tanstack/react-query";
 
 export default function AdminPage() {
+  const [selectedEdition, setSelectedEdition] = useState(null);
+  const [openEditEdition, setOpenEditEdition] = useState(false);
+  const [selectedArticle, setSelectedArticle] = useState(null);
+  const [openEditArticle, setOpenEditArticle] = useState(false);
+  const { mutate: updateArticle } = useUpdateArticle({
+    onSuccess: () => {
+      toast.success("Artigo atualizado com sucesso!");
+      setOpenEditArticle(false);
+      setSelectedArticle(null);
+      queryClient.invalidateQueries(["Articles"]);
+    },
+    onError: (err) => toast.error(`Erro ao atualizar artigo: ${err.message}`),
+  });
   const [searchTerm, setSearchTerm] = useState("");
   const [searchType, setSearchType] = useState("eventos");
   const [openPopup, setOpenPopup] = useState(false);
@@ -46,7 +59,16 @@ export default function AdminPage() {
     },
     onError: (err) => toast.error(`Erro ao cadastrar edição: ${err.message}`),
   });
-  const navigate = useNavigate();
+
+  const { mutate: updateEdition } = useUpdateEdition({
+    onSuccess: () => {
+      toast.success("Edição atualizada com sucesso!");
+      queryClient.invalidateQueries({ queryKey: ["Editions"] });
+      setOpenEditEdition(false);
+      setSelectedEdition(null);
+    },
+    onError: (err) => toast.error(`Erro ao atualizar edição: ${err.message}`),
+  });
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
   const queryClient = useQueryClient();
   // Hooks de busca (Queries)
@@ -107,6 +129,13 @@ export default function AdminPage() {
     });
   };
 
+  const handleSaveArticle = (newData) => {
+    updateArticle({
+      _id: selectedArticle._id,
+      newArticleData: newData,
+    });
+  };
+
   const renderContent = () => {
     if (searchType === "artigos") {
       if (isLoadingArticles)
@@ -138,6 +167,14 @@ export default function AdminPage() {
                 <Line>Publicado: {item?.year || "—"}</Line>
               </CardContent>
               <CardActions>
+                <EditButton
+                  onClick={() => {
+                    setSelectedArticle(item);
+                    setOpenEditArticle(true);
+                  }}
+                >
+                  Editar
+                </EditButton>
                 <DeleteButton onClick={() => deleteArticle(item?._id)}>
                   Deletar
                 </DeleteButton>
@@ -173,9 +210,18 @@ export default function AdminPage() {
                 <Line>Ano: {item?.year || "—"}</Line>
               </CardContent>
               <CardActions>
+                <EditButton
+                  onClick={() => {
+                    setSelectedEdition(item);
+                    setOpenEditEdition(true);
+                  }}
+                >
+                  Editar
+                </EditButton>
                 <DeleteButton onClick={() => deleteEdition(item?._id)}>
                   Deletar
                 </DeleteButton>
+      {/* O Popup de edição de edição deve ficar fora do loop dos cards */}
               </CardActions>
             </Card>
           ))}
@@ -325,6 +371,42 @@ export default function AdminPage() {
             initialData={selectedEvent}
             onCancel={() => setOpenPopup(false)}
             onSave={handleSaveEvent}
+          />
+        )}
+      </Popup>
+
+      {/* Popup de edição de artigo */}
+      <Popup
+        title={selectedArticle ? `Editar: ${selectedArticle?.title}` : "Editar Artigo"}
+        openPopup={openEditArticle}
+        setOpenPopup={(v) => {
+          setOpenEditArticle(v);
+          if (!v) setSelectedArticle(null);
+        }}
+      >
+        {selectedArticle && (
+          <ArticleEditForm
+            initialData={selectedArticle}
+            onCancel={() => setOpenEditArticle(false)}
+            onSave={handleSaveArticle}
+          />
+        )}
+      </Popup>
+
+      {/* Popup de edição de edição */}
+      <Popup
+        title={selectedEdition ? `Editar: ${selectedEdition?.event?.sigla || selectedEdition?.event?.name}` : "Editar Edição"}
+        openPopup={openEditEdition}
+        setOpenPopup={(v) => {
+          setOpenEditEdition(v);
+          if (!v) setSelectedEdition(null);
+        }}
+      >
+        {selectedEdition && (
+          <EditionEditForm
+            initialData={selectedEdition}
+            onSave={(data) => updateEdition({ _id: selectedEdition._id, newEditionData: data })}
+            onCancel={() => setOpenEditEdition(false)}
           />
         )}
       </Popup>

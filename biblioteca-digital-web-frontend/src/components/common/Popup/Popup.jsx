@@ -16,7 +16,7 @@ export default function Popup({ title, children, openPopup, setOpenPopup }) {
         <TitleRowStyle>
           <div
             style={{
-              fontSize: 18,
+              fontSize: "18px",
               fontWeight: 600,
               color: theme.colors.font.black,
             }}

@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useGetEvents } from "../../../hooks/query/events";
-import { Button } from "../../../pages/Login/Styles";
-import { FormContainer, Input, ErrorMsg, Actions } from "./EditionCreateFormStyles";
+import { FormContainer, Input, ErrorMsg, Actions, Button } from "./EditionCreateFormStyles";
 
 export default function EditionCreateForm({ onSubmit, onCancel }) {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -14,8 +13,8 @@ export default function EditionCreateForm({ onSubmit, onCancel }) {
       <h2>Cadastrar Edição</h2>
       <Input {...register("year", { required: true })} placeholder="Ano" />
       {errors.year && <ErrorMsg>Ano é obrigatório</ErrorMsg>}
-      <Input {...register("place", { required: true })} placeholder="Local" />
-      {errors.place && <ErrorMsg>Local é obrigatório</ErrorMsg>}
+      <Input {...register("place", { required: true, maxLength: 100 })} placeholder="Local (máx. 100 caracteres)" />
+      {errors.place && <ErrorMsg>Local é obrigatório e até 100 caracteres</ErrorMsg>}
       <div style={{ margin: '8px 0' }}>
         <label htmlFor="event">Evento:</label>
         <select {...register("event", { required: true })} id="event" defaultValue="">
@@ -28,8 +27,12 @@ export default function EditionCreateForm({ onSubmit, onCancel }) {
         {errors.event && <ErrorMsg>Evento é obrigatório</ErrorMsg>}
       </div>
       <Actions>
-        <Button type="submit">Cadastrar</Button>
-        <Button type="button" onClick={onCancel} style={{ background: '#ef4444' }}>Cancelar</Button>
+        <Button type="button" onClick={onCancel} backgroundcolor="#ccc">
+          Cancelar
+        </Button>
+        <Button type="submit" backgroundcolor="#1976d2">
+          Cadastrar
+        </Button>
       </Actions>
     </FormContainer>
   );
