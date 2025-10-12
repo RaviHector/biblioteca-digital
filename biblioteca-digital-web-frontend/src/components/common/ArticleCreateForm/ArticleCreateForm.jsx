@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { useGetEditions } from "../../../hooks/query/editions";
 import { useGetEvents } from "../../../hooks/query/events";
 import { FormContainer, Input, ErrorMsg, Actions, Button, Label, ContainerWrapper, TextArea } from "./ArticleCreateFormStyles";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function ArticleCreateForm({ onSave, onCancel }) {
   const { register, handleSubmit, watch, setValue, formState: { errors } } = useForm({ 
@@ -16,6 +16,9 @@ export default function ArticleCreateForm({ onSave, onCancel }) {
       last_page: ""
     }
   });
+  
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [fileError, setFileError] = useState("");
   
   const editionsQuery = useGetEditions({});
   const editions = editionsQuery.data || [];
@@ -53,13 +56,54 @@ export default function ArticleCreateForm({ onSave, onCancel }) {
     }
   }, [selectedEvent, filteredEditions, setValue, watch]);
 
+  // Função para lidar com seleção de arquivo
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setFileError("");
+    
+    if (file) {
+      // Validar tipo de arquivo
+      if (file.type !== 'application/pdf') {
+        setFileError("Por favor, selecione apenas arquivos PDF");
+        setSelectedFile(null);
+        return;
+      }
+      
+      // Validar tamanho do arquivo (máximo 10MB)
+      const maxSize = 10 * 1024 * 1024; // 10MB em bytes
+      if (file.size > maxSize) {
+        setFileError("O arquivo deve ter no máximo 10MB");
+        setSelectedFile(null);
+        return;
+      }
+      
+      setSelectedFile(file);
+    } else {
+      setSelectedFile(null);
+    }
+  };
+
   const handleFormSubmit = (data) => {
     // Converter autor de string para array
-    const formattedData = {
-      ...data,
-      author: data.author.split(",").map(author => author.trim()).filter(author => author !== "")
-    };
-    onSave(formattedData);
+    const authorsArray = data.author.split(",").map(author => author.trim()).filter(author => author !== "");
+    
+    const formData = new FormData();
+    
+    // Adicionar todos os campos do formulário
+    formData.append('title', data.title);
+    formData.append('author', JSON.stringify(authorsArray));
+    formData.append('event', data.event);
+    formData.append('edition', data.edition);
+    formData.append('year', data.year);
+    formData.append('first_page', data.first_page);
+    formData.append('last_page', data.last_page);
+    
+    // Adicionar arquivo PDF se selecionado
+    if (selectedFile) {
+      formData.append('pdf_file', selectedFile);
+    }
+    
+    onSave(formData);
   };
 
   return (
@@ -144,6 +188,22 @@ export default function ArticleCreateForm({ onSave, onCancel }) {
         <Label>Página final</Label>
         <Input {...register("last_page", { required: true })} placeholder="Digite a página final" />
         {errors.last_page && <ErrorMsg>Página final é obrigatória</ErrorMsg>}
+      </ContainerWrapper>
+      
+      <ContainerWrapper>
+        <Label>Arquivo PDF (opcional)</Label>
+        <Input 
+          type="file" 
+          accept=".pdf"
+          onChange={handleFileChange}
+          style={{ padding: "8px" }}
+        />
+        {fileError && <ErrorMsg>{fileError}</ErrorMsg>}
+        {selectedFile && (
+          <div style={{ color: "green", fontSize: "14px", marginTop: "4px" }}>
+            Arquivo selecionado: {selectedFile.name} ({(selectedFile.size / 1024 / 1024).toFixed(2)} MB)
+          </div>
+        )}
       </ContainerWrapper>
       
       <Actions>

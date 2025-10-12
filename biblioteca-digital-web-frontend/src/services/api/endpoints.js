@@ -132,12 +132,30 @@ export const searchByArticle = async (name) => {
   return data;
 };
 export const createArticle = async (newArticle) => {
-  const { data } = await api.post("/article", newArticle);
+  const config = {};
+  
+  // Se newArticle for FormData (com arquivo), definir headers apropriados
+  if (newArticle instanceof FormData) {
+    config.headers = {
+      'Content-Type': 'multipart/form-data',
+    };
+  }
+  
+  const { data } = await api.post("/article", newArticle, config);
 
   return data;
 };
 export const updateArticle = async ({ _id, newArticleData }) => {
-  const { data } = await api.put(`/article/${_id}`, newArticleData);
+  const config = {};
+  
+  // Se newArticleData for FormData (com arquivo), definir headers apropriados
+  if (newArticleData instanceof FormData) {
+    config.headers = {
+      'Content-Type': 'multipart/form-data',
+    };
+  }
+  
+  const { data } = await api.put(`/article/${_id}`, newArticleData, config);
 
   return data;
 };

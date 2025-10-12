@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useGetEditions } from "../../../hooks/query/editions";
 import { useGetEvents } from "../../../hooks/query/events";
 import { FormContainer, Input, ErrorMsg, Actions, Button, Label, ContainerWrapper, TextArea } from "./ArticleEditFormStyles";
@@ -16,6 +16,9 @@ export default function ArticleEditForm({ initialData, onSave, onCancel }) {
       last_page: initialData?.last_page || ""
     }
   });
+  
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [fileError, setFileError] = useState("");
   
   const editionsQuery = useGetEditions({});
   const editions = editionsQuery.data || [];
@@ -55,13 +58,60 @@ export default function ArticleEditForm({ initialData, onSave, onCancel }) {
 
   // Removido o preenchimento automático do ano - agora é independente
 
+  // Função para lidar com seleção de arquivo
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setFileError("");
+    
+    if (file) {
+      // Validar tipo de arquivo
+      if (file.type !== 'application/pdf') {
+        setFileError("Por favor, selecione apenas arquivos PDF");
+        setSelectedFile(null);
+        return;
+      }
+      
+      // Validar tamanho do arquivo (máximo 10MB)
+      const maxSize = 10 * 1024 * 1024; // 10MB em bytes
+      if (file.size > maxSize) {
+        setFileError("O arquivo deve ter no máximo 10MB");
+        setSelectedFile(null);
+        return;
+      }
+      
+      setSelectedFile(file);
+    } else {
+      setSelectedFile(null);
+    }
+  };
+
   const handleFormSubmit = (data) => {
     // Converter autor de string para array
-    const formattedData = {
-      ...data,
-      author: data.author.split(",").map(author => author.trim()).filter(author => author !== "")
-    };
-    onSave(formattedData);
+    const authorsArray = data.author.split(",").map(author => author.trim()).filter(author => author !== "");
+    
+    // Se um novo arquivo foi selecionado, usar FormData, senão usar objeto normal
+    if (selectedFile) {
+      const formData = new FormData();
+      
+      // Adicionar todos os campos do formulário
+      formData.append('title', data.title);
+      formData.append('author', JSON.stringify(authorsArray));
+      formData.append('event', data.event);
+      formData.append('edition', data.edition);
+      formData.append('year', data.year);
+      formData.append('first_page', data.first_page);
+      formData.append('last_page', data.last_page);
+      formData.append('pdf_file', selectedFile);
+      
+      onSave(formData);
+    } else {
+      // Sem novo arquivo, usar objeto normal
+      const formattedData = {
+        ...data,
+        author: authorsArray
+      };
+      onSave(formattedData);
+    }
   };
 
   return (
@@ -146,6 +196,38 @@ export default function ArticleEditForm({ initialData, onSave, onCancel }) {
         <Label>Página final</Label>
         <Input {...register("last_page", { required: true })} placeholder="Digite a página final" />
         {errors.last_page && <ErrorMsg>Página final é obrigatória</ErrorMsg>}
+      </ContainerWrapper>
+      
+      <ContainerWrapper>
+        <Label>Arquivo PDF</Label>
+        {initialData?.pdf_file && (
+          <div style={{ marginBottom: "8px", padding: "8px", backgroundColor: "#f5f5f5", borderRadius: "4px" }}>
+            <span style={{ color: "#555" }}>Arquivo atual: </span>
+            <a 
+              href={initialData.pdf_file} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              style={{ color: "#1976d2", textDecoration: "underline" }}
+            >
+              Ver PDF atual
+            </a>
+          </div>
+        )}
+        <Input 
+          type="file" 
+          accept=".pdf"
+          onChange={handleFileChange}
+          style={{ padding: "8px" }}
+        />
+        <div style={{ fontSize: "12px", color: "#666", marginTop: "4px" }}>
+          {initialData?.pdf_file ? "Selecione um novo arquivo para substituir o atual" : "Selecione um arquivo PDF (opcional)"}
+        </div>
+        {fileError && <ErrorMsg>{fileError}</ErrorMsg>}
+        {selectedFile && (
+          <div style={{ color: "green", fontSize: "14px", marginTop: "4px" }}>
+            Novo arquivo selecionado: {selectedFile.name} ({(selectedFile.size / 1024 / 1024).toFixed(2)} MB)
+          </div>
+        )}
       </ContainerWrapper>
       
       <Actions>

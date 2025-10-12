@@ -13,7 +13,6 @@ const EditionsSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
-      unique: true,
     },
     place: {
       type: String,
@@ -29,6 +28,9 @@ const EditionsSchema = new mongoose.Schema(
   },
   { versionKey: false }
 );
+
+// Índice composto para garantir que não existam edições duplicadas (mesmo evento + mesmo ano)
+EditionsSchema.index({ event: 1, year: 1 }, { unique: true });
 // Delete all products inside the removed category
 EditionsSchema.pre(
   "deleteOne",

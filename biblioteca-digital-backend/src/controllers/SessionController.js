@@ -22,6 +22,8 @@ export const handleLogin = asyncHandler(async (req, res) => {
 
 export const handleRefreshToken = asyncHandler(async (req, res) => {
   const { token } = SessionValidator.refresh(req);
+  
+  console.log('Refresh token attempt:', { hasToken: !!token, tokenLength: token?.length });
 
   // Deletes any cookie with a name that matches the authentication one
   res.clearCookie(cookieAuthName, deleteCookieOptions);

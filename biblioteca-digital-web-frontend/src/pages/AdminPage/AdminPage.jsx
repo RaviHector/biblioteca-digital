@@ -216,6 +216,18 @@ export default function AdminPage() {
                 <Line>Publicado: {item?.year || "—"}</Line>
                 <Line>Edição: {item?.edition?.event?.name || item?.edition?.event?.sigla || "—"} - {item?.edition?.year || "—"}</Line>
                 <Line>Páginas: {item?.first_page || "—"} - {item?.last_page || "—"}</Line>
+                {item?.pdf_file && (
+                  <Line>
+                    <a 
+                      href={`http://localhost:3333${item.pdf_file}`} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      style={{ color: "#1976d2", textDecoration: "underline" }}
+                    >
+                      📄 Ver PDF
+                    </a>
+                  </Line>
+                )}
               </CardContent>
               <CardActions>
                 <EditButton

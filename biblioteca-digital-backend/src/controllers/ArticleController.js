@@ -19,6 +19,12 @@ export const getById = asyncHandler(async (req, res) => {
 
 export const create = asyncHandler(async (req, res) => {
   const inputData = ArticleValidator.create(req);
+  
+  // Se um arquivo foi enviado, adicionar o caminho ao inputData
+  if (req.file) {
+    inputData.pdf_file = `/uploads/articles/${req.file.filename}`;
+  }
+  
   const newArticle = await ArticleService.create(inputData);
 
   res.status(SUCCESS_CODES.CREATED).json(newArticle);
@@ -26,6 +32,12 @@ export const create = asyncHandler(async (req, res) => {
 
 export const update = asyncHandler(async (req, res) => {
   const { _id, ...inputData } = ArticleValidator.update(req);
+  
+  // Se um novo arquivo foi enviado, adicionar o caminho ao inputData
+  if (req.file) {
+    inputData.pdf_file = `/uploads/articles/${req.file.filename}`;
+  }
+  
   const updatedArticle = await ArticleService.update({ _id, inputData });
 
   res.status(SUCCESS_CODES.OK).json(updatedArticle);
