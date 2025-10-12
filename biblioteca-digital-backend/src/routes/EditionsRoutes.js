@@ -12,7 +12,7 @@ EditionsRoutes.route("/")
 
 EditionsRoutes.get("/search-by-name", EditionsController.searchByName);
 
-EditionsRoutes.get("/search-Editions", EditionsController.searchEditions);
+EditionsRoutes.get("/search-editions", EditionsController.searchEditions);
 
 EditionsRoutes.route("/:_id")
   .get(EditionsController.getById)

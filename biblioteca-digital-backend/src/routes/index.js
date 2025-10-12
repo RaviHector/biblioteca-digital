@@ -1,12 +1,16 @@
 import { Router } from "express";
 import UserRoutes from "./UsersRoutes.js";
 import SessionRoutes from "./SessionsRoutes.js";
-import EventRoutes from "./EventsRoutes.js";
+import EventsRoutes from "./EventsRoutes.js";
+//import EditionsRoutes from "./EditionsRoutes.js";
+//import ArticleRoutes from "./ArticleRoutes.js";
 const routes = Router();
 
 routes
   .use("/", SessionRoutes)
   .use("/users", UserRoutes)
-  .use("/events", EventRoutes);
+  .use("/events", EventsRoutes);
+  //.use("/editions", EditionsRoutes)
+  //.use("/articles", ArticleRoutes); 
 
 export default routes;
