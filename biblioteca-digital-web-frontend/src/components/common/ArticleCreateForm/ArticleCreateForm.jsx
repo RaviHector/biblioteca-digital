@@ -1,19 +1,19 @@
 import { useForm } from "react-hook-form";
-import { useEffect } from "react";
 import { useGetEditions } from "../../../hooks/query/editions";
 import { useGetEvents } from "../../../hooks/query/events";
-import { FormContainer, Input, ErrorMsg, Actions, Button, Label, ContainerWrapper, TextArea } from "./ArticleEditFormStyles";
+import { FormContainer, Input, ErrorMsg, Actions, Button, Label, ContainerWrapper, TextArea } from "./ArticleCreateFormStyles";
+import { useEffect } from "react";
 
-export default function ArticleEditForm({ initialData, onSave, onCancel }) {
+export default function ArticleCreateForm({ onSave, onCancel }) {
   const { register, handleSubmit, watch, setValue, formState: { errors } } = useForm({ 
     defaultValues: {
-      title: initialData?.title || "",
-      author: Array.isArray(initialData?.author) ? initialData.author.join(", ") : initialData?.author || "",
-      event: initialData?.edition?.event?._id || initialData?.edition?.event || "",
-      edition: initialData?.edition?._id || initialData?.edition || "",
-      year: initialData?.year || "",
-      first_page: initialData?.first_page || "",
-      last_page: initialData?.last_page || ""
+      title: "",
+      author: "",
+      event: "",
+      edition: "",
+      year: "",
+      first_page: "",
+      last_page: ""
     }
   });
   
@@ -53,8 +53,6 @@ export default function ArticleEditForm({ initialData, onSave, onCancel }) {
     }
   }, [selectedEvent, filteredEditions, setValue, watch]);
 
-  // Removido o preenchimento automático do ano - agora é independente
-
   const handleFormSubmit = (data) => {
     // Converter autor de string para array
     const formattedData = {
@@ -66,7 +64,7 @@ export default function ArticleEditForm({ initialData, onSave, onCancel }) {
 
   return (
     <FormContainer onSubmit={handleSubmit(handleFormSubmit)}>
-      <h2>Editar Artigo</h2>
+      <h2>Cadastrar Artigo</h2>
       
       <ContainerWrapper>
         <Label>Título</Label>
@@ -115,7 +113,7 @@ export default function ArticleEditForm({ initialData, onSave, onCancel }) {
             <option>Nenhuma edição cadastrada no sistema</option>
           )}
           {!isLoadingEditions && selectedEvent && editions.length > 0 && filteredEditions.length === 0 && (
-            <option>Nenhuma edição encontrada para este evento (Total de edições: {editions.length})</option>
+            <option>Nenhuma edição encontrada para este evento</option>
           )}
           {filteredEditions && filteredEditions.length > 0 && filteredEditions.map(ed => (
             <option key={ed._id} value={ed._id}>

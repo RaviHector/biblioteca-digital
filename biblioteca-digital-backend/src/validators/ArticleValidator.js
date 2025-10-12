@@ -37,18 +37,18 @@ export const create = validate(
         .min(4, "Article year must be atleast 3 characters")
         .max(100, "Article year must be a maximum of 100 characters"),
       author: z
-        .string({ required_error: "Article author is required" })
-        .min(2, "Article author must be atleast 3 characters")
-        .max(30, "Article author must be a maximum of 5 characters"),
+        .array(z.string().min(2, "Author name must be at least 2 characters"))
+        .min(1, "At least one author is required")
+        .max(10, "Maximum 10 authors allowed"),
       edition: objectIdSchema("Edition _id"),
       first_page: z
         .string({ required_error: "Article page is required" })
-        .min(1, "Article page must be atleast 3 characters")
-        .max(3, "Article page must be a maximum of 5 characters"),
+        .min(1, "Article page must be at least 1 character")
+        .max(10, "Article page must be a maximum of 10 characters"),
       last_page: z
         .string({ required_error: "Article page is required" })
-        .min(1, "Article page must be atleast 3 characters")
-        .max(3, "Article page must be a maximum of 5 characters"),
+        .min(1, "Article page must be at least 1 character")
+        .max(10, "Article page must be a maximum of 10 characters"),
     }),
   })
 );
@@ -56,20 +56,36 @@ export const create = validate(
 export const update = validate(
   z.object({
     body: z.object({
+      title: z
+        .string()
+        .min(3, "Article name must be at least 3 characters")
+        .max(100, "Article name must be a maximum of 100 characters")
+        .optional(),
       year: z
         .string()
-        .min(3, "Edition name must be atleast 3 characters")
-        .max(40, "Edition name must be a maximum of 40 characters")
+        .min(4, "Article year must be at least 4 characters")
+        .max(100, "Article year must be a maximum of 100 characters")
         .optional(),
-      place: z
+      author: z
+        .array(z.string().min(2, "Author name must be at least 2 characters"))
+        .min(1, "At least one author is required")
+        .max(10, "Maximum 10 authors allowed")
+        .optional(),
+      edition: objectIdSchema("Edition _id").optional(),
+      event: objectIdSchema("Event _id").optional(),
+      first_page: z
         .string()
-        .min(2, "Sigla name must be atleast 3 characters")
-        .max(5, "Sigla name must be a maximum of 5 characters")
+        .min(1, "Article page must be at least 1 character")
+        .max(10, "Article page must be a maximum of 10 characters")
         .optional(),
-      event: objectIdSchema("Event _id"),
+      last_page: z
+        .string()
+        .min(1, "Article page must be at least 1 character")
+        .max(10, "Article page must be a maximum of 10 characters")
+        .optional(),
     }),
     params: z.object({
-      _id: objectIdSchema("Edition _id"),
+      _id: objectIdSchema("Article _id"),
     }),
   })
 );
@@ -77,7 +93,7 @@ export const update = validate(
 export const destroy = validate(
   z.object({
     params: z.object({
-      _id: objectIdSchema("Edition _id"),
+      _id: objectIdSchema("Article _id"),
     }),
   })
 );
@@ -86,7 +102,7 @@ export const searchByName = validate(
   z.object({
     query: z.object({
       name: z.string().default(""),
-      _id: objectIdSchema("Edition _id").optional(),
+      _id: objectIdSchema("Article _id").optional(),
     }),
   })
 );

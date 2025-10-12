@@ -21,14 +21,14 @@ import {
 import { PropagateLoader } from "react-spinners";
 import { CalendarDays, Building2, Search } from "lucide-react";
 import useDebounce from "../../hooks/query/useDebounce";
-import { EventEditForm, Popup, ArticleEditForm } from "../../components/common";
+import { EventEditForm, Popup, ArticleEditForm, ArticleCreateForm } from "../../components/common";
 import EventCreateForm from "../../components/common/EventCreateForm/EventCreateForm";
 import { useDeleteEvent, useUpdateEvent, useCreateEvent } from "../../hooks/query/events";
 import EditionCreateForm from "../../components/common/EditionCreateForm/EditionCreateForm";
 import { useCreateEdition, useUpdateEdition } from "../../hooks/query/editions";
 import { useDeleteEdition } from "../../hooks/query/editions";
 import EditionEditForm from "../../components/common/EditionEditForm/EditionEditForm";
-import { useDeleteArticle, useUpdateArticle } from "../../hooks/query/article";
+import { useDeleteArticle, useUpdateArticle, useCreateArticle, useGetArticle } from "../../hooks/query/article";
 import { useQueryClient } from "@tanstack/react-query";
 
 export default function AdminPage() {
@@ -36,6 +36,7 @@ export default function AdminPage() {
   const [openEditEdition, setOpenEditEdition] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [openEditArticle, setOpenEditArticle] = useState(false);
+  const [openCreateArticle, setOpenCreateArticle] = useState(false);
   const { mutate: updateArticle } = useUpdateArticle({
     onSuccess: () => {
       toast.success("Artigo atualizado com sucesso!");
@@ -44,6 +45,14 @@ export default function AdminPage() {
       queryClient.invalidateQueries(["Articles"]);
     },
     onError: (err) => toast.error(`Erro ao atualizar artigo: ${err.message}`),
+  });
+  const { mutate: createArticle } = useCreateArticle({
+    onSuccess: () => {
+      toast.success("Artigo criado com sucesso!");
+      setOpenCreateArticle(false);
+      queryClient.invalidateQueries(["Articles"]);
+    },
+    onError: (err) => toast.error(`Erro ao criar artigo: ${err.message}`),
   });
   const [searchTerm, setSearchTerm] = useState("");
   const [searchType, setSearchType] = useState("eventos");
@@ -82,15 +91,37 @@ export default function AdminPage() {
     onError: (err) => toast.error(`Erro ao buscar edições: ${err.message}`),
   });
 
-  const { data: article, isLoading: isLoadingArticles } = useSearchArticle({
-    name: searchType === "artigos" ? debouncedSearchTerm : "",
+  // Buscar todos os artigos quando tipo for "artigos" e não houver busca
+  const { data: allArticles, isLoading: isLoadingAllArticles } = useGetArticle({
+    filters: {},
+    enabled: searchType === "artigos" && !debouncedSearchTerm,
     onError: (err) => toast.error(`Erro ao buscar artigos: ${err.message}`),
   });
-  console.log(article);
+
+  // Buscar artigos por nome quando houver termo de busca
+  const { data: searchedArticles, isLoading: isLoadingSearchedArticles } = useSearchArticle({
+    name: debouncedSearchTerm,
+    enabled: searchType === "artigos" && Boolean(debouncedSearchTerm),
+    onError: (err) => toast.error(`Erro ao buscar artigos: ${err.message}`),
+  });
+
+  // Determinar quais artigos mostrar
+  const article = searchType === "artigos" ? 
+    (debouncedSearchTerm ? searchedArticles : allArticles) : 
+    null;
+  const isLoadingArticles = searchType === "artigos" ? 
+    (debouncedSearchTerm ? isLoadingSearchedArticles : isLoadingAllArticles) : 
+    false;
 
   // Hooks de Ação (Mutations) com a lógica de sucesso centralizada
   const { mutate: deleteEvent } = useDeleteEvent({
-    onSuccess: () => toast.success("Evento deletado"),
+    onSuccess: () => {
+      toast.success("Evento deletado com sucesso! Todas as edições e artigos relacionados foram removidos.");
+      // Invalidar todas as queries relacionadas quando um evento é deletado
+      queryClient.invalidateQueries(["Events"]);
+      queryClient.invalidateQueries(["Editions"]);
+      queryClient.invalidateQueries(["Articles"]);
+    },
     onError: (err) => toast.error(`Erro ao deletar evento: ${err.message}`),
   });
 
@@ -104,12 +135,20 @@ export default function AdminPage() {
   });
 
   const { mutate: deleteEdition } = useDeleteEdition({
-    onSuccess: () => toast.success("Edição deletada"),
+    onSuccess: () => {
+      toast.success("Edição deletada com sucesso! Todos os artigos relacionados foram removidos.");
+      // Invalidar queries relacionadas quando uma edição é deletada
+      queryClient.invalidateQueries(["Editions"]);
+      queryClient.invalidateQueries(["Articles"]);
+    },
     onError: (err) => toast.error(`Erro ao deletar edição: ${err.message}`),
   });
 
   const { mutate: deleteArticle } = useDeleteArticle({
-    onSuccess: () => toast.success("Artigo deletado"),
+    onSuccess: () => {
+      toast.success("Artigo deletado");
+      queryClient.invalidateQueries(["Articles"]);
+    },
     onError: (err) => toast.error(`Erro ao deletar artigo: ${err.message}`),
   });
 
@@ -136,6 +175,10 @@ export default function AdminPage() {
     });
   };
 
+  const handleCreateArticle = (newData) => {
+    createArticle(newData);
+  };
+
   const renderContent = () => {
     if (searchType === "artigos") {
       if (isLoadingArticles)
@@ -154,17 +197,25 @@ export default function AdminPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
             >
-              <CardContent onClick={() => navigate(`/article/${item?._id}`)}>
+              <CardContent>
                 <Line>
                   <strong>{item?.title || `Artigo ${index + 1}`}</strong>
                 </Line>
                 <Line>
-                  Autor:{" "}
-                  {item?.author?.map((author) => (
-                    <span key={author}>{author}</span>
-                  ))}
+                  Autores:{" "}
+                  {item?.author?.length > 0 ? (
+                    item.author.map((author, idx) => (
+                      <span key={author}>
+                        {author}{idx < item.author.length - 1 ? ", " : ""}
+                      </span>
+                    ))
+                  ) : (
+                    "Não informado"
+                  )}
                 </Line>
                 <Line>Publicado: {item?.year || "—"}</Line>
+                <Line>Edição: {item?.edition?.event?.name || item?.edition?.event?.sigla || "—"} - {item?.edition?.year || "—"}</Line>
+                <Line>Páginas: {item?.first_page || "—"} - {item?.last_page || "—"}</Line>
               </CardContent>
               <CardActions>
                 <EditButton
@@ -344,6 +395,22 @@ export default function AdminPage() {
             Cadastrar Edição
           </button>
         )}
+        {searchType === "artigos" && (
+          <button
+            onClick={() => setOpenCreateArticle(true)}
+            style={{
+              background: "#22c55e",
+              color: "#fff",
+              padding: "8px 16px",
+              borderRadius: "4px",
+              border: "none",
+              cursor: "pointer",
+              marginLeft: searchType === "eventos" ? 8 : 0,
+            }}
+          >
+            Cadastrar Artigo
+          </button>
+        )}
       </div>
       {openCreateEvent && (
         <EventCreateForm
@@ -409,6 +476,20 @@ export default function AdminPage() {
             onCancel={() => setOpenEditEdition(false)}
           />
         )}
+      </Popup>
+
+      {/* Popup de criação de artigo */}
+      <Popup
+        title="Cadastrar Artigo"
+        openPopup={openCreateArticle}
+        setOpenPopup={(v) => {
+          setOpenCreateArticle(v);
+        }}
+      >
+        <ArticleCreateForm
+          onSave={handleCreateArticle}
+          onCancel={() => setOpenCreateArticle(false)}
+        />
       </Popup>
     </Container>
   );

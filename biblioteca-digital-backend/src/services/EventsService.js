@@ -9,6 +9,8 @@
 import { Query } from "mongoose";
 import { NotFoundError } from "../errors/baseErrors.js";
 import EventsModel from "../models/EventsModel.js";
+import EditionsModel from "../models/EditionsModel.js";
+import ArticleModel from "../models/ArticleModel.js";
 import convertStringToRegexp from "../utils/general/convertStringToRegexp.js";
 
 export async function get(inputFilters) {
@@ -55,7 +57,25 @@ export async function destroy(_id) {
   const foundEvents = await EventsModel.findById(_id).exec();
   if (!foundEvents) throw new NotFoundError("Events not found");
 
+  // Buscar todas as edições relacionadas ao evento
+  const relatedEditions = await EditionsModel.find({ event: _id }).select('_id').exec();
+  const editionIds = relatedEditions.map(edition => edition._id);
+
+  console.log(`Deletando evento ${_id}: encontradas ${relatedEditions.length} edições relacionadas`);
+
+  // Deletar todos os artigos que pertencem às edições relacionadas
+  if (editionIds.length > 0) {
+    const deletedArticles = await ArticleModel.deleteMany({ edition: { $in: editionIds } });
+    console.log(`Deletados ${deletedArticles.deletedCount} artigos relacionados às edições`);
+  }
+
+  // Deletar todas as edições relacionadas ao evento
+  const deletedEditions = await EditionsModel.deleteMany({ event: _id });
+  console.log(`Deletadas ${deletedEditions.deletedCount} edições do evento`);
+
+  // Deletar o evento
   await foundEvents.deleteOne();
+  console.log(`Evento ${_id} deletado com sucesso`);
 }
 
 export async function searchByName({ name, inputFilters }) {
