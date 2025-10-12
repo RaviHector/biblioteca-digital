@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import {
   getEvents,
@@ -77,9 +77,13 @@ export function useUpdateEvent({
   onSuccess = () => {},
   onError = (err) => console.log(err),
 } = {}) {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: updateEvent,
-    onSuccess,
+    onSuccess: (...args) => {
+      queryClient.invalidateQueries({ queryKey: ['Events'] });
+      onSuccess(...args);
+    },
     onError,
   });
 }
@@ -88,9 +92,13 @@ export function useDeleteEvent({
   onSuccess = () => {},
   onError = (err) => console.log(err),
 } = {}) {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: deleteEvent,
-    onSuccess,
+    onSuccess: (...args) => {
+      queryClient.invalidateQueries({ queryKey: ['Events'] });
+      onSuccess(...args);
+    },
     onError,
   });
 }

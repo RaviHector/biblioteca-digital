@@ -66,22 +66,14 @@ export async function searchByName({ name, inputFilters }) {
 }
 
 export async function searchEvents({ searchTerm, inputFilters }) {
-  // Inicia a query com os filtros base
-  const query = { ...inputFilters };
-
-  // Se um termo de busca for fornecido, adiciona a lógica de busca multicampo
-  if (searchTerm) {
+    const query = { ...inputFilters };
+    if (searchTerm) {
     const regex = convertStringToRegexp(searchTerm); 
-
-    // Usa o operador $or para buscar o termo em qualquer um dos três campos
-    query.$or = [
+      query.$or = [
       { name: regex },
       { sigla: regex },
       { entity: regex },
     ];
   }
-
-  
-
   return EventsModel.find(query).sort("name").lean().exec();
 }

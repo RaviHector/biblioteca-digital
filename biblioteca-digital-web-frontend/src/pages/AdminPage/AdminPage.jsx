@@ -14,6 +14,9 @@ import { PropagateLoader } from "react-spinners";
 import { CalendarDays, Building2, Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import useDebounce from "../../hooks/query/useDebounce";
+import Popup from "../../components/common/Popup/Popup";
+import EventEditForm from "../../components/common/EventEditForm";
+import { useDeleteEvent, useUpdateEvent } from "../../hooks/query/events";
 
 export default function AdminPage() {
   // Estado para controlar o valor do input de busca
@@ -39,6 +42,26 @@ export default function AdminPage() {
   });
 
   const navigate = useNavigate();
+  const [openPopup, setOpenPopup] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null);
+
+  const deleteEventMutation = useDeleteEvent({
+    onSuccess: () => {
+      toast.success("Evento deletado");
+    },
+    onError: (err) => {
+      toast.error("Erro ao deletar evento", err);
+    },
+  });
+
+  const updateEventMutation = useUpdateEvent({
+    onSuccess: () => {
+      toast.success("Evento atualizado");
+    },
+    onError: (err) => {
+      toast.error("Erro ao atualizar evento", err);
+    },
+  });
 
   return (
     <Container>
@@ -62,25 +85,71 @@ export default function AdminPage() {
         <Grid>
           {events?.map((event, index) => (
             <Card
-              key={index}
+              key={event?._id || index}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              onClick={() => navigate(`/event/${event?._id}`)}
             >
-              <Line>
-                <CalendarDays size={18} /> <strong>{event?.name}</strong>
-              </Line>
-              <Line>
-                <Building2 size={18} /> {event?.entity}
-              </Line>
-              <Line>Sigla: {event?.sigla}</Line>
+              <div style={{ cursor: 'pointer' }} onClick={() => navigate(`/event/${event?._id}`)}>
+                <Line>
+                  <CalendarDays size={18} /> <strong>{event?.name}</strong>
+                </Line>
+                <Line>
+                  <Building2 size={18} /> {event?.entity}
+                </Line>
+                <Line>Sigla: {event?.sigla}</Line>
+              </div>
+
+              <div style={{ display: 'flex', gap: 12, marginTop: 12 }}>
+                <button
+                  onClick={() => {
+                    setSelectedEvent(event);
+                    setOpenPopup(true);
+                  }}
+                  style={{ background: 'transparent', border: 'none', color: '#0ea5e9', cursor: 'pointer' }}
+                >
+                  editar
+                </button>
+                <button
+                  onClick={async () => {
+                    // Optimistic UI - remove from list locally
+                    try {
+                      await deleteEventMutation.mutateAsync(event?._id);
+                    } catch (err) {
+                      console.error('Erro ao deletar evento (AdminPage):', err);
+                      toast.error('Erro ao deletar evento: ${err?.message || err}');
+                    }
+                  }}
+                  style={{ background: 'transparent', border: 'none', color: '#ef4444', cursor: 'pointer' }}
+                >
+                  deletar
+                </button>
+              </div>
             </Card>
           ))}
         </Grid>
       )}
+
+      <Popup title={selectedEvent ? `Editar: ${selectedEvent?.name}` : 'Editar'} openPopup={openPopup} setOpenPopup={(v) => { setOpenPopup(v); if (!v) setSelectedEvent(null); }}>
+        {selectedEvent && (
+          <EventEditForm
+            initialData={selectedEvent}
+            onCancel={() => setOpenPopup(false)}
+            onSave={async (newData) => {
+              try {
+                await updateEventMutation.mutateAsync({ _id: selectedEvent._id, newEventData: newData });
+                // close popup
+                setOpenPopup(false);
+              } catch (err) {
+                console.error('Erro ao atualizar evento (AdminPage):', err);
+                toast.error('Erro ao atualizar evento: ${err?.message || err}');
+              }
+            }}
+          />
+        )}
+      </Popup>
     </Container>
   );
 }

@@ -26,9 +26,9 @@ export const create = validate(
   z.object({
     body: z.object({
       year: z
-        .string({ required_error: "Edition year is required" })
-        .min(3, "Edition year must be atleast 3 characters")
-        .max(100, "Edition year must be a maximum of 100 characters"),
+        .string({ required_error: "Editions year is required" })
+        .min(3, "Editions year must be atleast 3 characters")
+        .max(100, "Editions year must be a maximum of 100 characters"),
       place: z
         .string({ required_error: "Sigla place is required" })
         .min(2, "Sigla place must be atleast 3 characters")
@@ -43,8 +43,8 @@ export const update = validate(
     body: z.object({
       year: z
         .string()
-        .min(3, "Edition name must be atleast 3 characters")
-        .max(40, "Edition name must be a maximum of 40 characters")
+        .min(3, "Editions name must be atleast 3 characters")
+        .max(40, "Editions name must be a maximum of 40 characters")
         .optional(),
       place: z
         .string()

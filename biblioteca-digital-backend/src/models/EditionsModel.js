@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import { COLLECTION_NAMES } from "../utils/general/constants.js";
 import { ObjectId } from "../config/mongo.js";
 
-const EditionSchema = new mongoose.Schema(
+const EditionsSchema = new mongoose.Schema(
   {
     year: {
       type: String,
@@ -26,5 +26,5 @@ const EditionSchema = new mongoose.Schema(
   { versionKey: false }
 );
 
-const EditionModel = mongoose.model(COLLECTION_NAMES.EDITION, EditionSchema);
-export default EditionModel;
+const EditionsModel = mongoose.model(COLLECTION_NAMES.EDITION, EditionsSchema);
+export default EditionsModel;
