@@ -7,14 +7,14 @@ import convertStringToRegexp from "../utils/general/convertStringToRegexp.js";
 
 export async function get(inputFilters) {
   return ArticleModel.find(inputFilters)
-    .populate(COLLECTION_NAMES.ARTICLE)
+    .populate({ path: "edition", populate: { path: "event" } })
     .lean()
     .exec();
 }
 
 export async function getById(_id) {
   const foundArticle = await ArticleModel.findById(_id)
-    .populate(COLLECTION_NAMES.ARTICLE)
+    .populate({ path: "edition", populate: { path: "event" } })
     .lean()
     .exec();
   if (!foundArticle) throw new NotFoundError("Article not found");
@@ -33,7 +33,7 @@ export async function update({ _id, inputData }) {
 }
 
 export async function destroy(_id) {
-  const foundArticle = await ArticleModelModel.findById(_id).exec();
+  const foundArticle = await ArticleModel.findById(_id).exec();
   if (!foundArticle) throw new NotFoundError("Article not found");
 
   await foundArticle.deleteOne();
@@ -41,11 +41,11 @@ export async function destroy(_id) {
 
 export async function searchByName({ name, inputFilters }) {
   const query = { ...inputFilters };
-  if (name) query.name = { $regex: convertStringToRegexp(name) };
+  if (name) query.title = { $regex: convertStringToRegexp(name) };
 
   return ArticleModel.find(query)
-    .populate(COLLECTION_NAMES.EDITION)
-    .sort("name")
+    .populate({ path: "edition", populate: { path: "event" } })
+    .sort("title")
     .lean()
     .exec();
 }
@@ -67,14 +67,15 @@ export async function searchArticle({ name, inputFilters = {} }) {
       .exec();
   }
 
-  const regex = convertStringToRegexp(name);
+  const regex = convertStringToRegexp(name) || new RegExp(name, "i");
 
-  // Busca direta em Article: title OU algum elemento do array author
+  // Busca direta em Article: title OU algum elemento do array author OU year
   const directQuery = {
     ...query,
     $or: [
       { title: { $regex: regex } },
       { author: { $elemMatch: { $regex: regex } } },
+      { year: { $regex: regex } },
     ],
   };
 
@@ -82,6 +83,8 @@ export async function searchArticle({ name, inputFilters = {} }) {
     .populate(populateOpts)
     .lean()
     .exec();
+
+  console.log("🎯 Busca direta encontrou:", directMatches.length, "artigo(s)");
 
   // Busca Events por name ou sigla
   const EventModel = mongoose.model(COLLECTION_NAMES.EVENT);
@@ -91,28 +94,57 @@ export async function searchArticle({ name, inputFilters = {} }) {
     .lean()
     .exec();
 
-  // Se não encontrou events, não há edições indiretas — mas não retornamos cedo, apenas prosseguimos
-  const eventIds = events.length ? events.map((e) => e._id) : [];
-  console.log("eventIds encontrados:", eventIds);
+  // Extrai IDs dos eventos encontrados
+  const eventIds = events.length > 0 ? events.map((e) => e._id) : [];
+  console.log("🎯 Events encontrados:", eventIds.length, "evento(s)");
 
-  // Busca Editions das events encontradas (pode resultar em [] sem problemas)
+  // Busca Editions das events encontradas
   const EditionModel = mongoose.model(COLLECTION_NAMES.EDITION);
-  const editions = eventIds.length
-    ? await EditionModel.find({ event: { $in: eventIds } })
+  let editions = [];
+
+  try {
+    if (eventIds.length > 0) {
+      editions = await EditionModel.find({ event: { $in: eventIds } })
         .lean()
-        .exec()
-    : [];
-  console.log("Events encontrados:", editions);
+        .exec();
+      console.log("📚 Editions encontrados:", editions.length, "edição(ões)");
+    } else {
+      console.log("📚 Nenhum evento encontrado, pulando busca de edições");
+    }
+  } catch (error) {
+    console.error("❌ Erro ao buscar editions:", error.message);
+    editions = [];
+  }
 
-  const editionIds = editions.length ? editions.map((ed) => ed._id) : [];
+  // Extrai IDs das edições encontradas
+  const editionIds = editions.length > 0 ? editions.map((ed) => ed._id) : [];
+  console.log("🔗 Edition IDs extraídos:", editionIds.length, "ID(s)");
 
-  // Busca artigos dessas edições (se editionIds vazio, a query resulta em [])
-  const indirectMatches = editionIds.length
-    ? await ArticleModel.find({ edition: { $in: editionIds } })
+  // Busca artigos dessas edições
+  let indirectMatches = [];
+
+  try {
+    if (editionIds.length > 0) {
+      indirectMatches = await ArticleModel.find({
+        edition: { $in: editionIds },
+      })
         .populate(populateOpts)
         .lean()
-        .exec()
-    : [];
+        .exec();
+      console.log(
+        "📄 Artigos indiretos encontrados:",
+        indirectMatches.length,
+        "artigo(s)"
+      );
+    } else {
+      console.log(
+        "📄 Nenhuma edição encontrada, pulando busca de artigos indiretos"
+      );
+    }
+  } catch (error) {
+    console.error("❌ Erro ao buscar artigos indiretos:", error.message);
+    indirectMatches = [];
+  }
 
   // Junta diretos + indiretos removendo duplicados por _id
   const map = new Map();
@@ -120,6 +152,7 @@ export async function searchArticle({ name, inputFilters = {} }) {
   indirectMatches.forEach((a) => map.set(String(a._id), a)); // sobrescreve apenas se não existir
 
   const allMatches = Array.from(map.values());
+  console.log("✅ Total final de artigos únicos:", allMatches.length);
 
   // Ordena por title (ou outro campo se preferir)
   allMatches.sort((x, y) => {
