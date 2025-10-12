@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
 import { useGetEvents } from "../../../hooks/query/events";
 import { useGetEditions } from "../../../hooks/query/editions";
-import { FormContainer, Input, ErrorMsg, Actions, Button } from "./EditionCreateFormStyles";
+import { FormContainer, Input, ErrorMsg, Actions, Button, ContainerWrapper, Label, Select } from "./EditionCreateFormStyles";
 import { useState, useEffect } from "react";
 
-export default function EditionCreateForm({ onSubmit, onCancel }) {
+export default function EditionCreateForm({ onSave, onSubmit, onCancel }) {
   const { register, handleSubmit, watch, formState: { errors }, setError, clearErrors } = useForm();
   const [conflictError, setConflictError] = useState("");
   
@@ -49,27 +49,40 @@ export default function EditionCreateForm({ onSubmit, onCancel }) {
       return;
     }
     
-    onSubmit(data);
+    // Support both onSave (preferred) and onSubmit (backward compatibility)
+    const saveHandler = onSave || onSubmit;
+    if (saveHandler) {
+      saveHandler(data);
+    }
   };
 
   return (
     <FormContainer onSubmit={handleSubmit(handleFormSubmit)}>
       <h2>Cadastrar Edição</h2>
-      <Input {...register("year", { required: true })} placeholder="Ano" />
-      {errors.year && <ErrorMsg>Ano é obrigatório</ErrorMsg>}
-      <Input {...register("place", { required: true, maxLength: 100 })} placeholder="Local (máx. 100 caracteres)" />
-      {errors.place && <ErrorMsg>Local é obrigatório e até 100 caracteres</ErrorMsg>}
-      <div style={{ margin: '8px 0' }}>
-        <label htmlFor="event">Evento:</label>
-        <select {...register("event", { required: true })} id="event" defaultValue="">
+      
+      <ContainerWrapper>
+        <Label>Ano</Label>
+        <Input {...register("year", { required: true })} placeholder="Digite o ano da edição" />
+        {errors.year && <ErrorMsg>Ano é obrigatório</ErrorMsg>}
+      </ContainerWrapper>
+      
+      <ContainerWrapper>
+        <Label>Local</Label>
+        <Input {...register("place", { required: true, maxLength: 100 })} placeholder="Digite o local (máx. 100 caracteres)" />
+        {errors.place && <ErrorMsg>Local é obrigatório e até 100 caracteres</ErrorMsg>}
+      </ContainerWrapper>
+      
+      <ContainerWrapper>
+        <Label>Evento</Label>
+        <Select {...register("event", { required: true })} defaultValue="">
           <option value="" disabled>Selecione o evento</option>
           {isLoading && <option>Carregando eventos...</option>}
           {events && events.map(ev => (
             <option key={ev._id} value={ev._id}>{ev.name} ({ev.sigla})</option>
           ))}
-        </select>
+        </Select>
         {errors.event && <ErrorMsg>Evento é obrigatório</ErrorMsg>}
-      </div>
+      </ContainerWrapper>
       
       {/* Show duplicate conflict error */}
       {conflictError && <ErrorMsg style={{ color: 'red', fontWeight: 'bold' }}>{conflictError}</ErrorMsg>}

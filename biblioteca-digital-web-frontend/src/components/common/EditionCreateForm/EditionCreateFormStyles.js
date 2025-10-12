@@ -41,3 +41,24 @@ export const Button = styled.button`
   border-radius: ${(props) => props.borderradius || "0.4rem"};
   cursor: pointer;
 `;
+
+export const ContainerWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`;
+
+export const Label = styled.label`
+  font-weight: 600;
+  font-size: 1rem;
+  color: ${({ theme }) => theme.colors.darkGreen || '#374151'};
+`;
+
+export const Select = styled.select`
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid ${({ theme }) => theme.colors.lightGreen};
+  font-size: 1rem;
+  outline: none;
+  background: ${({ theme }) => theme.colors.white};
+`;

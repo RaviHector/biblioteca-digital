@@ -31,3 +31,24 @@ export const Actions = styled.div`
   gap: 1rem;
   margin-top: 1rem;
 `;
+
+export const ContainerWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`;
+
+export const Label = styled.label`
+  font-weight: 600;
+  font-size: 1rem;
+  color: ${({ theme }) => theme.colors.darkGreen || '#374151'};
+`;
+
+export const Button = styled.button`
+  padding: 0.8rem 1.4rem;
+  background-color: ${(props) => props.backgroundcolor || "black"};
+  color: ${(props) => props.color || "white"};
+  border: none;
+  border-radius: ${(props) => props.borderradius || "0.4rem"};
+  cursor: pointer;
+`;

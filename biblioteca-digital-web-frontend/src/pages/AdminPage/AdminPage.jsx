@@ -21,7 +21,7 @@ import {
 import { PropagateLoader } from "react-spinners";
 import { CalendarDays, Building2, Search } from "lucide-react";
 import useDebounce from "../../hooks/query/useDebounce";
-import { EventEditForm, Popup, ArticleEditForm, ArticleCreateForm } from "../../components/common";
+import { EventEditForm, Popup, ArticleEditForm, ArticleCreateForm, BulkUploadForm } from "../../components/common";
 import EventCreateForm from "../../components/common/EventCreateForm/EventCreateForm";
 import { useDeleteEvent, useUpdateEvent, useCreateEvent } from "../../hooks/query/events";
 import EditionCreateForm from "../../components/common/EditionCreateForm/EditionCreateForm";
@@ -60,6 +60,7 @@ export default function AdminPage() {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [openCreateEvent, setOpenCreateEvent] = useState(false);
   const [openCreateEdition, setOpenCreateEdition] = useState(false);
+  const [openBulkUpload, setOpenBulkUpload] = useState(false);
   const { mutate: createEdition } = useCreateEdition({
     onSuccess: () => {
       toast.success("Edição cadastrada com sucesso!");
@@ -177,6 +178,14 @@ export default function AdminPage() {
 
   const handleCreateArticle = (newData) => {
     createArticle(newData);
+  };
+
+  const handleCreateEvent = (newData) => {
+    createEvent(newData);
+  };
+
+  const handleCreateEdition = (newData) => {
+    createEdition(newData);
   };
 
   const renderContent = () => {
@@ -423,19 +432,24 @@ export default function AdminPage() {
             Cadastrar Artigo
           </button>
         )}
+        
+        {searchType === "artigos" && (
+          <button
+            onClick={() => setOpenBulkUpload(true)}
+            style={{
+              padding: "10px 16px",
+              backgroundColor: "#28a745",
+              color: "white",
+              border: "none",
+              borderRadius: "4px",
+              cursor: "pointer",
+              marginLeft: 8,
+            }}
+          >
+            📂 Upload em Massa
+          </button>
+        )}
       </div>
-      {openCreateEvent && (
-        <EventCreateForm
-          onSubmit={(data) => createEvent(data)}
-          onCancel={() => setOpenCreateEvent(false)}
-        />
-      )}
-      {openCreateEdition && (
-        <EditionCreateForm
-          onSubmit={(data) => createEdition(data)}
-          onCancel={() => setOpenCreateEdition(false)}
-        />
-      )}
       {renderContent()}
       <Popup
         title={selectedEvent ? `Editar: ${selectedEvent?.name}` : "Editar"}
@@ -501,6 +515,53 @@ export default function AdminPage() {
         <ArticleCreateForm
           onSave={handleCreateArticle}
           onCancel={() => setOpenCreateArticle(false)}
+        />
+      </Popup>
+
+      {/* Popup de criação de evento */}
+      <Popup
+        title="Cadastrar Evento"
+        openPopup={openCreateEvent}
+        setOpenPopup={(v) => {
+          setOpenCreateEvent(v);
+        }}
+      >
+        <EventCreateForm
+          onSave={handleCreateEvent}
+          onCancel={() => setOpenCreateEvent(false)}
+        />
+      </Popup>
+
+      {/* Popup de criação de edição */}
+      <Popup
+        title="Cadastrar Edição"
+        openPopup={openCreateEdition}
+        setOpenPopup={(v) => {
+          setOpenCreateEdition(v);
+        }}
+      >
+        <EditionCreateForm
+          onSave={handleCreateEdition}
+          onCancel={() => setOpenCreateEdition(false)}
+        />
+      </Popup>
+
+      {/* Popup de upload em massa */}
+      <Popup
+        title="Upload em Massa de Artigos"
+        openPopup={openBulkUpload}
+        setOpenPopup={(v) => {
+          setOpenBulkUpload(v);
+        }}
+      >
+        <BulkUploadForm
+          onClose={() => {
+            setOpenBulkUpload(false);
+            // Invalidar queries para atualizar a lista
+            queryClient.invalidateQueries(["Articles"]);
+            queryClient.invalidateQueries(["Events"]);
+            queryClient.invalidateQueries(["Editions"]);
+          }}
         />
       </Popup>
     </Container>

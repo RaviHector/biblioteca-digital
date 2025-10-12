@@ -165,6 +165,17 @@ export const deleteArticle = async (_id) => {
   return data;
 };
 
+export const bulkUploadArticles = async (formData) => {
+  const config = {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  };
+  
+  const { data } = await api.post("/bulk-articles/upload-bulk", formData, config);
+  return data;
+};
+
 export const createUser = async (userData) => {
   const { data } = await api.post("/users", userData);
   return data;
