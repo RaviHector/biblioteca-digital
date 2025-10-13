@@ -165,6 +165,14 @@ export const deleteArticle = async (_id) => {
   return data;
 };
 
+export const downloadArticlePdf = async (_id) => {
+  const response = await api.get(`/article/${_id}/download`, {
+    responseType: 'blob'
+  });
+  
+  return response;
+};
+
 export const bulkUploadArticles = async (formData) => {
   const config = {
     headers: {

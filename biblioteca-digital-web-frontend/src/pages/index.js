@@ -4,3 +4,4 @@ export { default as Events } from "./Events/Events";
 export { default as Event } from "./Event/Event";
 export { default as Edition } from "./Edition/Edition";
 export { default as AdminPage } from "./AdminPage/AdminPage";
+export { default as ArticleView } from "./ArticleView/ArticleView";

@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 
 import { AppLayout } from "./layouts";
-import { Home, Login, Events, Event, Edition, AdminPage} from "./pages";
+import { Home, Login, Events, Event, Edition, AdminPage, ArticleView } from "./pages";
 import useAuthStore from "./stores/auth";
 
 // For the routes that need the user to be logged in
@@ -38,6 +38,7 @@ const router = createBrowserRouter(
         <Route path="edition/:_id" element={<Edition />} />     
 
         <Route element={<PrivateRoutes />}>
+          <Route path="article/:id" element={<ArticleView />} />
         </Route>
          <Route element={<AdminRoutes />}>
           <Route path="adminpage" element={<AdminPage />} />
