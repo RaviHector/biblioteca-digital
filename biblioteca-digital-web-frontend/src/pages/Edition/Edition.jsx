@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useGetEditionById } from "../../hooks/query/editions";
-import { useSearchArticle } from "../../hooks/query/article";
+import { useSearchArticle, useGetArticle } from "../../hooks/query/article";
 import { PropagateLoader } from "react-spinners";
 import { BookOpen, Calendar, Users, ArrowLeft } from "lucide-react";
 import {
@@ -42,13 +42,30 @@ export default function Edition() {
     enabled: isValidId, // Só executa se o ID for válido
   });
 
-  // Buscar artigos da edição
-  const { data: allArticles, isLoading: isLoadingArticles } = useSearchArticle({
-    name: "",
+  // Buscar artigos específicos da edição
+  const { data: editionArticles, isLoading: isLoadingArticles } = useGetArticle({
+    filters: { edition: editionId },
+    enabled: isValidId && !!editionId,
     onError: (err) => {
       toast.error("Erro ao buscar artigos");
-      console.error(err);
+      console.error("Erro buscando artigos:", err);
     },
+  });
+
+  // Também buscar todos os artigos como fallback
+  const { data: allArticles } = useGetArticle({
+    filters: {},
+    enabled: isValidId,
+    onError: (err) => console.error("Erro buscando todos artigos:", err),
+  });
+
+  console.log("🚀 Dados carregados:", {
+    isLoadingEdition,
+    isLoadingArticles,
+    hasEdition: !!edition,
+    editionId: editionId,
+    directEditionArticles: editionArticles?.length || 0,
+    totalArticles: allArticles?.length || 0
   });
 
   if (!isValidId) {
@@ -66,21 +83,76 @@ export default function Edition() {
     );
   }
 
-  // Filtrar artigos desta edição
-  const editionArticles =
-    allArticles?.filter((article) => {
-      // Como a edição está populada, comparamos com o _id da edição
-      const articleEditionId = article.edition?._id || article.edition;
-      return articleEditionId === editionId;
-    }) || [];
+  // Usar artigos filtrados diretamente da API ou fazer filtro manual
+  const finalArticles = (() => {
+    // Se temos artigos filtrados diretamente da API, usar eles
+    if (editionArticles && editionArticles.length > 0) {
+      console.log("✅ Usando artigos filtrados diretamente da API:", editionArticles.length);
+      return editionArticles;
+    }
+    
+    // Senão, filtrar manualmente
+    if (!allArticles) {
+      console.log("❌ Nenhum artigo disponível");
+      return [];
+    }
+    
+    console.log("🔄 Fazendo filtro manual de", allArticles.length, "artigos");
+    
+    const filtered = allArticles.filter((article) => {
+      if (!article) return false;
+      
+      // Múltiplas formas de verificar a edição
+      const editionRef = article.edition;
+      let articleEditionId = null;
+      
+      // Se edition é um objeto populado
+      if (typeof editionRef === 'object' && editionRef !== null) {
+        articleEditionId = editionRef._id;
+      } 
+      // Se edition é apenas um ID (string)
+      else if (typeof editionRef === 'string') {
+        articleEditionId = editionRef;
+      }
+      
+      const isMatch = articleEditionId === editionId;
+      
+      console.log(`🔍 Artigo "${article.title || 'Sem título'}":`, {
+        editionRef: editionRef,
+        articleEditionId: articleEditionId,
+        targetEditionId: editionId,
+        editionType: typeof editionRef,
+        isMatch: isMatch
+      });
+      
+      return isMatch;
+    });
+    
+    console.log("🔄 Resultado do filtro manual:", filtered.length, "artigos");
+    return filtered;
+  })();
 
-  console.log("🔍 Debug Artigos:");
-  console.log("📝 Edition ID:", editionId);
-  console.log("📚 Total de artigos:", allArticles?.length);
-  console.log("🎯 Artigos filtrados:", editionArticles.length);
-  console.log("📖 Exemplo de artigo:", allArticles?.[0]);
-  if (allArticles?.[0]) {
-    console.log("📖 Edition do artigo:", allArticles[0].edition);
+  console.log("🔍 Debug Final dos Artigos:");
+  console.log("📝 Edition ID buscada:", editionId);
+  console.log("📚 Artigos diretos da API:", editionArticles?.length || 0);
+  console.log("📚 Total de todos artigos:", allArticles?.length || 0);
+  console.log("🎯 Artigos finais para exibição:", finalArticles.length);
+  
+  if (allArticles?.length > 0) {
+    console.log("📖 Estrutura dos primeiros artigos:", allArticles.slice(0, 3).map(a => ({
+      title: a.title,
+      edition: a.edition,
+      editionId: a.edition?._id || a.edition
+    })));
+  }
+  
+  if (finalArticles.length > 0) {
+    console.log("✅ Artigos finais encontrados:", finalArticles.map(a => ({
+      title: a.title,
+      author: a.author
+    })));
+  } else {
+    console.log("❌ Nenhum artigo encontrado para esta edição");
   }
 
   if (isLoadingEdition || isLoadingArticles) {
@@ -157,7 +229,7 @@ export default function Edition() {
           Artigos da Edição
         </h2>
 
-        {editionArticles.length === 0 ? (
+        {finalArticles.length === 0 ? (
           <NoDataMessage>
             <BookOpen size={48} />
             <h3>Nenhum artigo cadastrado</h3>
@@ -165,7 +237,7 @@ export default function Edition() {
           </NoDataMessage>
         ) : (
           <Grid>
-            {editionArticles.map((article, index) => (
+            {finalArticles.map((article, index) => (
               <Card
                 key={article._id}
                 initial={{ opacity: 0, y: 20 }}
@@ -173,6 +245,8 @@ export default function Edition() {
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                onClick={() => navigate(`/article/${article._id}`)}
+                style={{ cursor: 'pointer' }}
               >
                 <CardTitle>{article.title}</CardTitle>
                 <CardInfo>

@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
-import { useSearchArticle } from "../../hooks/query/article";
+import { useNavigate } from "react-router-dom";
+import { useSearchArticle, useGetArticle } from "../../hooks/query/article";
 import useAuthStore from "../../stores/auth";
 import { PropagateLoader } from "react-spinners";
 import { User, BookOpen, Calendar, Search } from "lucide-react";
@@ -30,27 +31,72 @@ import {
 export default function UserProfile() {
   const [selectedYear, setSelectedYear] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
 
   const user = useAuthStore((state) => state.auth?.user);
-  // console.log(user);
+  console.log("Usuario logado:", user);
   // Buscar todos os artigos para filtrar pelos do usuário
-  const { data: allArticles, isLoading } = useSearchArticle({
-    name: "",
+  const { data: allArticles, isLoading } = useGetArticle({
+    filters: {},
     onError: (err) => console.error("Erro ao buscar artigos:", err),
   });
 
+  // Debug: mostrar alguns artigos para verificar a estrutura
+  if (allArticles && allArticles.length > 0) {
+    console.log("Primeiros 3 artigos para debug:", allArticles.slice(0, 3).map(a => ({
+      title: a.title,
+      author: a.author,
+      year: a.year
+    })));
+  }
+
   // Filtrar artigos do usuário logado
   const userArticles = useMemo(() => {
-    if (!allArticles || !user?.name) return [];
+    if (!allArticles || !user?.name) {
+      console.log("Sem artigos ou usuario:", { allArticles: !!allArticles, userName: user?.name });
+      return [];
+    }
 
-    return allArticles.filter(
-      (article) =>
-        article?.author &&
-        Array.isArray(article.author) &&
-        article.author.some((author) =>
-          author.toLowerCase().includes(user.name.toLowerCase())
-        )
+    console.log("Filtrando artigos para usuario:", user.name);
+    console.log("Total de artigos para filtrar:", allArticles.length);
+
+    const filtered = allArticles.filter(
+      (article) => {
+        if (!article?.author || !Array.isArray(article.author)) {
+          return false;
+        }
+        
+        const hasUser = article.author.some((author) => {
+          // Comparação case-insensitive simples e direta
+          const authorName = author.toLowerCase().trim();
+          const userName = user.name.toLowerCase().trim();
+          
+          console.log(`🔍 Comparando autor: "${author}" com usuario: "${user.name}"`);
+          console.log(`🔍 Normalizado: "${authorName}" === "${userName}"`);
+          
+          const isMatch = authorName === userName;
+          
+          if (isMatch) {
+            console.log(`✅ MATCH ENCONTRADO! "${author}" = "${user.name}"`);
+          }
+          
+          return isMatch;
+        });
+        
+        if (hasUser) {
+          console.log(`📚 Artigo "${article.title}" pertence ao usuario!`);
+        }
+        
+        return hasUser;
+      }
     );
+
+    console.log("Artigos filtrados encontrados:", filtered.length);
+    filtered.forEach(article => {
+      console.log(`📝 Artigo do usuario: "${article.title}" - Autores: [${article.author.join(', ')}]`);
+    });
+    
+    return filtered;
   }, [allArticles, user?.name]);
 
   // Aplicar filtros de busca e ano
@@ -200,12 +246,18 @@ export default function UserProfile() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.1 }}
                       whileHover={{ scale: 1.02 }}
+                      onClick={() => navigate(`/article/${article._id}`)}
                     >
                       <ArticleTitle>{article.title}</ArticleTitle>
                       <ArticleInfo>
                         <div>
                           <strong>Ano:</strong> {article.year}
                         </div>
+                        {article.edition?.event?.name && (
+                          <div>
+                            <strong>Evento:</strong> {article.edition.event.name}
+                          </div>
+                        )}
                         {article.first_page && article.last_page && (
                           <div>
                             <strong>Páginas:</strong> {article.first_page} -{" "}
