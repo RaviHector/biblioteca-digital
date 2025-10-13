@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   min-height: 100vh;
-  background: ${(props) => props.theme.colors.white};
+  background: transparent;
   padding: 2rem 1rem;
 `;
 

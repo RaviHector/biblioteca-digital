@@ -7,7 +7,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 3rem 1rem;
-  background: ${(props) => props.theme.colors.white};
+  background: transparent;
   min-height: 100vh;
   color: #1A1A1A;
 `;
@@ -97,7 +97,7 @@ export const LoaderWrapper = styled.div`
   align-items: center;
   height: 60vh;
   width: 100%;
-  background: ${(props) => props.theme.colors.white};
+  background: transparent;
 `;
 
 export const Grid = styled.div`

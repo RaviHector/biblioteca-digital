@@ -6,7 +6,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 3rem 1rem;
-  background: ${(props) => props.theme.colors.white};
+  background: transparent;
   min-height: 100vh;
   color: #1A1A1A;
 `;

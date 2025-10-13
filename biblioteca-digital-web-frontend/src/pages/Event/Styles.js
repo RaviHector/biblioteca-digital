@@ -6,7 +6,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 3rem 1rem;
-  background: ${(props) => props.theme.colors.white};
+  background: transparent;
   min-height: 100vh;
   color: #1A1A1A;
 `;
@@ -104,7 +104,7 @@ export const LoaderWrapper = styled.div`
   align-items: center;
   height: 60vh;
   width: 100%;
-  background: ${(props) => props.theme.colors.white};
+  background: transparent;
 `;
 
 export const Grid = styled.div`
@@ -128,9 +128,6 @@ export const Card = styled(motion.div)`
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   transition: all 0.24s ease;
   cursor: pointer;
-
-  /* Ensure default text inside cards is dark for legibility */
-  color: #2C2C2C;
 
   &:hover {
     transform: translateY(-4px);
@@ -158,10 +155,6 @@ export const CardInfo = styled.div`
     gap: 0.8rem;
     font-size: 0.9rem;
     color: #2C2C2C;
-
-    span {
-      color: #2C2C2C; /* explicit span color */
-    }
   }
 
   svg {

@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
-import { Container } from "./Styles";
+import { Container, Content } from "./Styles";
 import { AddToast, Header } from "../../components/common";
 import { useRefreshToken } from "../../hooks/query/sessions";
 import { PropagateLoader } from "react-spinners";
@@ -22,7 +22,9 @@ export default function AppLayout() {
   ) : (
     <Container>
       <Header />
-      <Outlet />
+      <Content>
+        <Outlet />
+      </Content>
       <AddToast />
     </Container>
   );
