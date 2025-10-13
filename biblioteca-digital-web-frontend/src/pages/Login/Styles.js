@@ -12,14 +12,14 @@ export const InputsBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  background-color: ${({ theme }) => theme.colors.midGreen};
-  border-radius: 2rem;
-  width: 30%;
-  height: 80%;
+  background: ${(props) => props.theme.colors.white};
+  border-radius: 12px;
+  width: 420px;
+  max-width: 92%;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 40px 36px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 `;
 
 export const Form = styled.form`
@@ -32,23 +32,38 @@ export const Form = styled.form`
 
 export const Button = styled.button`
   width: 100%;
-  padding: 0.5rem;
+  padding: 0.9rem 1rem;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.18s ease;
+  background: ${(props) => props.theme.colors.primaryDark};
+  color: ${(props) => props.theme.colors.white};
+  border-radius: 6px;
+  font-weight: 700;
+  text-transform: uppercase;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.darkGreen};
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(21,101,192,0.12);
   }
 `;
 
 export const ToggleForm = styled.p`
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.lightGreen};
+  color: ${(props) => props.theme.colors.primaryDark};
   text-decoration: underline;
-  margin-top: 1rem;
+  margin-top: 12px;
+  text-align: center;
+  font-size: 0.95rem;
+`;
 
-  &:hover {
-    color: ${({ theme }) => theme.colors.white};
-  }
+export const IconWrapper = styled.div`
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(21,101,192,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
 `;

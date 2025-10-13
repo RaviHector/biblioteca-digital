@@ -12,14 +12,12 @@ export const Container = styled.div`
 `;
 
 export const Label = styled.label`
-  color: #ffffff;
-  font-size: 2.4rem;
-
+  color: ${(props) => props.theme.colors.textPrimary || '#1A1A1A'};
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 6px;
   @media (max-width: 700px) {
-    font-size: 2rem;
-  }
-  @media (max-width: 370px) {
-    font-size: 1.5rem;
+    font-size: 0.95rem;
   }
 `;
 
@@ -41,25 +39,25 @@ export const Icon = styled.div`
 export const Input = styled.input.withConfig({
   shouldForwardProp: (prop) => prop !== "error",
 })`
-  height: 4rem;
-  font-size: 1.8rem;
-  padding: 0.8rem 1.6rem;
-  padding-left: 4rem;
-  border-radius: ${(props) => props.borderradius ?? "0.4rem"};
+  height: 3.6rem;
+  font-size: 1rem;
+  padding: 0.6rem 1rem;
+  padding-left: 3.6rem;
+  border-radius: ${(props) => props.borderradius ?? "8px"};
   width: 100%;
-  border: ${(props) => (props.error ? "0.2rem red solid" : "none")};
-  background-color: ${(props) =>
-    props.backgroundcolor ? props.backgroundcolor : "transparent"};
+  border: ${(props) => (props.error ? "2px solid #ef4444" : "1px solid rgba(0,0,0,0.12)")};
+  background-color: ${(props) => props.backgroundcolor ? props.backgroundcolor : "#fff"};
+  color: ${(props) => props.theme.colors.textPrimary || '#1A1A1A'};
 
   @media (max-width: 700px) {
     font-weight: 400;
-    font-size: 1.6rem;
-    line-height: 2rem;
+    font-size: 0.95rem;
+    line-height: 1.4rem;
     height: 3rem;
   }
 
   @media (max-width: 370px) {
-    font-size: 1.2rem;
+    font-size: 0.9rem;
   }
 `;
 

@@ -2,10 +2,11 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { FormInput } from "../../components/common";
 import { useLogin, useCreateUser } from "../../hooks/query/sessions";
-import { Button, Container, Form, InputsBox, ToggleForm } from "./Styles";
+import { Button, Container, Form, InputsBox, ToggleForm, IconWrapper } from "./Styles";
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAuthStore from "../../stores/auth";
+import { Lock } from 'lucide-react';
 
 export default function Login() {
   const [isRegistering, setIsRegistering] = useState(false);
@@ -55,8 +56,11 @@ export default function Login() {
   return (
     <Container>
       <InputsBox>
+        <IconWrapper>
+          <Lock size={28} color="#1565c0" />
+        </IconWrapper>
         <Form onSubmit={handleSubmit(onSubmit)}>
-          <h2>{isRegistering ? "Criar Conta" : "Entrar"}</h2>
+          <h2 style={{ textAlign: 'center', margin: '0 0 8px 0' }}>{isRegistering ? "Criar Conta" : "Entrar"}</h2>
           
           {isRegistering && (
             <FormInput
