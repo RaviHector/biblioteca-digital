@@ -54,8 +54,9 @@ export const SearchIcon = styled.div`
   left: 1.2rem;
   top: 50%;
   transform: translateY(-50%);
-  color: ${(props) => props.theme.colors.primaryLight};
-  opacity: 0.95;
+  /* usar cor mais escura já presente no tema para melhor contraste */
+  color: ${(props) => props.theme.colors.textPrimary};
+  opacity: 0.9;
 `;
 
 export const SearchInput = styled.input`
