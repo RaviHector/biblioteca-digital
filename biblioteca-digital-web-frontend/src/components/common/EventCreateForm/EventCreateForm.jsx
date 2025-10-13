@@ -12,8 +12,6 @@ export default function EventCreateForm({ onSubmit, onSave, onCancel }) {
 
   return (
     <FormContainer onSubmit={handleSubmit(handleFormSubmit)}>
-      <h2>Cadastrar Evento</h2>
-      
       <ContainerWrapper>
         <Label>Nome do Evento</Label>
         <Input {...register("name", { required: true })} placeholder="Digite o nome do evento" />

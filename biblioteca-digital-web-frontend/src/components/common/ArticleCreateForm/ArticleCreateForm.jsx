@@ -108,8 +108,6 @@ export default function ArticleCreateForm({ onSave, onCancel }) {
 
   return (
     <FormContainer onSubmit={handleSubmit(handleFormSubmit)}>
-      <h2>Cadastrar Artigo</h2>
-      
       <ContainerWrapper>
         <Label>Título</Label>
         <Input {...register("title", { required: true })} placeholder="Digite o título do artigo" />

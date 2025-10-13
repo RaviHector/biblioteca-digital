@@ -10,8 +10,6 @@ export default function UserCreateForm({ onSave, onCancel }) {
 
   return (
     <FormContainer onSubmit={handleSubmit(handleFormSubmit)}>
-      <h2>Cadastrar Usuário</h2>
-      
       <ContainerWrapper>
         <Label>Nome</Label>
         <Input 

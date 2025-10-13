@@ -58,8 +58,6 @@ export default function EditionCreateForm({ onSave, onSubmit, onCancel }) {
 
   return (
     <FormContainer onSubmit={handleSubmit(handleFormSubmit)}>
-      <h2>Cadastrar Edição</h2>
-      
       <ContainerWrapper>
         <Label>Ano</Label>
         <Input {...register("year", { required: true })} placeholder="Digite o ano da edição" />
