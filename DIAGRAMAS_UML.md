@@ -237,7 +237,7 @@ sequenceDiagram
 ## 3. Diagrama de Pacotes - Arquitetura do Sistema
 
 ```mermaid
-graph TD
+flowchart TD
     subgraph "Frontend"
         FP[Pages]
         FC[Components]
