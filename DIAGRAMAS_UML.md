@@ -237,6 +237,7 @@ sequenceDiagram
 ## 3. Diagrama de Pacotes - Arquitetura do Sistema
 
 ```mermaid
+%%{init: {'theme':'base', 'themeVariables': {'background': 'transparent', 'mainBkg': 'transparent', 'secondaryColor': 'transparent', 'tertiaryColor': 'transparent'}}}%%
 flowchart TD
     subgraph "Frontend"
         FP[Pages]
