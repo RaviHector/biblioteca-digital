@@ -11,6 +11,8 @@ export default function Login() {
   const [isRegistering, setIsRegistering] = useState(false);
   const navigate = useNavigate();
   const { state } = useLocation();
+  const auth = useAuthStore((state) => state.auth);
+  const isCurrentUserAdmin = auth?.user?.isAdmin || false;
   
   const {
     handleSubmit,
@@ -82,7 +84,7 @@ export default function Login() {
             required
           />
 
-          {isRegistering && (
+          {isRegistering && isCurrentUserAdmin && (
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', margin: '10px 0' }}>
               <input
                 id="isAdmin"

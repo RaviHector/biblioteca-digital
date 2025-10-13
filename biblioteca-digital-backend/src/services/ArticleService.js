@@ -7,14 +7,24 @@ import convertStringToRegexp from "../utils/general/convertStringToRegexp.js";
 
 export async function get(inputFilters) {
   return ArticleModel.find(inputFilters)
-    .populate({ path: "edition", populate: { path: "event" } })
+    .populate({
+      path: "edition",
+      populate: {
+        path: "event"
+      }
+    })
     .lean()
     .exec();
 }
 
 export async function getById(_id) {
   const foundArticle = await ArticleModel.findById(_id)
-    .populate({ path: "edition", populate: { path: "event" } })
+    .populate({
+      path: "edition",
+      populate: {
+        path: "event"
+      }
+    })
     .lean()
     .exec();
   if (!foundArticle) throw new NotFoundError("Article not found");
@@ -44,7 +54,12 @@ export async function searchByName({ name, inputFilters }) {
   if (name) query.title = { $regex: convertStringToRegexp(name) };
 
   return ArticleModel.find(query)
-    .populate({ path: "edition", populate: { path: "event" } })
+    .populate({
+      path: "edition",
+      populate: {
+        path: "event"
+      }
+    })
     .sort("title")
     .lean()
     .exec();

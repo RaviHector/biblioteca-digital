@@ -6,3 +6,4 @@ export { default as Edition } from "./Edition/Edition";
 export { default as AdminPage } from "./AdminPage/AdminPage";
 export { default as Author } from "./Author/Author";
 export { default as UserProfile } from "./UserProfile/UserProfile";
+export { default as ArticleView } from "./ArticleView/ArticleView";

@@ -48,18 +48,30 @@ export async function processLogin({ email, password, token }) {
 }
 
 export async function processRefreshToken(token) {
+  console.log('Processing refresh token:', { hasToken: !!token });
+  
   if (!token) throw new UnauthorizedError("Unauthorized");
 
   const decoded = await decodeRefreshToken(token);
+  console.log('Token decoded:', { userId: decoded.userId });
+  
   const foundToken = await UserSessionTokenModel.findOne({ token }).exec();
+  console.log('Found token in DB:', { found: !!foundToken, hasUser: !!foundToken?.user });
 
   if (!foundToken) {
     const hackedUser = await UserModel.findOne({
       _id: decoded.userId,
     }).exec();
 
-    await UserSessionTokenModel.deleteMany({ user: hackedUser._id }).exec();
+    if (hackedUser) {
+      await UserSessionTokenModel.deleteMany({ user: hackedUser._id }).exec();
+    }
     throw new ForbiddenError("Token reuse");
+  }
+
+  // Verificar se o usuário foi populado corretamente
+  if (!foundToken.user || !foundToken.user._id) {
+    throw new UnauthorizedError("Invalid token - user not found");
   }
 
   const userId = foundToken.user._id.toString();

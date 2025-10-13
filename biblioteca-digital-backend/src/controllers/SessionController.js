@@ -22,7 +22,13 @@ export const handleLogin = asyncHandler(async (req, res) => {
 
 export const handleRefreshToken = asyncHandler(async (req, res) => {
   const { token } = SessionValidator.refresh(req);
-  console.log("Refresh token recebido:", req.signedCookies);
+  
+  console.log('Refresh token attempt:', { hasToken: !!token, tokenLength: token?.length });
+
+  // Se não houver token, retorna erro 401
+  if (!token) {
+    return res.status(401).json({ message: 'Refresh token não fornecido' });
+  }
 
   // Deletes any cookie with a name that matches the authentication one
   res.clearCookie(cookieAuthName, deleteCookieOptions);

@@ -37,6 +37,11 @@ const ArticleSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    pdf_file: {
+      type: String,
+      required: false,
+      trim: true,
+    },
   },
   { versionKey: false }
 );

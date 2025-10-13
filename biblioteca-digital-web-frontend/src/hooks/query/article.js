@@ -12,12 +12,14 @@ import {
 
 export function useGetArticle({
   filters,
+  enabled = true,
   onSuccess = () => {},
   onError = (err) => console.log(err),
 } = {}) {
   return useQuery({
     queryKey: ["Article", filters],
     queryFn: () => getArticle(filters),
+    enabled,
     onSuccess,
     onError,
   });
@@ -51,12 +53,14 @@ export function useSearchByNameArticle({
 
 export function useSearchArticle({
   name,
+  enabled = true,
   onSuccess = () => {},
   onError = (err) => console.log(err),
 } = {}) {
   return useQuery({
-    queryKey: ["Article", name],
+    queryKey: ["SearchArticle", name],
     queryFn: () => searchByArticle(name),
+    enabled: enabled && Boolean(name),
     onSuccess,
     onError,
   });

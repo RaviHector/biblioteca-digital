@@ -28,6 +28,37 @@ export const ErrorMsg = styled.span`
 
 export const Actions = styled.div`
   display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
+  gap: 8px;
+  margin-top: 16px;
+  justify-content: flex-end;
+`;
+
+export const Button = styled.button`
+  padding: 0.8rem 1.4rem;
+  background-color: ${(props) => props.backgroundcolor || "black"};
+  color: ${(props) => props.color || "white"};
+  border: none;
+  border-radius: ${(props) => props.borderradius || "0.4rem"};
+  cursor: pointer;
+`;
+
+export const ContainerWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`;
+
+export const Label = styled.label`
+  font-weight: 600;
+  font-size: 1rem;
+  color: ${({ theme }) => theme.colors.darkGreen || '#374151'};
+`;
+
+export const Select = styled.select`
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid ${({ theme }) => theme.colors.lightGreen};
+  font-size: 1rem;
+  outline: none;
+  background: ${({ theme }) => theme.colors.white};
 `;

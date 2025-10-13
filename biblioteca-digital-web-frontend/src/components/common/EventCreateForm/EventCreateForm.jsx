@@ -1,42 +1,46 @@
 import { useForm } from "react-hook-form";
-import { FormContainer, Input, ErrorMsg, Actions } from "./EventCreateFormStyles";
-import styled from "styled-components";
+import { FormContainer, Input, ErrorMsg, Actions, ContainerWrapper, Label, Button } from "./EventCreateFormStyles";
 
-const Button = styled.button`
-  background: #2563eb;
-  color: #fff;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background 0.2s;
-  &:hover {
-    background: #1d4ed8;
-  }
-`;
-
-export default function EventCreateForm({ onSubmit, onCancel }) {
+export default function EventCreateForm({ onSubmit, onSave, onCancel }) {
   const { register, handleSubmit, reset } = useForm();
 
   const handleFormSubmit = (data) => {
-    if (onSubmit) onSubmit(data);
+    if (onSave) onSave(data);
+    else if (onSubmit) onSubmit(data);
     reset();
   };
 
   return (
     <FormContainer onSubmit={handleSubmit(handleFormSubmit)}>
-      <Input {...register("name", { required: true })} placeholder="Nome do evento" />
-      <Input {...register("entity", { required: true })} placeholder="Entidade" />
-      <Input {...register("sigla") } placeholder="Sigla" />
-      <Input {...register("date") } type="date" placeholder="Data" />
+      <h2>Cadastrar Evento</h2>
+      
+      <ContainerWrapper>
+        <Label>Nome do Evento</Label>
+        <Input {...register("name", { required: true })} placeholder="Digite o nome do evento" />
+      </ContainerWrapper>
+      
+      <ContainerWrapper>
+        <Label>Entidade</Label>
+        <Input {...register("entity", { required: true })} placeholder="Digite a entidade" />
+      </ContainerWrapper>
+      
+      <ContainerWrapper>
+        <Label>Sigla</Label>
+        <Input {...register("sigla")} placeholder="Digite a sigla (opcional)" />
+      </ContainerWrapper>
+      
+      <ContainerWrapper>
+        <Label>Data</Label>
+        <Input {...register("date")} type="date" placeholder="Selecione a data" />
+      </ContainerWrapper>
+      
       <Actions>
-        <Button type="submit">Cadastrar</Button>
-        {onCancel && (
-          <Button type="button" onClick={onCancel} style={{ marginLeft: 8 }}>
-            Cancelar
-          </Button>
-        )}
+        <Button type="button" onClick={onCancel} backgroundcolor="#ccc">
+          Cancelar
+        </Button>
+        <Button type="submit" backgroundcolor="#1976d2">
+          Cadastrar
+        </Button>
       </Actions>
     </FormContainer>
   );

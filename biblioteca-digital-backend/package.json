@@ -13,7 +13,9 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "adm-zip": "^0.5.10",
     "bcrypt": "^6.0.0",
+    "bibtex-parse-js": "^0.0.24",
     "cluster": "^0.7.7",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",

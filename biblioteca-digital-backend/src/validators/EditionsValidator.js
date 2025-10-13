@@ -49,7 +49,7 @@ export const update = validate(
       place: z
         .string()
         .min(2, "Sigla name must be atleast 3 characters")
-        .max(5, "Sigla name must be a maximum of 5 characters")
+        .max(100, "Sigla name must be a maximum of 5 characters")
         .optional(),
       event: objectIdSchema("Event _id"),
     }),

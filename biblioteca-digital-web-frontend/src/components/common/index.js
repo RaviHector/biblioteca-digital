@@ -6,3 +6,7 @@ export { default as FormInput } from "./FormInput/FormInput";
 export { default as Footer } from "./Footer/Footer";
 export { default as Popup } from "./Popup/Popup";
 export { default as EventEditForm } from "./EventEditForm/EventEditForm";
+export { default as ArticleEditForm } from "./ArticleEditForm/ArticleEditForm";
+export { default as ArticleCreateForm } from "./ArticleCreateForm/ArticleCreateForm";
+export { default as BulkUploadForm } from "./BulkUploadForm/BulkUploadForm";
+export { default as UserCreateForm } from "./UserCreateForm/UserCreateForm";

@@ -132,12 +132,30 @@ export const searchByArticle = async (name) => {
   return data;
 };
 export const createArticle = async (newArticle) => {
-  const { data } = await api.post("/article", newArticle);
+  const config = {};
+  
+  // Se newArticle for FormData (com arquivo), definir headers apropriados
+  if (newArticle instanceof FormData) {
+    config.headers = {
+      'Content-Type': 'multipart/form-data',
+    };
+  }
+  
+  const { data } = await api.post("/article", newArticle, config);
 
   return data;
 };
 export const updateArticle = async ({ _id, newArticleData }) => {
-  const { data } = await api.put(`/article/${_id}`, newArticleData);
+  const config = {};
+  
+  // Se newArticleData for FormData (com arquivo), definir headers apropriados
+  if (newArticleData instanceof FormData) {
+    config.headers = {
+      'Content-Type': 'multipart/form-data',
+    };
+  }
+  
+  const { data } = await api.put(`/article/${_id}`, newArticleData, config);
 
   return data;
 };
@@ -147,7 +165,47 @@ export const deleteArticle = async (_id) => {
   return data;
 };
 
+export const downloadArticlePdf = async (_id) => {
+  const response = await api.get(`/article/${_id}/download`, {
+    responseType: 'blob'
+  });
+  
+  return response;
+};
+
+export const bulkUploadArticles = async (formData) => {
+  const config = {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  };
+  
+  const { data } = await api.post("/bulk-articles/upload-bulk", formData, config);
+  return data;
+};
+
 export const createUser = async (userData) => {
+  const { data } = await api.post("/users/register", userData);
+  return data;
+};
+
+// Admin user management
+export const getUsers = async (filters = {}) => {
+  const { data } = await api.get("/users", { params: filters });
+  return data;
+};
+
+export const createUserByAdmin = async (userData) => {
   const { data } = await api.post("/users", userData);
+  return data;
+};
+
+export const updateUser = async ({ _id, ...userData }) => {
+  const { data } = await api.put(`/users/${_id}`, userData);
+  return data;
+};
+
+export const deleteUser = async (_id) => {
+  const { data } = await api.delete(`/users/${_id}`);
   return data;
 };

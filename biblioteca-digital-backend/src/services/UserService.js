@@ -14,11 +14,16 @@ export async function getById(_id) {
 
 import { hashPassword } from '../utils/libs/bcrypt.js';
 
-export async function create(inputData) {
+export async function create(inputData, currentUser = null) {
   // Verifica se já existe um usuário com este email
   const existingUser = await UserModel.findOne({ email: inputData.email }).lean().exec();
   if (existingUser) {
     throw new Error('Email já está em uso');
+  }
+
+  // Verifica se está tentando criar um admin sem ser admin
+  if (inputData.isAdmin && (!currentUser || !currentUser.isAdmin)) {
+    throw new ForbiddenError('Apenas administradores podem criar outros administradores');
   }
 
   // Gera o userName a partir do email
@@ -49,7 +54,13 @@ export async function update({ _id, inputData }) {
   const foundUser = await UserModel.findById(_id).exec();
   if (!foundUser) throw new NotFoundError('User not found');
 
-  return foundUser.set(inputData).save();
+  // Se uma nova senha foi fornecida, criptografá-la
+  if (inputData.password) {
+    inputData.password = await hashPassword(inputData.password);
+  }
+
+  const { password, ...updatedUser } = (await foundUser.set(inputData).save()).toObject();
+  return updatedUser;
 }
 
 export async function destroy(_id) {
