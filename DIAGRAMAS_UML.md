@@ -3,6 +3,7 @@
 ## 1. Diagrama de Classes
 
 ```mermaid
+%%{init: {'theme':'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#f9f9f9', 'primaryTextColor': '#000000', 'primaryBorderColor': '#cccccc', 'lineColor': '#333333'}}}%%
 classDiagram
     class User {
         +String _id
@@ -158,6 +159,7 @@ classDiagram
 ## 2. Diagrama de Sequência - Upload em Massa de Artigos
 
 ```mermaid
+%%{init: {'theme':'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#f9f9f9', 'primaryTextColor': '#000000', 'primaryBorderColor': '#cccccc', 'lineColor': '#333333'}}}%%
 sequenceDiagram
     participant U as User (Admin)
     participant F as Frontend
@@ -237,6 +239,7 @@ sequenceDiagram
 ## 3. Diagrama de Pacotes - Arquitetura do Sistema
 
 ```mermaid
+%%{init: {'theme':'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#f9f9f9', 'primaryTextColor': '#000000', 'primaryBorderColor': '#cccccc', 'lineColor': '#333333'}}}%%
 graph TD
     subgraph "Frontend"
         FP[Pages]

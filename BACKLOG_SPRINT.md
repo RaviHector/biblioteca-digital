@@ -110,7 +110,7 @@
 - [ ] Implementar filtros por ano
 - [ ] Barra de pesquisa dentro dos artigos do usuário
 
-**Responsável:** Ana Paula e Ravi
+**Responsável:** Ana Paula e Ravi  
 **Status:** Concluído
 
 ---
