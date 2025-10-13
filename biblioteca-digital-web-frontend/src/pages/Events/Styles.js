@@ -8,14 +8,14 @@ export const Container = styled.div`
   padding: 3rem 1rem;
   background: ${(props) => props.theme.colors.white};
   min-height: 100vh;
-  color: ${(props) => props.theme.colors.textPrimary};
+  color: #1A1A1A;
 `;
 
 export const Title = styled.h1`
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 2rem;
-  color: #f8fafc;
+  color: #1A1A1A;
   text-align: center;
 `;
 
@@ -28,18 +28,19 @@ export const Grid = styled.div`
 `;
 
 export const Card = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0,0,0,0.06);
   border-radius: 16px;
   padding: 1.5rem;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: all 0.24s ease;
   cursor: pointer;
 
   &:hover {
-    transform: translateY(-6px);
-    border-color: #38bdf8;
-    background: rgba(56, 189, 248, 0.1);
+    transform: translateY(-4px);
+    border-color: rgba(56, 189, 248, 0.6);
+    background: rgba(242,246,251,0.95);
   }
 `;
 
@@ -49,7 +50,7 @@ export const Line = styled.p`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #e2e8f0;
+  color: #2C2C2C;
 `;
 
 export const LoaderWrapper = styled.div`

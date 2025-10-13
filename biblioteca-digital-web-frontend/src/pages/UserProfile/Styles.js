@@ -8,18 +8,19 @@ export const Container = styled.div`
   padding: 3rem 1rem;
   background: ${(props) => props.theme.colors.white};
   min-height: 100vh;
-  color: ${(props) => props.theme.colors.textPrimary};
+  color: #1A1A1A;
 `;
 
 export const UserInfo = styled.div`
   display: flex;
   align-items: center;
   gap: 2rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255,255,255,0.85);
+  border: 1px solid rgba(0,0,0,0.06);
   border-radius: 16px;
   padding: 2rem;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   margin-bottom: 3rem;
   width: 100%;
   max-width: 600px;
@@ -39,7 +40,7 @@ export const UserInfo = styled.div`
 export const UserName = styled.h1`
   font-size: 2rem;
   font-weight: 700;
-  color: #f8fafc;
+  color: #1A1A1A;
   margin-bottom: 1rem;
 
   @media (max-width: 768px) {
@@ -69,12 +70,12 @@ export const StatItem = styled.div`
 export const StatNumber = styled.div`
   font-size: 1.8rem;
   font-weight: 600;
-  color: #38bdf8;
+  color: #1976d2;
 `;
 
 export const StatLabel = styled.div`
   font-size: 1rem;
-  color: #94a3b8;
+  color: #6b7280;
 `;
 
 export const ArticlesSection = styled.div`
@@ -88,7 +89,7 @@ export const ArticlesSection = styled.div`
 export const SectionTitle = styled.h2`
   font-size: 1.8rem;
   font-weight: 700;
-  color: #f8fafc;
+  color: #1A1A1A;
   text-align: center;
   margin-bottom: 1rem;
 `;
@@ -98,11 +99,12 @@ export const FilterContainer = styled.div`
   gap: 1rem;
   align-items: center;
   justify-content: space-between;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255,255,255,0.85);
+  border: 1px solid rgba(0,0,0,0.06);
   border-radius: 16px;
   padding: 1.5rem;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   margin-bottom: 2rem;
 
   @media (max-width: 768px) {
@@ -130,43 +132,43 @@ export const SearchContainer = styled.div`
 export const SearchInput = styled.input`
   flex: 1;
   padding: 0.8rem 1rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(242,246,251,0.95);
+  border: 1px solid rgba(0,0,0,0.06);
   border-radius: 12px;
   font-size: 1rem;
-  color: #f1f5f9;
+  color: #2C2C2C;
   outline: none;
   transition: all 0.3s ease;
 
   &:focus {
-    border-color: #38bdf8;
-    background: rgba(56, 189, 248, 0.1);
+    border-color: rgba(56,189,248,0.6);
+    background: rgba(56,189,248,0.08);
   }
 
   &::placeholder {
-    color: #64748b;
+    color: #6b7280;
   }
 `;
 
 export const FilterSelect = styled.select`
   padding: 0.8rem 1rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(242,246,251,0.95);
+  border: 1px solid rgba(0,0,0,0.06);
   border-radius: 12px;
   font-size: 1rem;
-  color: #f1f5f9;
+  color: #2C2C2C;
   outline: none;
   cursor: pointer;
   transition: all 0.3s ease;
 
   &:focus {
-    border-color: #38bdf8;
-    background: rgba(56, 189, 248, 0.1);
+    border-color: rgba(56,189,248,0.6);
+    background: rgba(56,189,248,0.08);
   }
 
   option {
-    background: #1e293b;
-    color: #f1f5f9;
+    background: #ffffff;
+    color: #1A1A1A;
   }
 `;
 
@@ -196,25 +198,26 @@ export const ArticleGrid = styled.div`
 `;
 
 export const ArticleCard = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255,255,255,0.85);
+  border: 1px solid rgba(0,0,0,0.06);
   border-radius: 16px;
   padding: 1.5rem;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: all 0.24s ease;
   cursor: pointer;
 
   &:hover {
-    transform: translateY(-6px);
-    border-color: #38bdf8;
-    background: rgba(56, 189, 248, 0.1);
+    transform: translateY(-4px);
+    border-color: rgba(56,189,248,0.6);
+    background: rgba(242,246,251,0.95);
   }
 `;
 
 export const ArticleTitle = styled.h4`
   font-size: 1.2rem;
   font-weight: 600;
-  color: #f8fafc;
+  color: #1A1A1A;
   margin-bottom: 1rem;
   line-height: 1.4;
 `;
@@ -224,7 +227,7 @@ export const ArticleInfo = styled.div`
   flex-direction: column;
   gap: 0.5rem;
   font-size: 1rem;
-  color: #94a3b8;
+  color: #2C2C2C;
 
   div {
     display: flex;
@@ -232,7 +235,7 @@ export const ArticleInfo = styled.div`
   }
 
   strong {
-    color: #e2e8f0;
+    color: #1A1A1A;
     min-width: 8rem;
   }
 `;

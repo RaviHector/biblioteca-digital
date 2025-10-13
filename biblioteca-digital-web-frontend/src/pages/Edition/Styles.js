@@ -9,7 +9,7 @@ export const Container = styled.div`
   padding: 3rem 1rem;
   background: ${(props) => props.theme.colors.white};
   min-height: 100vh;
-  color: ${(props) => props.theme.colors.textPrimary};
+  color: #1A1A1A;
 `;
 
 export const Header = styled.div`
@@ -25,19 +25,19 @@ export const BackButton = styled.button`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(242,246,251,0.95);
+  border: 1px solid rgba(0,0,0,0.06);
   border-radius: 12px;
   padding: 0.8rem 1.2rem;
-  color: #f1f5f9;
+  color: #1A1A1A;
   font-size: 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.24s ease;
   align-self: flex-start;
 
   &:hover {
-    background: rgba(56, 189, 248, 0.1);
-    border-color: #38bdf8;
+    background: rgba(56,189,248,0.08);
+    border-color: rgba(56,189,248,0.6);
     transform: translateX(-2px);
   }
 
@@ -53,7 +53,7 @@ export const BackButton = styled.button`
 export const Title = styled.h1`
   font-size: 2.5rem;
   font-weight: 700;
-  color: #f8fafc;
+  color: #1A1A1A;
   text-align: center;
   margin: 0;
 
@@ -66,11 +66,12 @@ export const EditionInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255,255,255,0.85);
+  border: 1px solid rgba(0,0,0,0.06);
   border-radius: 16px;
   padding: 1.5rem;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 `;
 
 export const InfoItem = styled.div`
@@ -78,15 +79,15 @@ export const InfoItem = styled.div`
   align-items: center;
   gap: 0.8rem;
   font-size: 1rem;
-  color: #e2e8f0;
+  color: #2C2C2C;
 
   svg {
-    color: #38bdf8;
+    color: #1976d2;
     flex-shrink: 0;
   }
 
   strong {
-    color: #f8fafc;
+    color: #1A1A1A;
   }
 `;
 
@@ -112,25 +113,26 @@ export const Grid = styled.div`
 `;
 
 export const Card = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255,255,255,0.85);
+  border: 1px solid rgba(0,0,0,0.06);
   border-radius: 16px;
   padding: 1.5rem;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: all 0.24s ease;
   cursor: pointer;
 
   &:hover {
-    transform: translateY(-6px);
-    border-color: #38bdf8;
-    background: rgba(56, 189, 248, 0.1);
+    transform: translateY(-4px);
+    border-color: rgba(56,189,248,0.6);
+    background: rgba(242,246,251,0.95);
   }
 `;
 
 export const CardTitle = styled.h3`
   font-size: 1.2rem;
   font-weight: 600;
-  color: #f8fafc;
+  color: #1A1A1A;
   margin-bottom: 1rem;
   line-height: 1.4;
 `;
@@ -145,7 +147,7 @@ export const CardInfo = styled.div`
     align-items: center;
     gap: 0.8rem;
     font-size: 0.9rem;
-    color: #94a3b8;
+    color: #2C2C2C;
   }
 
   svg {
@@ -154,7 +156,7 @@ export const CardInfo = styled.div`
   }
 
   strong {
-    color: #e2e8f0;
+    color: #1A1A1A;
   }
 `;
 
@@ -166,11 +168,12 @@ export const NoDataMessage = styled.div`
   gap: 1rem;
   text-align: center;
   padding: 4rem 2rem;
-  color: #94a3b8;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #6b7280;
+  background: rgba(255,255,255,0.85);
+  border: 1px solid rgba(0,0,0,0.06);
   border-radius: 16px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   margin: 2rem 0;
 
   svg {
@@ -179,13 +182,13 @@ export const NoDataMessage = styled.div`
 
   h3 {
     font-size: 1.5rem;
-    color: #f8fafc;
+    color: #1A1A1A;
     margin-bottom: 0.5rem;
   }
 
   p {
     font-size: 1rem;
     max-width: 400px;
-    color: #94a3b8;
+    color: #6b7280;
   }
 `;

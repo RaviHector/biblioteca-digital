@@ -4,21 +4,21 @@ export const Container = styled.div`
   padding: 2rem;
   max-width: 800px;
   margin: 0 auto;
-  
+
   h1 {
-    color: #1f2937;
+    color: #1A1A1A;
     margin-bottom: 2rem;
     text-align: center;
   }
-  
+
   p {
     color: #6b7280;
     font-size: 1.1rem;
     text-align: center;
   }
-  
+
   button {
-    background: #3b82f6;
+    background: #1976d2;
     color: white;
     padding: 0.5rem 1rem;
     border: none;
@@ -26,9 +26,10 @@ export const Container = styled.div`
     cursor: pointer;
     font-size: 1rem;
     margin-top: 1rem;
-    
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+
     &:hover {
-      background: #2563eb;
+      background: #165fa8;
     }
   }
 `;

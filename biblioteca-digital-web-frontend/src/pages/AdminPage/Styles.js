@@ -10,14 +10,16 @@ export const Container = styled.div`
   padding: 3rem 1rem;
   background: ${(props) => props.theme.colors.white};
   min-height: 100vh;
-  color: ${(props) => props.theme.colors.textPrimary};
+  /* Keep header exactly as-is; this only adjusts page content typography */
+  color: #1A1A1A;
 `;
 
 export const Title = styled.h1`
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 2rem;
-  color: #f8fafc;
+  /* Title should be darker for legibility over light background */
+  color: #1A1A1A;
   text-align: center;
 `;
 
@@ -30,19 +32,20 @@ export const Grid = styled.div`
 `;
 
 export const Card = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  /* Slightly darker, semi-opaque card background for contrast */
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 16px;
   padding: 1.5rem;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-  
-  /* Removido o cursor: pointer daqui para ser mais específico */
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.24s ease;
 
   &:hover {
-    transform: translateY(-6px);
-    border-color: #38bdf8;
-    background: rgba(56, 189, 248, 0.1);
+    transform: translateY(-4px);
+    border-color: rgba(56, 189, 248, 0.6);
+    /* Keep subtle hover but do not change to strong translucent blue which would break contrast */
+    background: rgba(242, 246, 251, 0.95); /* #f2f6fb toned */
   }
 `;
 
@@ -52,7 +55,7 @@ export const Line = styled.p`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #e2e8f0;
+  color: #2C2C2C; /* darker text for readability */
 `;
 
 export const LoaderWrapper = styled.div`
@@ -70,9 +73,9 @@ export const SearchInput = styled.div`
   max-width: 500px;
   margin: 0 auto 32px;
   padding: 10px 16px;
-  background-color: #f1f5f9;
+  background-color: rgba(242,246,251,0.95); /* slightly darker than before */
   border-radius: 8px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid rgba(0,0,0,0.06);
 
   input {
     width: 100%;
@@ -80,10 +83,10 @@ export const SearchInput = styled.div`
     outline: none;
     background-color: transparent;
     font-size: 1rem;
-    color: #334155;
+    color: #2C2C2C;
 
     &::placeholder {
-      color: #9ca3af;
+      color: #6b7280; /* darker placeholder for accessibility */
     }
   }
 `;
@@ -106,11 +109,11 @@ export const SearchTypeButton = styled.button`
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 
   /* Estilização condicional baseada na prop '$active' */
-  background-color: ${(props) => (props.$active ? "#38bdf8" : "rgba(255, 255, 255, 0.1)")};
-  color: ${(props) => (props.$active ? "#ffffff" : "#e2e8f0")};
+  background-color: ${(props) => (props.$active ? "#38bdf8" : "rgba(255, 255, 255, 0.85)")};
+  color: ${(props) => (props.$active ? "#ffffff" : "#1A1A1A")};
 
   &:hover {
-    background-color: ${(props) => (props.$active ? "#0ea5e9" : "rgba(255, 255, 255, 0.2)")};
+    background-color: ${(props) => (props.$active ? "#0ea5e9" : "rgba(242,246,251,0.95)")};
   }
 `;
 
@@ -125,7 +128,7 @@ export const CardActions = styled.div`
   gap: 16px; /* Aumentando um pouco o espaçamento */
   margin-top: 1.25rem;
   padding-top: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1); /* Separador visual */
+  border-top: 1px solid rgba(0,0,0,0.06); /* Separador visual (subtle) */
 `;
 
 const ActionButton = styled.button`
@@ -145,9 +148,9 @@ const ActionButton = styled.button`
 `;
 
 export const EditButton = styled(ActionButton)`
-  color: #38bdf8; /* Azul claro para editar */
+  color: #1976d2; /* slightly darker blue for contrast */
 `;
 
 export const DeleteButton = styled(ActionButton)`
-  color: #f472b6; /* Um rosa/vermelho mais suave para combinar com o tema */
+  color: #c62828; /* darker red for better contrast */
 `;

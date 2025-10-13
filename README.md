@@ -1,6 +1,20 @@
-# Biblioteca Digital
+# 📚 Biblioteca Digital
 
-Sistema de gerenciamento de biblioteca digital para artigos acadêmicos com suporte a upload de PDFs, validação BibTeX e sistema de autenticação com controle de acesso administrativo.
+Sistema completo de gerenciamento de biblioteca digital para artigos acadêmicos, desenvolvido como projeto da disciplina de Engenharia de Software. O sistema oferece funcionalidades avançadas de upload de PDFs, processamento de arquivos BibTeX, sistema de notificações por email e controle granular de acesso.
+
+## 👥 Equipe de Desenvolvimento
+
+- **Ana Paula** - Responsável por Design/Layout e UI/UX
+- **Ravi** - Responsável pela arquitetura do sistema e backend
+- **Vanessa** - Responsável pelo sistema de emails e gestão de usuários
+
+## 🎯 Objetivos do Projeto
+
+Este sistema foi desenvolvido para atender às necessidades de:
+- Pesquisadores que precisam organizar e compartilhar artigos
+- Administradores de eventos acadêmicos 
+- Usuários que desejam receber notificações sobre novos artigos
+- Comunidade acadêmica que necessita de acesso fácil a publicações
 
 ## 🏗️ Arquitetura do Sistema
 
@@ -235,13 +249,28 @@ sequenceDiagram
 
 ## 🚀 Funcionalidades Principais
 
-- **Gerenciamento de Artigos**: CRUD completo com validação BibTeX
-- **Upload de PDFs**: Suporte individual e em lote (ZIP)
-- **Sistema de Busca**: Busca por título, autor e evento
-- **Autenticação JWT**: Login/logout com controle de sessão
-- **Controle de Acesso**: Operações administrativas restritas
-- **Validação Rigorosa**: Verificação de eventos e edições existentes
-- **Download de PDFs**: Sistema seguro de download de arquivos
+### 👨‍💼 Para Administradores
+- **Gerenciamento Completo de Eventos**: Criar, editar e excluir eventos acadêmicos
+- **Gestão de Edições**: Organizar edições por ano e local de cada evento
+- **Upload Individual de Artigos**: Cadastro manual com upload de PDF
+- **Upload em Massa**: Processamento de arquivos BibTeX + ZIP com múltiplos PDFs
+- **Gerenciamento de Usuários**: Criar e administrar contas de usuário
+- **Dashboard Administrativo**: Interface completa para gestão do sistema
+
+### 👤 Para Usuários
+- **Sistema de Busca Avançada**: Pesquisa por título, autor e nome de evento
+- **Navegação Intuitiva**: Páginas dedicadas para eventos, edições e artigos
+- **Perfil Personalizado**: Visualização dos próprios artigos organizados por ano
+- **Download de PDFs**: Acesso direto aos arquivos dos artigos
+- **Sistema de Notificações**: Cadastro para receber emails sobre novos artigos
+
+### 🔧 Funcionalidades Técnicas
+- **Autenticação JWT**: Sistema seguro de login/logout
+- **Controle de Acesso**: Operações administrativas protegidas
+- **Validação Rigorosa**: Verificação de integridade de dados
+- **Upload Seguro**: Validação de tipos de arquivo e tamanho
+- **Sistema de Email**: Notificações automáticas via SMTP
+- **Processamento BibTeX**: Parser avançado para importação em massa
 
 ## 🛠️ Stack Tecnológica
 
@@ -255,17 +284,22 @@ sequenceDiagram
 - **Lucide React** para ícones
 
 ### Backend
-- **Node.js** com Express
-- **MongoDB** com Mongoose
-- **JWT** para autenticação
-- **Multer** para upload de arquivos
-- **Joi** para validação
-- **Winston** para logging
+- **Node.js** com Express.js
+- **MongoDB** com Mongoose ODM
+- **JWT** para autenticação e autorização
+- **Multer** para upload e processamento de arquivos
+- **Zod** para validação de schemas
+- **Bcrypt** para hash de senhas
+- **Nodemailer** para envio de emails
+- **BibTeX Parser** para processamento de arquivos acadêmicos
+- **Winston** para logging e monitoramento
 
-### Ferramentas
-- **Vite** (build frontend)
-- **ESLint** (linting)
-- **Prettier** (formatação)
+### Ferramentas de Desenvolvimento
+- **Vite** para build e desenvolvimento do frontend
+- **ESLint** para análise estática de código
+- **Prettier** para formatação automática
+- **React Query** para cache e sincronização de dados
+- **Zustand** para gerenciamento de estado global
 
 ## 📁 Estrutura do Projeto
 
@@ -296,24 +330,126 @@ biblioteca-digital/
 ## 🔧 Configuração e Execução
 
 ### Pré-requisitos
-- Node.js 18+
-- MongoDB
-- npm ou yarn
+- **Node.js** 18+ 
+- **MongoDB** (local ou Atlas)
+- **npm** ou **yarn**
+- **Git** para controle de versão
 
-### Backend
+### Configuração do Backend
+
+1. **Navegue para o diretório do backend:**
 ```bash
 cd biblioteca-digital-backend
+```
+
+2. **Instale as dependências:**
+```bash
 npm install
+```
+
+3. **Configure as variáveis de ambiente:**
+Crie um arquivo `.env` com:
+```env
+MONGODB_URI=mongodb://localhost:27017/biblioteca-digital
+JWT_SECRET=sua_chave_secreta_jwt
+EMAIL_USER=seu_email@gmail.com
+EMAIL_PASS=sua_senha_app_gmail
+PORT=3333
+```
+
+4. **Inicie o servidor:**
+```bash
 npm start
 ```
 
-### Frontend
+O backend estará rodando em `http://localhost:3333`
+
+### Configuração do Frontend
+
+1. **Navegue para o diretório do frontend:**
 ```bash
 cd biblioteca-digital-web-frontend
+```
+
+2. **Instale as dependências:**
+```bash
 npm install
+```
+
+3. **Configure a URL da API:**
+Verifique o arquivo `src/services/api/index.js` e ajuste a baseURL se necessário.
+
+4. **Inicie o servidor de desenvolvimento:**
+```bash
 npm run dev
 ```
 
+O frontend estará acessível em `http://localhost:5173`
+
+### � Scripts Disponíveis
+
+#### Backend
+- `npm start` - Inicia o servidor em modo produção
+- `npm run dev` - Inicia com nodemon para desenvolvimento
+- `npm run lint` - Executa verificação de código
+
+#### Frontend
+- `npm run dev` - Servidor de desenvolvimento
+- `npm run build` - Build para produção
+- `npm run preview` - Preview da build de produção
+- `npm run lint` - Verificação de código
+
+## 🗃️ Estrutura do Banco de Dados
+
+### Coleções Principais
+- **Users**: Usuários do sistema (admins e usuários comuns)
+- **Events**: Eventos acadêmicos (congressos, simpósios, etc.)
+- **Editions**: Edições específicas de cada evento por ano
+- **Articles**: Artigos acadêmicos com metadados e PDFs
+- **UserSessionTokens**: Tokens de sessão para autenticação
+- **EmailNotifications**: Cadastros para notificações por email
+
+## 🔐 Sistema de Autenticação
+
+O sistema utiliza **JWT (JSON Web Tokens)** para autenticação:
+- Tokens são gerados no login e armazenados no frontend
+- Middleware `verifyJWT` valida tokens em rotas protegidas
+- Middleware `verifyAdmin` restringe acesso a funcionalidades administrativas
+- Sistema de refresh token para sessões longas
+
+## 📧 Sistema de Notificações
+
+- **Cadastro voluntário** para receber notificações
+- **Notificações automáticas** quando novos artigos são publicados
+- **Matching inteligente** entre nomes de autores e cadastros
+- **Templates personalizados** de email
+- **Sistema de ativação/desativação** de notificações
+
+## 🎨 Design System
+
+O projeto implementa um design system consistente com:
+- **Paleta de cores** personalizada com tons de verde
+- **Tipografia** responsiva e acessível
+- **Componentes reutilizáveis** com Styled Components
+- **Animações suaves** com Framer Motion
+- **Layout responsivo** para todos os dispositivos
+
+## 📊 Documentação Adicional
+
+Este repositório inclui documentação complementar:
+- **[BACKLOG_SPRINT.md](./BACKLOG_SPRINT.md)** - Backlog detalhado da sprint com histórias de usuário
+- **[RELATORIO_USO_IA.md](./RELATORIO_USO_IA.md)** - Relatório sobre uso de IA no desenvolvimento
+- **[DIAGRAMAS_UML.md](./DIAGRAMAS_UML.md)** - Diagramas UML do sistema (Classe, Sequência, Pacotes)
+
+## 🤝 Contribuindo
+
+Este é um projeto acadêmico, mas sugestões e melhorias são bem-vindas:
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`)
+3. Commit suas mudanças (`git commit -m 'Adiciona nova feature'`)
+4. Push para a branch (`git push origin feature/nova-feature`)
+5. Abra um Pull Request
+
 ## 📝 Licença
 
-Este projeto está sob licença MIT. Veja o arquivo LICENSE para mais detalhes.
+Este projeto foi desenvolvido para fins acadêmicos como parte do curso de Engenharia de Software. O código está disponível sob licença MIT para fins educacionais.

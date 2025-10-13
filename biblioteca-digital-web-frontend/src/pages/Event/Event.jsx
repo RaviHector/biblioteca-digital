@@ -106,7 +106,7 @@ export default function Event() {
           style={{
             fontSize: "1.8rem",
             fontWeight: "700",
-            color: "#f8fafc",
+            color: "#1A1A1A",
             marginBottom: "2rem",
             textAlign: "center",
           }}
