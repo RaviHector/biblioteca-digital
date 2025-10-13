@@ -63,7 +63,7 @@
 - [ ] Exibir relatório de processamento (sucessos/falhas)
 - [ ] Enviar notificações por email para autores
 
-**Responsável:** Vanessa
+**Responsável:** Vanessa  
 **Status:** Concluído
 
 ---
@@ -95,7 +95,7 @@
 - [ ] Implementar navegação entre páginas
 - [ ] Design responsivo
 
-**Responsável:** Ana Paula e Ravi
+**Responsável:** Ana Paula e Ravi  
 **Status:** Concluído
 
 ---
@@ -110,7 +110,7 @@
 - [ ] Implementar filtros por ano
 - [ ] Barra de pesquisa dentro dos artigos do usuário
 
-**Responsável:** Ana Paula e Ana Paula
+**Responsável:** Ana Paula e Ravi
 **Status:** Concluído
 
 ---

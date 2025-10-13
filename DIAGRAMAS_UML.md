@@ -134,10 +134,10 @@ classDiagram
         +sendMail(options)
     }
 
-    %% Relacionamentos entre Models
-    User ||--o{ UserSessionToken : possui
-    Event ||--o{ Edition : contem
-    Edition ||--o{ Article : possui
+    %% Relacionamentos entre Models (usando Composição)
+    User "1" *-- "0..*" UserSessionToken : possui
+    Event "1" *-- "0..*" Edition : contem
+    Edition "1" *-- "0..*" Article : possui
     
     %% Services manipulam Models
     UserService ..> User : manipula
@@ -238,145 +238,59 @@ sequenceDiagram
 
 ```mermaid
 graph TD
-    subgraph "Frontend_Layer"
-        subgraph "Presentation"
-            FP[Pages]
-            FC[Components]
-            FL[Layouts]
-        end
-        
-        subgraph "State_Management"
-            FST[Stores Zustand]
-            FH[Hooks React Query]
-        end
-        
-        subgraph "Services"
-            FS[API Services]
-            FR[Routes]
-        end
+    subgraph "Frontend"
+        FP[Pages]
+        FC[Components]
+        FH[Hooks/Query]
+        FS[Services/API]
+        FST[Stores]
+        FR[Routes]
         
         FP --> FC
-        FP --> FST
         FP --> FH
         FH --> FS
+        FP --> FST
         FR --> FP
     end
     
-    subgraph "Backend_Layer"
-        subgraph "Presentation_Layer"
+    subgraph "Backend"
+        subgraph "PresentationLayer"
             R[Routes]
             MW[Middleware]
-            MW1[verifyJWT]
-            MW2[verifyAdmin]
-            MW3[fileUpload]
-            MW4[bulkUpload]
         end
         
-        subgraph "Business_Layer"
+        subgraph "BusinessLayer"
             CT[Controllers]
             SV[Services]
             VAL[Validators]
-            
-            subgraph "Controllers"
-                CT1[ArticleController]
-                CT2[EventsController]
-                CT3[EditionsController]
-                CT4[UserController]
-                CT5[SessionController]
-                CT6[BulkArticleController]
-                CT7[EmailNotificationController]
-            end
-            
-            subgraph "Services"
-                SV1[ArticleService]
-                SV2[EventsService]
-                SV3[EditionsService]
-                SV4[UserService]
-                SV5[SessionService]
-                SV6[BulkArticleService]
-                SV7[EmailService]
-            end
         end
         
-        subgraph "Data_Layer"
+        subgraph "DataLayer"
             M[Models]
             DB[(MongoDB)]
-            
-            subgraph "Models"
-                M1[ArticleModel]
-                M2[EventsModel]
-                M3[EditionsModel]
-                M4[UserModel]
-                M5[UserSessionTokenModel]
-                M6[EmailNotificationModel]
-            end
         end
         
         subgraph "Infrastructure"
             CFG[Config]
             UT[Utils]
             ERR[Error Handlers]
-            
-            subgraph "Config"
-                CFG1[Express Config]
-                CFG2[MongoDB Config]
-                CFG3[CORS Config]
-                CFG4[Server Config]
-            end
-            
-            subgraph "Utils"
-                UT1[General Utils]
-                UT2[Libs bcrypt jwt]
-                UT3[Validation Utils]
-            end
         end
     end
     
-    subgraph "External_Services"
-        EMAIL[Email Service SMTP]
+    subgraph "ExternalServices"
+        EMAIL[Email Service]
         FS_STORAGE[File System]
-        UPLOADS[Uploads Directory]
     end
     
     %% Frontend to Backend
-    FS -.-> R
+    FS --> R
     
-    %% Backend Flow - Presentation Layer
+    %% Backend Flow
     R --> MW
-    MW --> MW1
-    MW --> MW2
-    MW --> MW3
-    MW --> MW4
     MW --> CT
-    
-    %% Business Layer Flow
-    CT --> CT1
-    CT --> CT2
-    CT --> CT3
-    CT --> CT4
-    CT --> CT5
-    CT --> CT6
-    CT --> CT7
-    
     CT --> VAL
     CT --> SV
-    
-    SV --> SV1
-    SV --> SV2
-    SV --> SV3
-    SV --> SV4
-    SV --> SV5
-    SV --> SV6
-    SV --> SV7
-    
-    %% Data Layer Flow
     SV --> M
-    M --> M1
-    M --> M2
-    M --> M3
-    M --> M4
-    M --> M5
-    M --> M6
     M --> DB
     
     %% Infrastructure connections
@@ -384,35 +298,20 @@ graph TD
     SV --> UT
     MW --> CFG
     
-    CFG --> CFG1
-    CFG --> CFG2
-    CFG --> CFG3
-    CFG --> CFG4
-    
-    UT --> UT1
-    UT --> UT2
-    UT --> UT3
-    
     %% External connections
-    SV7 --> EMAIL
+    SV --> EMAIL
     SV --> FS_STORAGE
-    MW3 --> UPLOADS
-    MW4 --> UPLOADS
     
     %% Styling
-    classDef frontend fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
-    classDef presentation fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
-    classDef business fill:#e8f5e8,stroke:#388e3c,stroke-width:2px
-    classDef data fill:#fff3e0,stroke:#f57c00,stroke-width:2px
-    classDef infrastructure fill:#fce4ec,stroke:#c2185b,stroke-width:2px
-    classDef external fill:#f1f8e9,stroke:#689f38,stroke-width:2px
+    classDef frontend fill:#e1f5fe
+    classDef backend fill:#f3e5f5
+    classDef database fill:#e8f5e8
+    classDef external fill:#fff3e0
     
-    class FP,FC,FL,FST,FH,FS,FR frontend
-    class R,MW,MW1,MW2,MW3,MW4 presentation
-    class CT,SV,VAL,CT1,CT2,CT3,CT4,CT5,CT6,CT7,SV1,SV2,SV3,SV4,SV5,SV6,SV7 business
-    class M,DB,M1,M2,M3,M4,M5,M6 data
-    class CFG,UT,ERR,CFG1,CFG2,CFG3,CFG4,UT1,UT2,UT3 infrastructure
-    class EMAIL,FS_STORAGE,UPLOADS external
+    class FP,FC,FH,FS,FST,FR frontend
+    class R,MW,CT,SV,VAL,M,CFG,UT,ERR backend
+    class DB database
+    class EMAIL,FS_STORAGE external
 ```
 
 ## Como usar no Draw.io

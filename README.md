@@ -23,96 +23,80 @@ Este sistema foi desenvolvido para atender às necessidades de:
 
 ```mermaid
 graph TD
-    subgraph Frontend["Frontend - React"]
-        subgraph Pages["Pages"]
-            P1[Home]
-            P2[ArticleView] 
-            P3[AdminPage]
-            P4[Login]
-            P5[Events]
-            P6[Editions]
+    subgraph "Frontend"
+        FP[Pages]
+        FC[Components]
+        FH[Hooks/Query]
+        FS[Services/API]
+        FST[Stores]
+        FR[Routes]
+        
+        FP --> FC
+        FP --> FH
+        FH --> FS
+        FP --> FST
+        FR --> FP
+    end
+    
+    subgraph "Backend"
+        subgraph "PresentationLayer"
+            R[Routes]
+            MW[Middleware]
         end
-
-        subgraph Components["Components"]
-            C1[Header]
-            C2[ArticleCreateForm]
-            C3[ArticleEditForm] 
-            C4[BulkUploadForm]
-            C5[UserCreateForm]
-            C6[SearchBar]
+        
+        subgraph "BusinessLayer"
+            CT[Controllers]
+            SV[Services]
+            VAL[Validators]
         end
-
-        subgraph Services["Services"]
-            S1[API Endpoints]
-            S2[Auth Store]
+        
+        subgraph "DataLayer"
+            M[Models]
+            DB[(MongoDB)]
         end
-
-        subgraph Hooks["Hooks"]
-            H1[useGetArticle]
-            H2[useSearchArticle]
-            H3[useGetEvents]
+        
+        subgraph "Infrastructure"
+            CFG[Config]
+            UT[Utils]
+            ERR[Error Handlers]
         end
     end
-
-    subgraph Backend["Backend - Node.js"]
-        subgraph Routes["Routes"] 
-            R1[ArticleRoutes]
-            R2[EventsRoutes]
-            R3[EditionsRoutes]
-            R4[UserRoutes]
-            R5[SessionRoutes]
-            R6[BulkRoutes]
-        end
-
-        subgraph Controllers["Controllers"]
-            CT1[ArticleController]
-            CT2[EventsController]
-            CT3[EditionsController]
-            CT4[UserController]
-            CT5[SessionController]
-            CT6[BulkController]
-        end
-
-        subgraph ServicesBackend["Services"]
-            SV1[ArticleService]
-            SV2[EventsService] 
-            SV3[EditionsService]
-            SV4[UserService]
-            SV5[SessionService]
-            SV6[BulkService]
-        end
-
-        subgraph Models["Models"]
-            M1[ArticleModel]
-            M2[EventsModel]
-            M3[EditionsModel]
-            M4[UserModel]
-            M5[TokenModel]
-        end
-
-        subgraph Middleware["Middleware"]
-            MW1[verifyJWT]
-            MW2[verifyAdmin]
-            MW3[fileUpload]
-            MW4[errorHandler]
-        end
-    end
-
-    subgraph External["External Services"]
-        DB[(MongoDB)]
-        FS[File System]
+    
+    subgraph "ExternalServices"
         EMAIL[Email Service]
+        FS_STORAGE[File System]
     end
-
-    %% Connections
-    Frontend -.->|API Calls| Backend
-    Routes --> Controllers
-    Controllers --> ServicesBackend
-    ServicesBackend --> Models
-    Models --> DB
-    Controllers --> FS
-    ServicesBackend --> EMAIL
-    Middleware --> Controllers
+    
+    %% Frontend to Backend
+    FS --> R
+    
+    %% Backend Flow
+    R --> MW
+    MW --> CT
+    CT --> VAL
+    CT --> SV
+    SV --> M
+    M --> DB
+    
+    %% Infrastructure connections
+    CT --> ERR
+    SV --> UT
+    MW --> CFG
+    
+    %% External connections
+    SV --> EMAIL
+    SV --> FS_STORAGE
+    
+    %% Styling
+    classDef frontend fill:#e1f5fe
+    classDef backend fill:#f3e5f5
+    classDef database fill:#e8f5e8
+    classDef external fill:#fff3e0
+    
+    class FP,FC,FH,FS,FST,FR frontend
+    class R,MW,CT,SV,VAL,M,CFG,UT,ERR backend
+    class DB database
+    class EMAIL,FS_STORAGE external
 ```
 
 ### Diagrama de Sequência - Upload em Massa de Artigos
