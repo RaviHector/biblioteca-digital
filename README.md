@@ -4,9 +4,9 @@ Sistema completo de gerenciamento de biblioteca digital para artigos acadêmicos
 
 ## 👥 Equipe de Desenvolvimento
 
-- **Ana Paula**
-- **Ravi**
-- **Vanessa**
+- **Ana Paula** - Full stack
+- **Ravi** - Full stack
+- **Vanessa** - Full stack
 
 ## 🎯 Objetivos do Projeto
 
