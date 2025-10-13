@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   min-height: 100vh;
-  background: linear-gradient(135deg, ${({ theme }) => theme.colors.lightGreen} 0%, ${({ theme }) => theme.colors.midGreen} 100%);
+  background: ${(props) => props.theme.colors.white};
   padding: 2rem 1rem;
 `;
 

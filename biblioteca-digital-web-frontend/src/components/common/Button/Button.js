@@ -70,9 +70,9 @@ const Button = styled.button.withConfig({
   gap: ${(props) => props.gap};
   width: ${(props) => props.width};
 
-  color: ${(props) => props.color ?? props.theme.colors.font.black};
+  color: ${(props) => props.color ?? props.theme.colors.textPrimary};
   background-color: ${(props) =>
-    props.backgroundColor ?? props.theme.colors.font.black};
+    props.backgroundColor ?? props.theme.colors.primaryDark};
   border-width: ${(props) => props.borderWidth ?? '0.15rem'};
   border-color: ${(props) => props.borderColor ?? props.theme.colors.white};
   border-style: ${(props) => props.borderStyle ?? 'solid'};
@@ -80,7 +80,7 @@ const Button = styled.button.withConfig({
   box-shadow: ${(props) => props.boxShadow ?? 'none'};
   cursor: pointer;
 
-  font-family: ${(props) => props.theme.fonts.montserrat};
+  font-family: ${(props) => props.theme.fonts.inter};
   font-size: ${(props) => props.fontSize};
   text-decoration: ${(props) => props.textDecoration ?? 'none'};
   text-align: center;

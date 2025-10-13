@@ -8,6 +8,7 @@ import useAuthStore from "../../stores/auth";
 import useDebounce from "../../hooks/query/useDebounce";
 import {
   Container,
+  HomeBackground,
   SearchSection,
   SearchContainer,
   SearchInput,
@@ -51,7 +52,8 @@ export default function Home() {
 
   return (
     <Container>
-      <SearchSection>
+      <HomeBackground>
+        <SearchSection>
         <Title>Biblioteca Digital</Title>
         <Subtitle>
           Pesquise por artigos, autores ou eventos acadêmicos
@@ -64,6 +66,7 @@ export default function Home() {
           <SearchInput
             type="text"
             placeholder="Digite o título do artigo, nome do autor ou evento..."
+            aria-label="Buscar artigos, autores ou eventos"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -138,6 +141,7 @@ export default function Home() {
           </NoResults>
         )}
       </ResultsSection>
+      </HomeBackground>
     </Container>
   );
 }

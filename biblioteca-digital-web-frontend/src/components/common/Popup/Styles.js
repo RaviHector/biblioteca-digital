@@ -13,7 +13,7 @@ export const OverlayStyle = styled.div`
 `;
 
 export const DialogStyle = styled.div`
-  background: #fff;
+  background: ${(props) => props.theme.colors.background};
   border-radius: 8px;
   padding: 16px;
   width: min(900px, 95%);

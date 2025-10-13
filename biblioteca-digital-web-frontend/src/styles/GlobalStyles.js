@@ -16,7 +16,7 @@ html {
 body {
   font-family: ${(props) => props.theme.fonts.artnoova}, sans-serif;
   font-size: 1.4rem;
-  background: linear-gradient(90deg,rgba(237, 237, 237, 1) 0%, rgba(232, 232, 232, 1) 50%, rgba(255, 255, 255, 1) 100%);
+  background: ${(props) => props.theme.colors.white};
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }

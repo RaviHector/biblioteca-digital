@@ -3,7 +3,6 @@ import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { useMediaQuery } from "react-responsive";
 import { Link, useNavigate } from "react-router-dom";
-import { useTheme } from "styled-components";
 import { Bell } from "lucide-react";
 
 import { Logo } from "..";
@@ -36,7 +35,6 @@ export default function Header() {
   const [openCreateUser, setOpenCreateUser] = useState(false);
   const [openEmailNotification, setOpenEmailNotification] = useState(false);
 
-  const theme = useTheme();
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery({ maxWidth: 900 });
 
@@ -161,17 +159,8 @@ export default function Header() {
                 <Welcome>{welcomeSectionComponent}</Welcome>
               ) : (
                 <ButtonLogin
-                  backgroundColor={theme.colors.backgroundGrey}
-                  backgroundColor800={theme.colors.midGreen}
-                  borderRadius="2rem"
-                  minWidth="15rem"
-                  color800={theme.colors.white}
-                  borderColor="transparent"
-                  hoverBackgroundColor={theme.colors.midGreen}
-                  hoverBackgroundColor800={theme.colors.midGreen}
-                  hoverColor800="white"
-                  hoverBorderColor800={theme.colors.midGreen}
                   $collapse={bar}
+                  aria-label="Entrar"
                   onClick={() => {
                     closeHeader();
                     navigate("/login");

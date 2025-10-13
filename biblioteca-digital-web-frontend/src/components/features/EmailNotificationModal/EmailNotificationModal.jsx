@@ -28,13 +28,13 @@ const ModalOverlay = styled.div`
 `;
 
 const ModalContent = styled.div`
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: ${(props) => props.theme.colors.white};
   border-radius: 16px;
   padding: 2rem;
   width: 90%;
   max-width: 500px;
   position: relative;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.12);
   animation: slideIn 0.3s ease-out;
 
   @keyframes slideIn {
@@ -71,7 +71,7 @@ const CloseButton = styled.button`
 `;
 
 const Title = styled.h2`
-  color: white;
+  color: ${(props) => props.theme.colors.textPrimary};
   margin: 0 0 0.5rem 0;
   font-size: 1.5rem;
   font-weight: 700;
@@ -81,7 +81,7 @@ const Title = styled.h2`
 `;
 
 const Description = styled.p`
-  color: rgba(255, 255, 255, 0.9);
+  color: ${(props) => props.theme.colors.textSecondary};
   margin: 0 0 2rem 0;
   line-height: 1.6;
 `;
@@ -99,7 +99,7 @@ const InputGroup = styled.div`
 `;
 
 const Label = styled.label`
-  color: white;
+  color: ${(props) => props.theme.colors.textPrimary};
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -108,27 +108,27 @@ const Label = styled.label`
 
 const Input = styled.input`
   padding: 0.75rem;
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
+  background: ${(props) => props.theme.colors.white};
+  color: ${(props) => props.theme.colors.textPrimary};
   font-size: 1rem;
   transition: all 0.2s;
 
   &::placeholder {
-    color: rgba(255, 255, 255, 0.6);
+    color: ${(props) => props.theme.colors.textSecondary};
   }
 
   &:focus {
     outline: none;
-    border-color: rgba(255, 255, 255, 0.5);
-    background: rgba(255, 255, 255, 0.15);
+    border-color: ${(props) => props.theme.colors.primaryDark};
+    box-shadow: 0 6px 18px rgba(21,101,192,0.08);
   }
 `;
 
 const SubmitButton = styled.button`
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  color: white;
+  background: ${(props) => props.theme.colors.primaryDark};
+  color: ${(props) => props.theme.colors.white};
   border: none;
   border-radius: 8px;
   padding: 0.75rem 1.5rem;
@@ -143,7 +143,7 @@ const SubmitButton = styled.button`
 
   &:hover:not(:disabled) {
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+    box-shadow: 0 6px 18px rgba(21,101,192,0.12);
   }
 
   &:disabled {
@@ -154,8 +154,8 @@ const SubmitButton = styled.button`
 
 const UnsubscribeButton = styled.button`
   background: transparent;
-  color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: ${(props) => props.theme.colors.textPrimary};
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 8px;
   padding: 0.5rem 1rem;
   font-size: 0.9rem;
@@ -164,8 +164,7 @@ const UnsubscribeButton = styled.button`
   margin-top: 1rem;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
+    background: rgba(0,0,0,0.04);
   }
 `;
 

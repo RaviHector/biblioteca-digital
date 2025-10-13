@@ -9,7 +9,7 @@ export const LinkContainer = styled(Link)`
   align-items: center;
   gap: 1.5rem;
   width: auto;
-  min-width: 17.9rem;
+  min-width: 8rem;
 
   h1 {
     font-family: ${(props) => props.theme.fonts.artnoova};
@@ -28,9 +28,9 @@ export const LinkContainer = styled(Link)`
 `;
 export const Image = styled.img`
   width: auto;
-  height: 6rem;
+  height: 5rem;
 
   @media (max-width: 990px) {
-    height: 5rem;
+    height: 4.2rem;
   }
 `;

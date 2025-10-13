@@ -4,7 +4,7 @@ export const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
   gap: 12px;
-  background: #fff;
+  background: ${(props) => props.theme.colors.background};
   padding: 24px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -28,7 +28,7 @@ export const FormContainer = styled.form`
     border-radius: 4px;
     border: 1px solid #d1d5db;
     font-size: 1rem;
-    background: white;
+  background: ${(props) => props.theme.colors.background};
     width: 100%;
     &:focus {
       outline: none;

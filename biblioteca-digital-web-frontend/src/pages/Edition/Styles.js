@@ -7,9 +7,9 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 3rem 1rem;
-  background: linear-gradient(135deg, #0f172a, #1e293b);
+  background: ${(props) => props.theme.colors.white};
   min-height: 100vh;
-  color: #f1f5f9;
+  color: ${(props) => props.theme.colors.textPrimary};
 `;
 
 export const Header = styled.div`
@@ -96,7 +96,7 @@ export const LoaderWrapper = styled.div`
   align-items: center;
   height: 60vh;
   width: 100%;
-  background: linear-gradient(135deg, #0f172a, #1e293b);
+  background: ${(props) => props.theme.colors.white};
 `;
 
 export const Grid = styled.div`
