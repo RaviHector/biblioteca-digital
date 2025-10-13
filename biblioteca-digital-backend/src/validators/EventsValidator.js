@@ -39,7 +39,7 @@ export const update = validate(
       name: z
         .string()
         .min(3, "Events name must be atleast 3 characters")
-        .max(40, "Events name must be a maximum of 40 characters")
+        .max(100, "Events name must be a maximum of 100 characters")
         .optional(),
       sigla: z
         .string()
