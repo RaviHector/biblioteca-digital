@@ -22,7 +22,8 @@ Este sistema foi desenvolvido para atender às necessidades de:
 ### Diagrama de Pacotes
 
 ```mermaid
-graph TD
+%%{init: {'theme':'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#ffffff', 'primaryTextColor': '#000000', 'primaryBorderColor': '#000000', 'lineColor': '#000000', 'secondaryColor': '#ffffff', 'tertiaryColor': '#ffffff'}}}%%
+flowchart TD
     subgraph "Frontend"
         FP[Pages]
         FC[Components]
