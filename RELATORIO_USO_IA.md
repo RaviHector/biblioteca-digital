@@ -49,19 +49,19 @@ O Claude 4 foi utilizado principalmente para:
 
 ## Benefícios Observados
 
-### 🚀 Aceleração do Desenvolvimento
+### Aceleração do Desenvolvimento
 
 - **Redução significativa do tempo** de desenvolvimento
 - **Autocomplete avançado** que antecipava intenções de código
 - **Geração rápida de boilerplate** para componentes repetitivos
 
-### 🧠 Aprendizado e Descoberta
+### Aprendizado e Descoberta
 
 - **Exposição a novas técnicas** e melhores práticas
 - **Explicações detalhadas** de conceitos complexos
 - **Alternativas de implementação** para problemas específicos
 
-### 🔧 Resolução Eficiente de Problemas
+### Resolução Eficiente de Problemas
 
 - **Debugging mais rápido** com análise contextual de erros
 - **Soluções criativas** para desafios técnicos
@@ -71,19 +71,19 @@ O Claude 4 foi utilizado principalmente para:
 
 ## Desafios e Limitações Encontradas
 
-### ⚠️ Compreensão Contextual Limitada
+### Compreensão Contextual Limitada
 
 - **Falta de entendimento completo** do contexto do projeto
 - **Sugestões inadequadas** que não se alinhavam com a arquitetura existente
 - **Modificações indevidas** em partes do código que não deveriam ser alteradas
 
-### 🐛 Quebras de Funcionalidade
+### Quebras de Funcionalidade
 
 - **Introdução de bugs** em código funcional
 - **Alterações não solicitadas** que causavam efeitos colaterais
 - **Incompatibilidade** com padrões estabelecidos no projeto
 
-### 🔍 Necessidade de Supervisão Constante
+### Necessidade de Supervisão Constante
 
 - **Verificação obrigatória** de todas as mudanças sugeridas
 - **Testes frequentes** da aplicação após cada modificação
@@ -136,14 +136,14 @@ Implementamos um processo de:
 
 ## Conclusões e Recomendações
 
-### 💡 Principais Aprendizados
+### Principais Aprendizados
 
 1. **As IAs são ferramentas poderosas de auxílio**, mas não substituem o conhecimento e julgamento humano
 2. **Supervisão constante é fundamental** para evitar introdução de bugs
 3. **O controle de versão é essencial** quando se trabalha com IAs
 4. **Diferentes IAs têm pontos fortes distintos** e devem ser usadas estrategicamente
 
-### 🎯 Nossa Opinião Final
+### Nossa Opinião Final
 
 > **"No geral, as IAs auxiliam muito no desenvolvimento, principalmente para acelerar o processo, mas, na nossa opinião, ainda não são perfeitas e precisam ser tratadas como algo que te auxilia e não como algo que faz para você."**
 
@@ -155,7 +155,7 @@ As ferramentas de IA demonstraram ser **catalisadores valiosos** no processo de 
 
 No entanto, é crucial manter uma **abordagem crítica e supervisionada**, utilizando essas ferramentas como **parceiras colaborativas** e não como substitutos para o pensamento crítico e a experiência humana.
 
-### 🚀 Recomendações para Futuros Projetos
+### Recomendações para Futuros Projetos
 
 1. **Estabelecer workflows claros** para integração de IA no desenvolvimento
 2. **Investir em testes automatizados** para detectar regressões rapidamente

@@ -29,10 +29,7 @@ export default function EventCreateForm({ onSubmit, onSave, onCancel }) {
         <Input {...register("sigla")} placeholder="Digite a sigla (opcional)" />
       </ContainerWrapper>
       
-      <ContainerWrapper>
-        <Label>Data</Label>
-        <Input {...register("date")} type="date" placeholder="Selecione a data" />
-      </ContainerWrapper>
+      {/* Date field removed per request; rest of the form remains unchanged */}
       
       <Actions>
         <Button type="button" onClick={onCancel} backgroundcolor="#ccc">

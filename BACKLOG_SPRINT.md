@@ -149,9 +149,9 @@
 
 ### Sistema de Email
 
-- **Configuração do nodemailer** - Vanessa - ✅
-- **Templates de email** - Vanessa - ✅
-- **Sistema de gerenciamento de usuários** - Vanessa - ✅
+- **Configuração do nodemailer** - Vanessa
+- **Templates de email** - Vanessa
+- **Sistema de gerenciamento de usuários** - Vanessa
 
 ## Retrospectiva da Sprint
 

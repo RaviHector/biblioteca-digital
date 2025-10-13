@@ -135,24 +135,24 @@ classDiagram
     }
 
     %% Relacionamentos entre Models
-    User ||--o{ UserSessionToken : "possui"
-    Event ||--o{ Edition : "contém"
-    Edition ||--o{ Article : "possui"
+    User ||--o{ UserSessionToken : possui
+    Event ||--o{ Edition : contem
+    Edition ||--o{ Article : possui
     
     %% Services manipulam Models
-    UserService ..> User : "manipula"
-    UserService ..> UserSessionToken : "gerencia"
-    ArticleService ..> Article : "manipula"
-    ArticleService ..> EmailNotification : "consulta"
-    EventsService ..> Event : "manipula"
-    EditionsService ..> Edition : "manipula"
-    BulkArticleService ..> Article : "cria em massa"
-    BulkArticleService ..> ArticleService : "utiliza"
+    UserService ..> User : manipula
+    UserService ..> UserSessionToken : gerencia
+    ArticleService ..> Article : manipula
+    ArticleService ..> EmailNotification : consulta
+    EventsService ..> Event : manipula
+    EditionsService ..> Edition : manipula
+    BulkArticleService ..> Article : cria_em_massa
+    BulkArticleService ..> ArticleService : utiliza
     
     %% Notificações relacionadas aos artigos
-    Article ..> EmailNotification : "dispara notificação"
-    ArticleService ..> EmailService : "utiliza"
-    EmailService ..> EmailNotification : "consulta"
+    Article ..> EmailNotification : dispara_notificacao
+    ArticleService ..> EmailService : utiliza
+    EmailService ..> EmailNotification : consulta
 ```
 
 ## 2. Diagrama de Sequência - Upload em Massa de Artigos
@@ -238,16 +238,16 @@ sequenceDiagram
 
 ```mermaid
 graph TD
-    subgraph "📱 Frontend Layer (React)"
+    subgraph "Frontend_Layer"
         subgraph "Presentation"
             FP[Pages]
             FC[Components]
             FL[Layouts]
         end
         
-        subgraph "State Management"
-            FST[Stores/Zustand]
-            FH[Hooks/React Query]
+        subgraph "State_Management"
+            FST[Stores Zustand]
+            FH[Hooks React Query]
         end
         
         subgraph "Services"
@@ -262,8 +262,8 @@ graph TD
         FR --> FP
     end
     
-    subgraph "🔧 Backend Layer (Node.js/Express)"
-        subgraph "🌐 Presentation Layer"
+    subgraph "Backend_Layer"
+        subgraph "Presentation_Layer"
             R[Routes]
             MW[Middleware]
             MW1[verifyJWT]
@@ -272,7 +272,7 @@ graph TD
             MW4[bulkUpload]
         end
         
-        subgraph "🏗️ Business Layer"
+        subgraph "Business_Layer"
             CT[Controllers]
             SV[Services]
             VAL[Validators]
@@ -298,7 +298,7 @@ graph TD
             end
         end
         
-        subgraph "💾 Data Layer"
+        subgraph "Data_Layer"
             M[Models]
             DB[(MongoDB)]
             
@@ -312,7 +312,7 @@ graph TD
             end
         end
         
-        subgraph "🛠️ Infrastructure"
+        subgraph "Infrastructure"
             CFG[Config]
             UT[Utils]
             ERR[Error Handlers]
@@ -326,20 +326,20 @@ graph TD
             
             subgraph "Utils"
                 UT1[General Utils]
-                UT2[Libs (bcrypt, jwt)]
+                UT2[Libs bcrypt jwt]
                 UT3[Validation Utils]
             end
         end
     end
     
-    subgraph "🌍 External Services"
-        EMAIL[📧 Email Service SMTP]
-        FS_STORAGE[📁 File System]
-        UPLOADS[📎 Uploads Directory]
+    subgraph "External_Services"
+        EMAIL[Email Service SMTP]
+        FS_STORAGE[File System]
+        UPLOADS[Uploads Directory]
     end
     
     %% Frontend to Backend
-    FS -.->|HTTP/REST API| R
+    FS -.-> R
     
     %% Backend Flow - Presentation Layer
     R --> MW
@@ -414,3 +414,20 @@ graph TD
     class CFG,UT,ERR,CFG1,CFG2,CFG3,CFG4,UT1,UT2,UT3 infrastructure
     class EMAIL,FS_STORAGE,UPLOADS external
 ```
+
+## Como usar no Draw.io
+
+1. **Abra o Draw.io**
+2. **Vá em "Extras" > "Plugins"**
+3. **Adicione o plugin "Mermaid" se não estiver instalado**
+4. **Copie e cole cada código Mermaid** nos campos apropriados
+5. **O diagrama será gerado automaticamente**
+
+Alternativamente, você pode usar qualquer editor Mermaid online como:
+- mermaid.live
+- mermaid-js.github.io/mermaid-live-editor
+
+Cada diagrama representa uma perspectiva diferente do sistema:
+- **Diagrama de Classes**: Estrutura e relacionamentos das entidades
+- **Diagrama de Sequência**: Fluxo de uma funcionalidade complexa
+- **Diagrama de Pacotes**: Arquitetura geral do sistema

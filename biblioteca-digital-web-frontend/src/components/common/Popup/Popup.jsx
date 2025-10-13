@@ -6,6 +6,14 @@ import {
   OverlayStyle,
   TitleRowStyle,
 } from "./Styles";
+import styled from 'styled-components';
+
+const Title = styled.div`
+  color: ${(props) => props.theme.colors.textPrimary};
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+`;
 
 export default function Popup({ title, children, openPopup, setOpenPopup }) {
   if (!openPopup) return null;
@@ -14,15 +22,7 @@ export default function Popup({ title, children, openPopup, setOpenPopup }) {
     <OverlayStyle onMouseDown={() => setOpenPopup(false)}>
       <DialogStyle onMouseDown={(e) => e.stopPropagation()}>
         <TitleRowStyle>
-          <div
-            style={{
-              fontSize: "18px",
-              fontWeight: 600,
-              color: theme.colors.font.black,
-            }}
-          >
-            {title}
-          </div>
+          <Title>{title}</Title>
           <CloseButtonStyle
             onClick={() => setOpenPopup(false)}
             aria-label="close"
