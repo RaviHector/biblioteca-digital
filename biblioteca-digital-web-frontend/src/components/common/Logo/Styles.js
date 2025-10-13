@@ -28,7 +28,7 @@ export const LinkContainer = styled(Link)`
 `;
 export const Image = styled.img`
   width: auto;
-  height: 5rem;
+  height: 6rem;
 
   @media (max-width: 990px) {
     height: 4.2rem;

@@ -14,11 +14,12 @@ export const SearchSection = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 60vh;
+  /* reduzir altura mínima para trazer conteúdo mais para cima */
+  min-height: 45vh;
   text-align: center;
   max-width: 900px;
   margin: 0 auto;
-  padding: 2.4rem 1.6rem;
+  padding: 1.6rem 1.6rem;
 `;
 
 export const Title = styled.h1`
@@ -163,7 +164,8 @@ export const LoaderWrapper = styled.div`
 
 export const NoResults = styled.div`
   text-align: center;
-  padding: 3rem 2rem;
+  /* reduzir padding para aproximar do topo da seção de resultados */
+  padding: 1.6rem 1.2rem;
   color: ${(props) => props.theme.colors.textSecondary};
   svg {
     opacity: 0.6;
