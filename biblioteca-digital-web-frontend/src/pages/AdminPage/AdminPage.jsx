@@ -362,21 +362,21 @@ export default function AdminPage() {
         <SearchTypeButton
           type="button"
           onClick={() => setSearchType("artigos")}
-          active={searchType === "artigos"}
+          $active={searchType === "artigos"}
         >
           Artigos
         </SearchTypeButton>
         <SearchTypeButton
           type="button"
           onClick={() => setSearchType("edicoes")}
-          active={searchType === "edicoes"}
+          $active={searchType === "edicoes"}
         >
           Edições
         </SearchTypeButton>
         <SearchTypeButton
           type="button"
           onClick={() => setSearchType("eventos")}
-          active={searchType === "eventos"}
+          $active={searchType === "eventos"}
         >
           Eventos
         </SearchTypeButton>

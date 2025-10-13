@@ -36,4 +36,5 @@ export const COLLECTION_NAMES = {
   EVENT: "events",
   EDITION: "editions",
   ARTICLE: "articles",
+  EMAIL_NOTIFICATIONS: "emailnotifications",
 };

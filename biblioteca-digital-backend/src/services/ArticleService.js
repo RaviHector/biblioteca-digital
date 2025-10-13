@@ -2,8 +2,10 @@ import mongoose from "mongoose";
 import { NotFoundError } from "../errors/baseErrors.js";
 import ArticleModel from "../models/ArticleModel.js";
 import EditionsModel from "../models/EditionsModel.js";
+import EmailNotificationModel from "../models/EmailNotificationModel.js";
 import { COLLECTION_NAMES } from "../utils/general/constants.js";
 import convertStringToRegexp from "../utils/general/convertStringToRegexp.js";
+import { sendArticleNotificationEmail } from "../utils/libs/emailService.js";
 
 export async function get(inputFilters) {
   return ArticleModel.find(inputFilters)
@@ -32,7 +34,53 @@ export async function getById(_id) {
 }
 
 export async function create(inputData) {
-  return ArticleModel.create(inputData);
+  const newArticle = await ArticleModel.create(inputData);
+  
+  // Buscar o artigo criado com dados populados para notificações
+  const populatedArticle = await ArticleModel.findById(newArticle._id)
+    .populate({
+      path: "edition",
+      populate: {
+        path: "event"
+      }
+    })
+    .lean()
+    .exec();
+  
+  // Enviar notificações por email para autores cadastrados
+  if (populatedArticle && Array.isArray(populatedArticle.author)) {
+    try {
+      for (const authorName of populatedArticle.author) {
+        // Buscar emails cadastrados para este autor
+        const notifications = await EmailNotificationModel.find({
+          name: { $regex: new RegExp(`^${authorName.trim()}$`, 'i') },
+          isActive: true
+        }).lean().exec();
+        
+        // Enviar email para cada inscrição encontrada
+        for (const notification of notifications) {
+          try {
+            await sendArticleNotificationEmail({
+              email: notification.email,
+              authorName: authorName,
+              articleTitle: populatedArticle.title,
+              eventName: populatedArticle.edition?.event?.name || 'Evento não informado',
+              editionYear: populatedArticle.edition?.year || 'Ano não informado'
+            });
+            
+            console.log(`✅ Email enviado para ${notification.email} sobre artigo do autor ${authorName}`);
+          } catch (emailError) {
+            console.error(`❌ Erro ao enviar email para ${notification.email}:`, emailError);
+          }
+        }
+      }
+    } catch (notificationError) {
+      console.error("Erro ao processar notificações:", notificationError);
+      // Não falhar a criação do artigo por erro de notificação
+    }
+  }
+  
+  return newArticle;
 }
 
 export async function update({ _id, inputData }) {

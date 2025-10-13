@@ -209,3 +209,33 @@ export const deleteUser = async (_id) => {
   const { data } = await api.delete(`/users/${_id}`);
   return data;
 };
+
+// Email Notifications
+export const subscribeEmailNotification = async (notificationData) => {
+  const { data } = await api.post("/email-notifications/subscribe", notificationData);
+  return data;
+};
+
+export const unsubscribeEmailNotification = async (notificationData) => {
+  const { data } = await api.delete("/email-notifications/unsubscribe", {
+    data: notificationData
+  });
+  return data;
+};
+
+export const getEmailNotifications = async () => {
+  const { data } = await api.get("/email-notifications");
+  return data;
+};
+
+export const getEmailNotificationsByName = async (name) => {
+  const { data } = await api.get("/email-notifications/by-name", {
+    params: { name }
+  });
+  return data;
+};
+
+export const toggleEmailNotification = async ({ id, isActive }) => {
+  const { data } = await api.patch(`/email-notifications/${id}/toggle`, { isActive });
+  return data;
+};

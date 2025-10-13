@@ -105,12 +105,12 @@ export const SearchTypeButton = styled.button`
   font-weight: 600; /* Um pouco mais forte */
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 
-  /* Estilização condicional baseada na prop 'active' */
-  background-color: ${(props) => (props.active ? "#38bdf8" : "rgba(255, 255, 255, 0.1)")};
-  color: ${(props) => (props.active ? "#ffffff" : "#e2e8f0")};
+  /* Estilização condicional baseada na prop '$active' */
+  background-color: ${(props) => (props.$active ? "#38bdf8" : "rgba(255, 255, 255, 0.1)")};
+  color: ${(props) => (props.$active ? "#ffffff" : "#e2e8f0")};
 
   &:hover {
-    background-color: ${(props) => (props.active ? "#0ea5e9" : "rgba(255, 255, 255, 0.2)")};
+    background-color: ${(props) => (props.$active ? "#0ea5e9" : "rgba(255, 255, 255, 0.2)")};
   }
 `;
 

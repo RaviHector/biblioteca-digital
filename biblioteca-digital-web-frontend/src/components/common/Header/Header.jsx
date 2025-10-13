@@ -4,6 +4,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { useMediaQuery } from "react-responsive";
 import { Link, useNavigate } from "react-router-dom";
 import { useTheme } from "styled-components";
+import { Bell } from "lucide-react";
 
 import { Logo } from "..";
 import {
@@ -19,11 +20,13 @@ import {
   MenuProfile,
   Divider,
   MyProfile,
+  NotificationButton,
 } from "./Styles";
 import useAuthStore from "../../../stores/auth";
 import { useLogout } from "../../../hooks/query/sessions";
 import { useCreateUserByAdmin } from "../../../hooks/query/users";
 import { Popup, UserCreateForm } from "../";
+import { EmailNotificationModal } from "../../features";
 import { toast } from "react-toastify";
 
 export default function Header() {
@@ -31,6 +34,7 @@ export default function Header() {
   const [bar, setBar] = useState(false);
   const [collapseLogout, setCollapseLogout] = useState(false);
   const [openCreateUser, setOpenCreateUser] = useState(false);
+  const [openEmailNotification, setOpenEmailNotification] = useState(false);
 
   const theme = useTheme();
   const navigate = useNavigate();
@@ -131,6 +135,17 @@ export default function Header() {
         <Logo />
         <Menu>
           <Nav $bar={bar}>
+            {/* Botão de notificação - disponível para todos */}
+            <NotificationButton
+              onClick={() => {
+                setOpenEmailNotification(true);
+                closeHeader();
+              }}
+              title="Cadastrar notificações por email"
+            >
+              <Bell size={20} />
+            </NotificationButton>
+
             {user && (
               <Link to="/events" onClick={closeHeader}>
                 Eventos
@@ -186,6 +201,12 @@ export default function Header() {
           onCancel={() => setOpenCreateUser(false)}
         />
       </Popup>
+
+      {/* Modal de notificação por email */}
+      <EmailNotificationModal
+        isOpen={openEmailNotification}
+        onClose={() => setOpenEmailNotification(false)}
+      />
     </Content>
   );
 }
