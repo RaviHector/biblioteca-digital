@@ -430,6 +430,57 @@ O projeto implementa um design system consistente com:
 - **Animações suaves** com Framer Motion
 - **Layout responsivo** para todos os dispositivos
 
+## 🧪 Testes End-to-End
+
+O projeto inclui **4 testes E2E completos e 100% automatizados** usando **Cypress**:
+
+### 📋 Testes Implementados
+
+1. **Autenticação de Usuários** - Login de admin/usuário normal e controle de acesso
+2. **Busca de Artigo sem Login** - Redirecionamento para login e acesso ao artigo
+3. **Upload de Arquivo BibTeX** - Upload de arquivos .bib e .zip
+4. **Criação de Usuário por Admin** - Admin cria e gerencia usuários
+
+### 🚀 Executar Testes
+
+**Opção 1 - Script Automatizado (Recomendado):**
+```powershell
+.\run-e2e-tests.ps1
+```
+
+**Opção 2 - Interface Cypress:**
+```powershell
+cd biblioteca-digital-web-frontend
+npm run cypress:open
+```
+
+**Opção 3 - Terminal (Headless):**
+```powershell
+cd biblioteca-digital-web-frontend
+npm run test:e2e
+```
+
+### 📚 Documentação dos Testes
+
+- **[RESUMO_TESTES_E2E.md](./RESUMO_TESTES_E2E.md)** - Resumo executivo dos testes
+- **[TESTES_E2E_DOCUMENTACAO.md](./TESTES_E2E_DOCUMENTACAO.md)** - Documentação completa
+- **[QUICK_START_TESTS.md](./biblioteca-digital-web-frontend/QUICK_START_TESTS.md)** - Guia rápido
+- **[INSTALACAO_TESTES.md](./INSTALACAO_TESTES.md)** - Instruções de instalação
+
+### ⚙️ Pré-requisitos para Testes
+
+```powershell
+# Instalar Cypress
+cd biblioteca-digital-web-frontend
+npm install --save-dev cypress eslint-plugin-cypress
+```
+
+Certifique-se de ter:
+- Backend rodando em `http://localhost:3333`
+- Frontend rodando em `http://localhost:5173`
+- Usuário admin: `admin@teste.com` / `admin123`
+- Usuário normal: `usuario@teste.com` / `usuario123`
+
 ## 📊 Documentação Adicional
 
 Este repositório inclui documentação complementar:
