@@ -186,47 +186,6 @@ Os emails são gerados automaticamente com timestamp para evitar conflitos de du
 
 ---
 
-## 🚀 Execução dos Testes
-
-### Método 1: Script Automatizado (Recomendado)
-```powershell
-.\run-e2e-tests.ps1
-```
-
-### Método 2: Interface Cypress
-```powershell
-cd biblioteca-digital-web-frontend
-npm run cypress:open
-```
-
-### Método 3: Linha de Comando
-```powershell
-# Todos os testes
-npm run test:e2e
-
-# Teste específico
-npx cypress run --spec "cypress/e2e/1-authentication.cy.js"
-```
-
----
-
-## 📊 Cobertura de Testes
-
-| Funcionalidade | Cobertura | Status |
-|----------------|-----------|--------|
-| Autenticação Admin | ✅ | 100% |
-| Autenticação Usuário Normal | ✅ | 100% |
-| Controle de Acesso | ✅ | 100% |
-| Busca de Artigos | ✅ | 100% |
-| Redirecionamento após Login | ✅ | 100% |
-| Upload BibTeX (.bib) | ✅ | 100% |
-| Upload BibTeX (.zip) | ✅ | 100% |
-| Criação de Usuário Normal | ✅ | 100% |
-| Criação de Usuário Admin | ✅ | 100% |
-| Validação de Permissões | ✅ | 100% |
-
----
-
 ## 🎯 Características dos Testes
 
 ### ✅ 100% Automatizados
@@ -276,13 +235,6 @@ biblioteca-digital-web-frontend/
 ├── cypress.config.js                       ← Configuração Cypress
 ├── QUICK_START_TESTS.md                    ← Guia rápido
 └── package.json                            ← Scripts de teste
-
-biblioteca-digital/
-├── run-e2e-tests.ps1                       ← Script de execução
-└── TesteBibTex/
-    ├── ArquivosBibText.bib                 ← Arquivo de teste
-    └── Hist4.zip                           ← Arquivo de teste
-```
 
 ---
 
