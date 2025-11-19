@@ -4,9 +4,9 @@ Sistema completo de gerenciamento de biblioteca digital para artigos acadêmicos
 
 ## 👥 Equipe de Desenvolvimento
 
-- **Ana Paula**
-- **Ravi**
-- **Vanessa**
+- **Ana Paula** - Full stack
+- **Ravi** - Full stack
+- **Vanessa** - Full stack
 
 ## 🎯 Objetivos do Projeto
 
@@ -31,46 +31,46 @@ flowchart TD
         FS[Services/API]
         FST[Stores]
         FR[Routes]
-        
+
         FP --> FC
         FP --> FH
         FH --> FS
         FP --> FST
         FR --> FP
     end
-    
+
     subgraph "Backend"
         subgraph "PresentationLayer"
             R[Routes]
             MW[Middleware]
         end
-        
+
         subgraph "BusinessLayer"
             CT[Controllers]
             SV[Services]
             VAL[Validators]
         end
-        
+
         subgraph "DataLayer"
             M[Models]
             DB[(MongoDB)]
         end
-        
+
         subgraph "Infrastructure"
             CFG[Config]
             UT[Utils]
             ERR[Error Handlers]
         end
     end
-    
+
     subgraph "ExternalServices"
         EMAIL[Email Service]
         FS_STORAGE[File System]
     end
-    
+
     %% Frontend to Backend
     FS --> R
-    
+
     %% Backend Flow
     R --> MW
     MW --> CT
@@ -78,22 +78,22 @@ flowchart TD
     CT --> SV
     SV --> M
     M --> DB
-    
+
     %% Infrastructure connections
     CT --> ERR
     SV --> UT
     MW --> CFG
-    
+
     %% External connections
     SV --> EMAIL
     SV --> FS_STORAGE
-    
+
     %% Styling
     classDef frontend fill:#e1f5fe
     classDef backend fill:#f3e5f5
     classDef database fill:#e8f5e8
     classDef external fill:#fff3e0
-    
+
     class FP,FC,FH,FS,FST,FR frontend
     class R,MW,CT,SV,VAL,M,CFG,UT,ERR backend
     class DB database
@@ -116,21 +116,21 @@ sequenceDiagram
     Note over U,F: Seleção de Arquivos
     U->>F: Seleciona BibTeX + ZIP
     U->>F: Clica Upload em Massa
-    
+
     Note over F,MW: Validação e Autenticação
     F->>MW: POST /bulk-articles
     MW->>MW: Verifica JWT
     MW->>MW: Verifica Admin
     MW->>MW: Processa upload
     MW->>BC: Arquivos validados
-    
+
     Note over BC,BS: Processamento em Massa
     BC->>BC: Valida tipos de arquivo
     BC->>BS: processBulkUpload(bibtex, zip)
     BS->>BS: Parse arquivo BibTeX
     BS->>BS: Extrai arquivos do ZIP
     BS->>BS: Combina PDFs com artigos
-    
+
     Note over BS,DB: Criação dos Artigos
     loop Para cada artigo válido
         BS->>AS: create(articleData)
@@ -142,7 +142,7 @@ sequenceDiagram
         ES-->>AS: Email enviado
         AS-->>BS: Artigo processado
     end
-    
+
     Note over BS,F: Resultado Final
     BS->>BS: Gerar relatório
     BS-->>BC: Estatísticas processamento
@@ -163,20 +163,20 @@ sequenceDiagram
     U->>F: Digita termo busca
     F->>F: Debounce 500ms
     F->>API: GET /article/search
-    
+
     API->>DB: Busca regex em artigos
     DB-->>API: Lista de resultados
     API-->>F: JSON artigos
-    
+
     F->>F: Renderiza cards
     U->>F: Clica "Ver Detalhes"
     F->>F: Navega /article/:id
-    
+
     F->>API: GET /article/:id
     API->>DB: Busca artigo + populate
     DB-->>API: Dados completos
     API-->>F: JSON artigo
-    
+
     F->>F: Exibe detalhes
     U->>F: Clica "Download PDF"
     F->>API: GET /article/:id/download
@@ -274,7 +274,7 @@ biblioteca-digital/
 
 ### Pré-requisitos
 
-- **Node.js** 18+ 
+- **Node.js** 18+
 - **MongoDB** (local ou Atlas)
 - **Yarn** (recomendado) ou **npm**
 - **Git** para controle de versão
@@ -354,6 +354,7 @@ O frontend estará acessível em `http://localhost:5173`
 ### 📋 Scripts Disponíveis
 
 #### Backend
+
 ```bash
 # NPM
 npm start          # Inicia servidor em produção
@@ -361,12 +362,13 @@ npm run dev        # Desenvolvimento com nodemon
 npm run lint       # Verificação de código
 
 # Yarn (Recomendado)
-yarn start         # Inicia servidor em produção  
+yarn start         # Inicia servidor em produção
 yarn dev           # Desenvolvimento com nodemon
 yarn lint          # Verificação de código
 ```
 
 #### Frontend
+
 ```bash
 # NPM
 npm run dev        # Servidor de desenvolvimento
@@ -376,12 +378,13 @@ npm run lint       # Verificação de código
 
 # Yarn (Recomendado)
 yarn dev           # Servidor de desenvolvimento
-yarn build         # Build para produção  
+yarn build         # Build para produção
 yarn preview       # Preview da build
 yarn lint          # Verificação de código
 ```
 
 #### Adicionando Novas Dependências
+
 ```bash
 # NPM
 npm install <pacote>
@@ -429,6 +432,61 @@ O projeto implementa um design system consistente com:
 - **Componentes reutilizáveis** com Styled Components
 - **Animações suaves** com Framer Motion
 - **Layout responsivo** para todos os dispositivos
+
+## 🧪 Testes End-to-End
+
+O projeto inclui **4 testes E2E completos e 100% automatizados** usando **Cypress**:
+
+### 📋 Testes Implementados
+
+1. **Autenticação de Usuários** - Login de admin/usuário normal e controle de acesso
+2. **Busca de Artigo sem Login** - Redirecionamento para login e acesso ao artigo
+3. **Upload de Arquivo BibTeX** - Upload de arquivos .bib e .zip
+4. **Criação de Usuário por Admin** - Admin cria e gerencia usuários
+
+### 🚀 Executar Testes
+
+**Opção 1 - Script Automatizado (Recomendado):**
+
+```powershell
+.\run-e2e-tests.ps1
+```
+
+**Opção 2 - Interface Cypress:**
+
+```powershell
+cd biblioteca-digital-web-frontend
+npm run cypress:open
+```
+
+**Opção 3 - Terminal (Headless):**
+
+```powershell
+cd biblioteca-digital-web-frontend
+npm run test:e2e
+```
+
+### 📚 Documentação dos Testes
+
+- **[RESUMO_TESTES_E2E.md](./RESUMO_TESTES_E2E.md)** - Resumo executivo dos testes
+- **[TESTES_E2E_DOCUMENTACAO.md](./TESTES_E2E_DOCUMENTACAO.md)** - Documentação completa
+- **[QUICK_START_TESTS.md](./biblioteca-digital-web-frontend/QUICK_START_TESTS.md)** - Guia rápido
+- **[INSTALACAO_TESTES.md](./INSTALACAO_TESTES.md)** - Instruções de instalação
+
+### ⚙️ Pré-requisitos para Testes
+
+```powershell
+# Instalar Cypress
+cd biblioteca-digital-web-frontend
+npm install --save-dev cypress eslint-plugin-cypress
+```
+
+Certifique-se de ter:
+
+- Backend rodando em `http://localhost:3333`
+- Frontend rodando em `http://localhost:5173`
+- Usuário admin: `admin@teste.com` / `admin123`
+- Usuário normal: `usuario@teste.com` / `usuario123`
 
 ## 📊 Documentação Adicional
 

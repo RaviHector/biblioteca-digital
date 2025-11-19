@@ -1,0 +1,20 @@
+{
+  "extends": ["plugin:cypress/recommended"],
+  "plugins": ["cypress"],
+  "env": {
+    "cypress/globals": true,
+    "es2021": true
+  },
+  "globals": {
+    "cy": "readonly",
+    "Cypress": "readonly",
+    "describe": "readonly",
+    "it": "readonly",
+    "before": "readonly",
+    "after": "readonly",
+    "beforeEach": "readonly",
+    "afterEach": "readonly",
+    "expect": "readonly",
+    "assert": "readonly"
+  }
+}

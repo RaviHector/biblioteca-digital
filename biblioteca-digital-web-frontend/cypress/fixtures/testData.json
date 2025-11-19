@@ -1,0 +1,49 @@
+{
+  "users": {
+    "admin": {
+      "name": "Admin Teste",
+      "email": "admin@teste.com",
+      "password": "admin123",
+      "isAdmin": true
+    },
+    "normalUser": {
+      "name": "Usuário Normal",
+      "email": "usuario@teste.com",
+      "password": "usuario123",
+      "isAdmin": false
+    },
+    "newUser": {
+      "name": "Novo Usuário Teste",
+      "email": "novo.usuario@teste.com",
+      "password": "senha123",
+      "isAdmin": false
+    }
+  },
+  "search": {
+    "validTerm": "artigo",
+    "invalidTerm": "xyzabc123notfound"
+  },
+  "articles": {
+    "sample": {
+      "title": "Artigo de Teste",
+      "author": ["Autor Teste 1", "Autor Teste 2"],
+      "year": 2024,
+      "abstract": "Este é um artigo de teste para os testes E2E"
+    }
+  },
+  "files": {
+    "bibtex": {
+      "path": "../../TesteBibTex/ArquivosBibText.bib",
+      "filename": "ArquivosBibText.bib"
+    },
+    "zip": {
+      "path": "../../TesteBibTex/Hist4.zip",
+      "filename": "Hist4.zip"
+    }
+  },
+  "timeouts": {
+    "short": 5000,
+    "medium": 10000,
+    "long": 30000
+  }
+}
