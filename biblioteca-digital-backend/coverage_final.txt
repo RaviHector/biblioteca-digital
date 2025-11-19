@@ -1,0 +1,3249 @@
+
+> biblioteca-digital-backend@1.0.0 test
+> node --experimental-vm-modules ./node_modules/jest/bin/jest.js --runInBand --coverage
+
+(node:17592) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL tests/unit/articlemodel.test.js
+  ● ArticleModel - Testes de Unidade › Validation Rules › author pode ser qualquer valor, mas é required
+
+    TypeError: Cannot read properties of undefined (reading 'errors')
+
+    [0m [90m 196 |[39m       [36mconst[39m error [33m=[39m article[33m.[39mvalidateSync()[33m;[39m
+     [90m 197 |[39m
+    [31m[1m>[22m[39m[90m 198 |[39m       expect(error[33m.[39merrors[33m.[39mauthor)[33m.[39mtoBeDefined()[33m;[39m
+     [90m     |[39m                    [31m[1m^[22m[39m
+     [90m 199 |[39m     })[33m;[39m
+     [90m 200 |[39m   })[33m;[39m
+     [90m 201 |[39m })[33m;[39m[0m
+
+      at Object.<anonymous> (tests/unit/articlemodel.test.js:198:20)
+
+PASS tests/unit/services.article.test.js (7.26 s)
+  ● Console
+
+    console.log
+      🎯 Busca direta encontrou: 1 artigo(s)
+
+      at Module.log (src/services/ArticleService.js:150:11)
+
+    console.log
+      🎯 Events encontrados: 0 evento(s)
+
+      at Module.log (src/services/ArticleService.js:162:11)
+
+    console.log
+      📚 Nenhum evento encontrado, pulando busca de edições
+
+      at Module.log (src/services/ArticleService.js:175:15)
+
+    console.log
+      🔗 Edition IDs extraídos: 0 ID(s)
+
+      at Module.log (src/services/ArticleService.js:184:11)
+
+    console.log
+      📄 Nenhuma edição encontrada, pulando busca de artigos indiretos
+
+      at Module.log (src/services/ArticleService.js:203:15)
+
+    console.log
+      ✅ Total final de artigos únicos: 1
+
+      at Module.log (src/services/ArticleService.js:218:11)
+
+    console.log
+      🎯 Busca direta encontrou: 1 artigo(s)
+
+      at Module.log (src/services/ArticleService.js:150:11)
+
+    console.log
+      🎯 Events encontrados: 0 evento(s)
+
+      at Module.log (src/services/ArticleService.js:162:11)
+
+    console.log
+      📚 Nenhum evento encontrado, pulando busca de edições
+
+      at Module.log (src/services/ArticleService.js:175:15)
+
+    console.log
+      🔗 Edition IDs extraídos: 0 ID(s)
+
+      at Module.log (src/services/ArticleService.js:184:11)
+
+    console.log
+      📄 Nenhuma edição encontrada, pulando busca de artigos indiretos
+
+      at Module.log (src/services/ArticleService.js:203:15)
+
+    console.log
+      ✅ Total final de artigos únicos: 1
+
+      at Module.log (src/services/ArticleService.js:218:11)
+
+    console.log
+      � TENTATIVA DE ENVIO DE EMAIL REAL INICIADA!
+
+      at log (src/utils/libs/emailService.js:10:11)
+
+    console.log
+      📧 Credenciais Gmail não encontradas, usando Ethereal...
+
+      at log (src/utils/libs/emailService.js:31:15)
+
+    console.log
+      ✅ Conta Ethereal criada: teyntjiq7275ux3j@ethereal.email
+
+      at log (src/utils/libs/emailService.js:33:15)
+
+    console.log
+      ✅ Ethereal configurado como fallback!
+
+      at log (src/utils/libs/emailService.js:45:15)
+
+    console.log
+      📧 ENVIANDO EMAIL DE TESTE VIA ETHEREAL:
+
+      at log (src/utils/libs/emailService.js:115:13)
+
+    console.log
+      📬 Para: test@example.com
+
+      at log (src/utils/libs/emailService.js:116:13)
+
+    console.log
+      📝 Assunto: 📚 Novo artigo publicado - Autor: Author1
+
+      at log (src/utils/libs/emailService.js:117:13)
+
+    console.log
+      🔧 Método: Ethereal Test
+
+      at log (src/utils/libs/emailService.js:118:13)
+
+    console.log
+      🎉 EMAIL ENVIADO COM SUCESSO!
+
+      at log (src/utils/libs/emailService.js:122:13)
+
+    console.log
+      📧 Message ID: <7e12f3b2-63d4-124e-3943-f7a3a41f086a@exemplo.com>
+
+      at log (src/utils/libs/emailService.js:123:13)
+
+    console.log
+      �🔗 Preview URL: https://ethereal.email/message/aR0QkzKY-EBag3rYaR0QlbuZWqzzphFvAAAAAZZpEje8LH.4wUxb2.g9cXw
+
+      at log (src/utils/libs/emailService.js:129:15)
+
+    console.log
+      👆 CLIQUE NO LINK ACIMA PARA VER O EMAIL DE TESTE!
+
+      at log (src/utils/libs/emailService.js:130:15)
+
+    console.log
+      ✅ Email enviado para test@example.com sobre artigo do autor Author1
+
+      at Module.log (src/services/ArticleService.js:71:21)
+
+    console.log
+      � TENTATIVA DE ENVIO DE EMAIL REAL INICIADA!
+
+      at log (src/utils/libs/emailService.js:10:11)
+
+    console.log
+      📧 Credenciais Gmail não encontradas, usando Ethereal...
+
+      at log (src/utils/libs/emailService.js:31:15)
+
+    console.log
+      ✅ Conta Ethereal criada: teyntjiq7275ux3j@ethereal.email
+
+      at log (src/utils/libs/emailService.js:33:15)
+
+    console.log
+      ✅ Ethereal configurado como fallback!
+
+      at log (src/utils/libs/emailService.js:45:15)
+
+    console.log
+      📧 ENVIANDO EMAIL DE TESTE VIA ETHEREAL:
+
+      at log (src/utils/libs/emailService.js:115:13)
+
+    console.log
+      📬 Para: test@example.com
+
+      at log (src/utils/libs/emailService.js:116:13)
+
+    console.log
+      📝 Assunto: 📚 Novo artigo publicado - Autor: Author1
+
+      at log (src/utils/libs/emailService.js:117:13)
+
+    console.log
+      🔧 Método: Ethereal Test
+
+      at log (src/utils/libs/emailService.js:118:13)
+
+    console.log
+      🎉 EMAIL ENVIADO COM SUCESSO!
+
+      at log (src/utils/libs/emailService.js:122:13)
+
+    console.log
+      📧 Message ID: <7017e259-b38a-0c34-5146-4d0b86411691@exemplo.com>
+
+      at log (src/utils/libs/emailService.js:123:13)
+
+    console.log
+      �🔗 Preview URL: https://ethereal.email/message/aR0QkzKY-EBag3rYaR0QmIGyTc4D3ss6AAAAAk2oJt7kd.lGYZlQMyIGGmA
+
+      at log (src/utils/libs/emailService.js:129:15)
+
+    console.log
+      👆 CLIQUE NO LINK ACIMA PARA VER O EMAIL DE TESTE!
+
+      at log (src/utils/libs/emailService.js:130:15)
+
+    console.log
+      ✅ Email enviado para test@example.com sobre artigo do autor Author1
+
+      at Module.log (src/services/ArticleService.js:71:21)
+
+PASS tests/unit/utils.emailService.test.js (8.385 s)
+  ● Console
+
+    console.log
+      � TENTATIVA DE ENVIO DE EMAIL REAL INICIADA!
+
+      at log (src/utils/libs/emailService.js:10:11)
+
+    console.log
+      📧 Credenciais Gmail não encontradas, usando Ethereal...
+
+      at log (src/utils/libs/emailService.js:31:15)
+
+    console.log
+      ✅ Conta Ethereal criada: t5f74vzw7jwzu2u7@ethereal.email
+
+      at log (src/utils/libs/emailService.js:33:15)
+
+    console.log
+      ✅ Ethereal configurado como fallback!
+
+      at log (src/utils/libs/emailService.js:45:15)
+
+    console.log
+      📧 ENVIANDO EMAIL DE TESTE VIA ETHEREAL:
+
+      at log (src/utils/libs/emailService.js:115:13)
+
+    console.log
+      📬 Para: test@example.com
+
+      at log (src/utils/libs/emailService.js:116:13)
+
+    console.log
+      📝 Assunto: 📚 Novo artigo publicado - Autor: Author Test
+
+      at log (src/utils/libs/emailService.js:117:13)
+
+    console.log
+      🔧 Método: Ethereal Test
+
+      at log (src/utils/libs/emailService.js:118:13)
+
+    console.log
+      🎉 EMAIL ENVIADO COM SUCESSO!
+
+      at log (src/utils/libs/emailService.js:122:13)
+
+    console.log
+      📧 Message ID: <9a9a58e0-a019-bc7f-ffea-a54d3850dccb@exemplo.com>
+
+      at log (src/utils/libs/emailService.js:123:13)
+
+    console.log
+      �🔗 Preview URL: https://ethereal.email/message/aR0QmTKY-EBag3t4aR0QnKPtGIlB4sARAAAAAc-gQSn7hQDdpS.tRvUyF40
+
+      at log (src/utils/libs/emailService.js:129:15)
+
+    console.log
+      👆 CLIQUE NO LINK ACIMA PARA VER O EMAIL DE TESTE!
+
+      at log (src/utils/libs/emailService.js:130:15)
+
+    console.log
+      � TENTATIVA DE ENVIO DE EMAIL REAL INICIADA!
+
+      at log (src/utils/libs/emailService.js:10:11)
+
+    console.log
+      📧 Credenciais Gmail não encontradas, usando Ethereal...
+
+      at log (src/utils/libs/emailService.js:31:15)
+
+    console.log
+      ✅ Conta Ethereal criada: t5f74vzw7jwzu2u7@ethereal.email
+
+      at log (src/utils/libs/emailService.js:33:15)
+
+    console.log
+      ✅ Ethereal configurado como fallback!
+
+      at log (src/utils/libs/emailService.js:45:15)
+
+    console.log
+      📧 ENVIANDO EMAIL DE TESTE VIA ETHEREAL:
+
+      at log (src/utils/libs/emailService.js:115:13)
+
+    console.log
+      📬 Para: invalid
+
+      at log (src/utils/libs/emailService.js:116:13)
+
+    console.log
+      📝 Assunto: 📚 Novo artigo publicado - Autor: Author
+
+      at log (src/utils/libs/emailService.js:117:13)
+
+    console.log
+      🔧 Método: Ethereal Test
+
+      at log (src/utils/libs/emailService.js:118:13)
+
+    console.error
+      ❌ ERRO AO ENVIAR EMAIL REAL: No recipients defined
+
+    [0m [90m 138 |[39m     
+     [90m 139 |[39m   } [36mcatch[39m (error) {
+    [31m[1m>[22m[39m[90m 140 |[39m     console[33m.[39merror([32m"❌ ERRO AO ENVIAR EMAIL REAL:"[39m[33m,[39m error[33m.[39mmessage)[33m;[39m
+     [90m     |[39m             [31m[1m^[22m[39m
+     [90m 141 |[39m     console[33m.[39merror([32m"🔍 Detalhes do erro:"[39m[33m,[39m error)[33m;[39m
+     [90m 142 |[39m     
+     [90m 143 |[39m     [90m// Em caso de erro, fazer fallback para log[39m[0m
+
+      at error (src/utils/libs/emailService.js:140:13)
+      at Object.<anonymous> (tests/unit/utils.emailService.test.js:29:20)
+
+    console.error
+      🔍 Detalhes do erro: Error: No recipients defined
+          at SMTPConnection._formatError (C:\engSoftware\TP1_V4\biblioteca-digital\biblioteca-digital-backend\node_modules\nodemailer\lib\smtp-connection\index.js:809:19)
+          at SMTPConnection._setEnvelope (C:\engSoftware\TP1_V4\biblioteca-digital\biblioteca-digital-backend\node_modules\nodemailer\lib\smtp-connection\index.js:1047:34)
+          at SMTPConnection.send (C:\engSoftware\TP1_V4\biblioteca-digital\biblioteca-digital-backend\node_modules\nodemailer\lib\smtp-connection\index.js:631:14)
+          at sendMessage (C:\engSoftware\TP1_V4\biblioteca-digital\biblioteca-digital-backend\node_modules\nodemailer\lib\smtp-transport\index.js:228:28)
+          at C:\engSoftware\TP1_V4\biblioteca-digital\biblioteca-digital-backend\node_modules\nodemailer\lib\smtp-transport\index.js:286:25
+          at SMTPConnection._actionAUTHComplete (C:\engSoftware\TP1_V4\biblioteca-digital\biblioteca-digital-backend\node_modules\nodemailer\lib\smtp-connection\index.js:1609:9)
+          at SMTPConnection.<anonymous> (C:\engSoftware\TP1_V4\biblioteca-digital\biblioteca-digital-backend\node_modules\nodemailer\lib\smtp-connection\index.js:556:26)
+          at SMTPConnection._processResponse (C:\engSoftware\TP1_V4\biblioteca-digital\biblioteca-digital-backend\node_modules\nodemailer\lib\smtp-connection\index.js:993:20)
+          at SMTPConnection._onData (C:\engSoftware\TP1_V4\biblioteca-digital\biblioteca-digital-backend\node_modules\nodemailer\lib\smtp-connection\index.js:774:14)
+          at TLSSocket.SMTPConnection._onSocketData (C:\engSoftware\TP1_V4\biblioteca-digital\biblioteca-digital-backend\node_modules\nodemailer\lib\smtp-connection\index.js:195:44)
+          at TLSSocket.emit (node:events:519:28)
+          at addChunk (node:internal/streams/readable:561:12)
+          at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+          at TLSSocket.Readable.push (node:internal/streams/readable:392:5)
+          at TLSWrap.onStreamRead (node:internal/stream_base_commons:189:23) {
+        code: 'EENVELOPE',
+        command: 'API'
+      }
+
+    [0m [90m 139 |[39m   } [36mcatch[39m (error) {
+     [90m 140 |[39m     console[33m.[39merror([32m"❌ ERRO AO ENVIAR EMAIL REAL:"[39m[33m,[39m error[33m.[39mmessage)[33m;[39m
+    [31m[1m>[22m[39m[90m 141 |[39m     console[33m.[39merror([32m"🔍 Detalhes do erro:"[39m[33m,[39m error)[33m;[39m
+     [90m     |[39m             [31m[1m^[22m[39m
+     [90m 142 |[39m     
+     [90m 143 |[39m     [90m// Em caso de erro, fazer fallback para log[39m
+     [90m 144 |[39m     console[33m.[39mlog([32m"\n📧 ===== FALLBACK - NOTIFICAÇÃO POR LOG ====="[39m)[33m;[39m[0m
+
+      at error (src/utils/libs/emailService.js:141:13)
+      at Object.<anonymous> (tests/unit/utils.emailService.test.js:29:20)
+
+    console.log
+      
+      📧 ===== FALLBACK - NOTIFICAÇÃO POR LOG =====
+
+      at log (src/utils/libs/emailService.js:144:13)
+
+    console.log
+      📬 Para: invalid
+
+      at log (src/utils/libs/emailService.js:145:13)
+
+    console.log
+      📝 Assunto: Novo artigo publicado - Autor: Author
+
+      at log (src/utils/libs/emailService.js:146:13)
+
+    console.log
+      📄 Artigo: Title
+
+      at log (src/utils/libs/emailService.js:147:13)
+
+    console.log
+      🎪 Evento: Event (2025)
+
+      at log (src/utils/libs/emailService.js:148:13)
+
+    console.log
+      ⚠️  O EMAIL REAL FALHARAM - USANDO APENAS LOG
+
+      at log (src/utils/libs/emailService.js:149:13)
+
+    console.log
+      =============================================
+
+      at log (src/utils/libs/emailService.js:150:13)
+
+    console.log
+      � TENTATIVA DE ENVIO DE EMAIL REAL INICIADA!
+
+      at log (src/utils/libs/emailService.js:10:11)
+
+    console.log
+      📧 Credenciais Gmail não encontradas, usando Ethereal...
+
+      at log (src/utils/libs/emailService.js:31:15)
+
+    console.log
+      ✅ Conta Ethereal criada: t5f74vzw7jwzu2u7@ethereal.email
+
+      at log (src/utils/libs/emailService.js:33:15)
+
+    console.log
+      ✅ Ethereal configurado como fallback!
+
+      at log (src/utils/libs/emailService.js:45:15)
+
+    console.log
+      📧 ENVIANDO EMAIL DE TESTE VIA ETHEREAL:
+
+      at log (src/utils/libs/emailService.js:115:13)
+
+    console.log
+      📬 Para: user@e.com
+
+      at log (src/utils/libs/emailService.js:116:13)
+
+    console.log
+      📝 Assunto: 📚 Novo artigo publicado - Autor: Dr. Smith
+
+      at log (src/utils/libs/emailService.js:117:13)
+
+    console.log
+      🔧 Método: Ethereal Test
+
+      at log (src/utils/libs/emailService.js:118:13)
+
+    console.log
+      🎉 EMAIL ENVIADO COM SUCESSO!
+
+      at log (src/utils/libs/emailService.js:122:13)
+
+    console.log
+      📧 Message ID: <4b8987ca-ff71-46a8-0ae3-86982a8b2255@exemplo.com>
+
+      at log (src/utils/libs/emailService.js:123:13)
+
+    console.log
+      �🔗 Preview URL: https://ethereal.email/message/aR0QmTKY-EBag3t4aR0QoYGyTc4D3ss9AAAAAqu-I.28WuJgU-R9qDzFdVY
+
+      at log (src/utils/libs/emailService.js:129:15)
+
+    console.log
+      👆 CLIQUE NO LINK ACIMA PARA VER O EMAIL DE TESTE!
+
+      at log (src/utils/libs/emailService.js:130:15)
+
+PASS tests/unit/services.bulk.test.js
+  ● Console
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Found entry: { entryType: 'inproceedings', citationKey: 'teste' }
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:34:15)
+
+    console.log
+        title: Artigo A
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        author: Ana and Carlos
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        year: 2024
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+      Parsed 1 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Parsing pages: 1--10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Parsing pages: 1-10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Parsing pages: 1–10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Processing entry: art1 Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'A New Method',
+        author: 'Ana and Carlos',
+        year: '2024',
+        pages: '1-10',
+        booktitle: 'Simpósio Brasileiro de Engenharia de Software',
+        location: 'Fortaleza'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages: 1-10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Creating article with data: {
+        title: 'A New Method',
+        author: 'Ana, Carlos',
+        edition: new ObjectId('691d10a3020e7471f1416b7f'),
+        year: 2024,
+        first_page: '1',
+        last_page: '10',
+        pdf_file: null
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:332:15)
+
+    console.log
+      Article created successfully: new ObjectId('691d10a3020e7471f1416b84')
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:334:15)
+
+    console.log
+      Processing entry: art2 Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: art3 Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: art4 Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'A Comprehensive Study on Software Testing',
+        author: 'Ana',
+        pages: '1-5',
+        year: '2024',
+        location: 'Salvador',
+        booktitle: 'Congresso Nacional de TI'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages: 1-5
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '5' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Processing entry: art5 Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'Advanced Techniques in Computer Science',
+        author: 'Ana',
+        pages: '1-5',
+        year: '2024',
+        location: 'Recife',
+        booktitle: 'Congresso Nacional de TI'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages: 1-5
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '5' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Processing entry: art6 Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'Duplicado',
+        author: 'Ana',
+        year: '2024',
+        pages: '1-5',
+        booktitle: 'Workshop ABC',
+        location: 'São Paulo'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages: 1-5
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '5' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Processing entry: pages_test Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'Article with Pages',
+        author: 'Author One',
+        year: '2024',
+        pages: '10--20',
+        booktitle: 'Conference Test',
+        location: 'Test City'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages: 10--20
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '10', last: '20' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Creating article with data: {
+        title: 'Article with Pages',
+        author: 'Author One',
+        edition: new ObjectId('691d10a3020e7471f1416bb2'),
+        year: 2024,
+        first_page: '10',
+        last_page: '20',
+        pdf_file: null
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:332:15)
+
+    console.log
+      Article created successfully: new ObjectId('691d10a3020e7471f1416bb7')
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:334:15)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Parsed 0 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Found entry: { entryType: 'inproceedings', citationKey: 'entry1' }
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:34:15)
+
+    console.log
+        title: First Article
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        author: Author A
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+      Found entry: { entryType: 'inproceedings', citationKey: 'entry2' }
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:34:15)
+
+    console.log
+        title: Second Article
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        author: Author B
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+      Parsed 2 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Processing entry: no_title Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: no_author Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: no_year Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Parsing pages: 100-200
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '100', last: '200' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Parsing pages: 50--75
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '50', last: '75' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Processing entry: invalid_type Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: short_title Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'X',
+        author: 'Author',
+        year: '2024',
+        pages: '1-5',
+        booktitle: 'Test Short Title',
+        location: 'Test Place'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages: 1-5
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '5' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Parsed 0 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Parsing pages: 1-10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Parsing pages: 1--10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Parsing pages: 1–10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Processing entry: invalid_pages Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'Article with Invalid Pages',
+        author: 'Test Author',
+        year: '2024',
+        pages: 'abc-xyz',
+        booktitle: 'Event Pages Invalid',
+        location: 'City Pages'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages: abc-xyz
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: 'abc', last: 'xyz' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Processing entry: invalid_year Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'Article with Invalid Year',
+        author: 'Test Author',
+        year: 'not_a_year',
+        pages: '1-10',
+        booktitle: 'Event Year Invalid',
+        location: 'City Year'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages: 1-10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Processing entry: with_pdf Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'Article with PDF',
+        author: 'Test Author',
+        year: '2024',
+        pages: '1-10',
+        booktitle: 'Event with PDF',
+        location: 'City PDF'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages: 1-10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Parsed 0 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Processing entry: empty_booktitle Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: empty_location Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: no_booktitle Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: no_location Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: conf1 Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'Conference Paper Full',
+        author: 'Author Name',
+        year: '2024',
+        pages: '1-5',
+        booktitle: 'Conference Name',
+        location: 'City'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages: 1-5
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '5' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Processing entry: art_test Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Parsing pages: 10-20
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '10', last: '20' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Processing entry: author_empty Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: year_empty Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: pages_empty Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Parsing pages: pp. 1-10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: 'pp. 1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Parsing pages:   1  -  10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Parsed 0 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Parsed 0 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Parsed 0 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Processing entry: null_tags Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: undef_tags Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: with_pdf Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: no_book Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: no_loc Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: short_title Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: future_year Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: old_year Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Parsing pages: 123
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Processing entry: multi_auth Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Parsed 0 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Processing entry: pdf_not_found Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Parsing pages: 1000-2000
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1000', last: '2000' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Processing entry: no_event_keyword Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'Test Paper',
+        author: 'Author Name',
+        year: '2024',
+        pages: '1-10',
+        booktitle: 'Random Journal Name',
+        location: 'City'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages: 1-10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Processing entry: conf_keyword Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'Test Paper Long Title',
+        author: 'Author Name',
+        year: '2024',
+        pages: '1-10',
+        booktitle: 'International Conference on Testing',
+        location: 'New York'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages: 1-10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Processing entry: symp_keyword Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'Test Paper Symposium Title',
+        author: 'Author Name',
+        year: '2024',
+        pages: '1-10',
+        booktitle: 'International Symposium on Software Engineering',
+        location: 'Paris'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages: 1-10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Processing entry: workshop_keyword Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'Workshop Paper Title',
+        author: 'Author Name',
+        year: '2024',
+        pages: '1-10',
+        booktitle: 'Workshop on Advanced Testing Techniques',
+        location: 'Berlin'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages: 1-10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Processing entry: short_booktitle Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'Test',
+        author: 'Author',
+        year: '2024',
+        pages: '1-10',
+        booktitle: 'Short',
+        location: 'Location'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages: 1-10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Processing entry: equal_pages Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'Test Paper',
+        author: 'Author',
+        year: '2024',
+        pages: '5-5',
+        booktitle: 'Conference on Testing',
+        location: 'Location'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages: 5-5
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '5', last: '5' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Processing entry: invalid_page_nums Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'Test Paper',
+        author: 'Author',
+        year: '2024',
+        pages: 'a-b',
+        booktitle: 'Conference on Testing',
+        location: 'Location'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages: a-b
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: 'a', last: 'b' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Processing entry: pages_reversed Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'Test Paper',
+        author: 'Author',
+        year: '2024',
+        pages: '20-10',
+        booktitle: 'Conference on Testing',
+        location: 'Location'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages: 20-10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '20', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Processing entry: no_location Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: empty_location Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: long_booktitle Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'Test Paper with Long Title',
+        author: 'Author Name',
+        year: '2024',
+        pages: '100-150',
+        booktitle: 'International Conference on Very Long Names and Extended Titles with Multiple Words for Testing Purposes',
+        location: 'Tokyo'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages: 100-150
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '100', last: '150' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Processing entry: single_page_article Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: valid_article Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Parsing pages: 1--10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Parsing pages: 1–10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Parsing pages: 1 — 10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Processing entry: dup_test Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: dup_test Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: undefined Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: book_entry Type: book
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: null_author Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: null_year Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: null_pages Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: invalid_year_string Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Parsing pages: 100-200
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '100', last: '200' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Found entry: { entryType: 'article', citationKey: 'key1' }
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:34:15)
+
+    console.log
+        title: Title One
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        author: Author One
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        year: 2024
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        pages: 1-10
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+      Found entry: { entryType: 'article', citationKey: 'key2' }
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:34:15)
+
+    console.log
+        title: Title Two
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        author: Author Two
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        year: 2023
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        pages: 15-25
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+      Parsed 2 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Parsed 0 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Processing entry: journal_article Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: very_long_title Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'This is a very long title for a conference paper that contains many words and is used to test if the system can handle titles of various lengths and complexities',
+        author: 'Author',
+        year: '2024',
+        pages: '1-10',
+        booktitle: 'International Conference on Long Titles',
+        location: 'Paris'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages: 1-10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Parsing pages: 1 - 10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Processing entry: with_pdf_file Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Parsed 0 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Parsing pages: 1.5-10.5
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1.5', last: '10.5' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Processing entry: no_journal Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: multi_pdf Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Parsed 0 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Processing entry: author_and Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Parsing pages: 100
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Biblioteca principal falhou, usando parser alternativo
+
+      at BulkArticleProcessor.log [as processBulkUpload] (src/services/BulkArticleService.js:82:17)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Found entry: { entryType: 'article', citationKey: 'test_key_1' }
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:34:15)
+
+    console.log
+        title: Test Article One
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        author: John Doe
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        year: 2024
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        pages: 10-20
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+      Parsed 1 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Processing entry: test_key_1 Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Biblioteca principal falhou, usando parser alternativo
+
+      at BulkArticleProcessor.log [as processBulkUpload] (src/services/BulkArticleService.js:82:17)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Found entry: { entryType: 'article', citationKey: 'key1' }
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:34:15)
+
+    console.log
+        title: Article One Title
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        author: Author One
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        year: 2024
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        pages: 1-10
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+      Found entry: { entryType: 'article', citationKey: 'key2' }
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:34:15)
+
+    console.log
+        title: Article Two Title
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        author: Author Two
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        year: 2023
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        pages: 15-25
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+      Parsed 2 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Processing entry: key1 Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: key2 Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Biblioteca principal falhou, usando parser alternativo
+
+      at BulkArticleProcessor.log [as processBulkUpload] (src/services/BulkArticleService.js:82:17)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Parsed 0 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Biblioteca principal falhou, usando parser alternativo
+
+      at BulkArticleProcessor.log [as processBulkUpload] (src/services/BulkArticleService.js:82:17)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Found entry: { entryType: 'article', citationKey: 'key1' }
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:34:15)
+
+    console.log
+        title: Test
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        author: Author
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        year: 2024
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        pages: 1-10
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+      Parsed 1 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Processing entry: key1 Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Biblioteca principal falhou, usando parser alternativo
+
+      at BulkArticleProcessor.log [as processBulkUpload] (src/services/BulkArticleService.js:82:17)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Found entry: { entryType: 'article', citationKey: 'key1' }
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:34:15)
+
+    console.log
+        title: Test Article
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        author: Author
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        year: 2024
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        pages: 1-10
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+      Parsed 1 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Processing entry: key1 Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Biblioteca principal falhou, usando parser alternativo
+
+      at BulkArticleProcessor.log [as processBulkUpload] (src/services/BulkArticleService.js:82:17)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Found entry: { entryType: 'article', citationKey: 'test' }
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:34:15)
+
+    console.log
+        title: Test
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        author: Author
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        year: 2024
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        pages: 1-10
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+      Parsed 1 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Processing entry: test Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Biblioteca principal falhou, usando parser alternativo
+
+      at BulkArticleProcessor.log [as processBulkUpload] (src/services/BulkArticleService.js:82:17)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Found entry: { entryType: 'article', citationKey: 'invalid1' }
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:34:15)
+
+    console.log
+        title: T
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        author: A
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        year: 2024
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        pages: 1-1
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+      Parsed 1 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Processing entry: invalid1 Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Biblioteca principal falhou, usando parser alternativo
+
+      at BulkArticleProcessor.log [as processBulkUpload] (src/services/BulkArticleService.js:82:17)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Found entry: { entryType: 'inproceedings', citationKey: 'conf1' }
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:34:15)
+
+    console.log
+        title: Conference Paper Title
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        author: John Doe
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        year: 2024
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        pages: 100-110
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        booktitle: International Conference on Testing
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        location: New York
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+      Parsed 1 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Processing entry: conf1 Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'Conference Paper Title',
+        author: 'John Doe',
+        year: '2024',
+        pages: '100-110',
+        booktitle: 'International Conference on Testing',
+        location: 'New York'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages: 100-110
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '100', last: '110' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Biblioteca principal falhou, usando parser alternativo
+
+      at BulkArticleProcessor.log [as processBulkUpload] (src/services/BulkArticleService.js:82:17)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Found entry: { entryType: 'article', citationKey: 'valid1' }
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:34:15)
+
+    console.log
+        title: Valid Article
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        author: Author
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        year: 2024
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        pages: 1-10
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+      Found entry: { entryType: 'article', citationKey: 'invalid1' }
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:34:15)
+
+    console.log
+        title: I
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        author: A
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        year: 2024
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        pages: 1-1
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+      Parsed 2 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Processing entry: valid1 Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: invalid1 Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Biblioteca principal falhou, usando parser alternativo
+
+      at BulkArticleProcessor.log [as processBulkUpload] (src/services/BulkArticleService.js:82:17)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Parsed 0 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Biblioteca principal falhou, usando parser alternativo
+
+      at BulkArticleProcessor.log [as processBulkUpload] (src/services/BulkArticleService.js:82:17)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Found entry: { entryType: 'article', citationKey: 'art1' }
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:34:15)
+
+    console.log
+        title: Journal Article
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        author: Author One
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        year: 2024
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        pages: 10-20
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+      Found entry: { entryType: 'inproceedings', citationKey: 'conf1' }
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:34:15)
+
+    console.log
+        title: Conference Paper
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        author: Author Two
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        year: 2024
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        pages: 30-40
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        booktitle: International Conference
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        location: Paris
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+      Parsed 2 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Processing entry: art1 Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: conf1 Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'Conference Paper',
+        author: 'Author Two',
+        year: '2024',
+        pages: '30-40',
+        booktitle: 'International Conference',
+        location: 'Paris'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages: 30-40
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '30', last: '40' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Biblioteca principal falhou, usando parser alternativo
+
+      at BulkArticleProcessor.log [as processBulkUpload] (src/services/BulkArticleService.js:82:17)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Found entry: { entryType: 'article', citationKey: 'test' }
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:34:15)
+
+    console.log
+        title: Test
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        author: Author
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        year: 2024
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        pages: 1-10
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+      Parsed 1 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Processing entry: test Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Biblioteca principal falhou, usando parser alternativo
+
+      at BulkArticleProcessor.log [as processBulkUpload] (src/services/BulkArticleService.js:82:17)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Found entry: { entryType: 'article', citationKey: 'test' }
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:34:15)
+
+    console.log
+        title: Test
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        author: Author
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        year: 2024
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        pages: 1-10
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+      Parsed 1 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Processing entry: test Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Biblioteca principal falhou, usando parser alternativo
+
+      at BulkArticleProcessor.log [as processBulkUpload] (src/services/BulkArticleService.js:82:17)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Found entry: { entryType: 'article', citationKey: 'test' }
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:34:15)
+
+    console.log
+        title: Test
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        author: Author
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        year: 2024
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        pages: 1-10
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+      Parsed 1 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Processing entry: test Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: art_journal Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: art_no_journal Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Parsing pages: 42
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsing pages: invalid
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Parsed 0 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Parsed 0 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Processing entry: short_title Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'AB',
+        author: 'Author',
+        year: '2024',
+        pages: '1-10',
+        booktitle: 'Conference',
+        location: 'City'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages: 1-10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Processing entry: invalid_pages Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'Valid Title',
+        author: 'Author',
+        year: '2024',
+        pages: 'abc-def',
+        booktitle: 'Conference',
+        location: 'City'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages: abc-def
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: 'abc', last: 'def' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Processing entry: invalid_year Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'Valid Title',
+        author: 'Author',
+        year: 'notayear',
+        pages: '1-10',
+        booktitle: 'Conference',
+        location: 'City'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages: 1-10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Processing entry: numeric_author Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'Valid Title',
+        author: '123',
+        year: '2024',
+        pages: '1-10',
+        booktitle: 'Conference',
+        location: 'City'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages: 1-10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Processing entry: no_booktitle Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: empty_booktitle Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: conf_type Type: conference
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'Conference Paper',
+        author: 'Author',
+        year: '2024',
+        pages: '1-10',
+        booktitle: 'Conferência',
+        location: 'City'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages: 1-10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Creating article with data: {
+        title: 'Conference Paper',
+        author: 'Author',
+        edition: new ObjectId('691d10a6020e7471f1416dcc'),
+        year: 2024,
+        first_page: '1',
+        last_page: '10',
+        pdf_file: null
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:332:15)
+
+    console.log
+      Article created successfully: new ObjectId('691d10a6020e7471f1416dd1')
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:334:15)
+
+    console.log
+      Processing entry: unknown_type Type: mastersthesis
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Parsed 0 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Parsed 0 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Parsing pages: 1 - 10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Processing entry: no_pages Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: no_year Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: no_author Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: no_title Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: case_variation Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'Valid Title',
+        author: 'Author',
+        year: '2024',
+        pages: '1-10',
+        booktitle: 'SIMPÓSIO BRASILEIRO DE ENGENHARIA DE SOFTWARE',
+        location: 'City'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages: 1-10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Creating article with data: {
+        title: 'Valid Title',
+        author: 'Author',
+        edition: new ObjectId('691d10a6020e7471f1416df6'),
+        year: 2024,
+        first_page: '1',
+        last_page: '10',
+        pdf_file: null
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:332:15)
+
+    console.log
+      Article created successfully: new ObjectId('691d10a6020e7471f1416dfb')
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:334:15)
+
+    console.log
+      Processing entry: test_inproceedings Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'Valid Title',
+        author: 'Author',
+        year: '2024',
+        pages: '1-10',
+        journal: 'Journal',
+        booktitle: 'Conference',
+        location: 'City'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages: 1-10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Processing entry: test_conference Type: conference
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'Valid Title',
+        author: 'Author',
+        year: '2024',
+        pages: '1-10',
+        journal: 'Journal',
+        booktitle: 'Conference',
+        location: 'City'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages: 1-10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Processing entry: test_article Type: article
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Parsing pages: 1-10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+          at Array.forEach (<anonymous>)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+          at Array.forEach (<anonymous>)
+
+    console.log
+      Parsing pages: 1--10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+          at Array.forEach (<anonymous>)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+          at Array.forEach (<anonymous>)
+
+    console.log
+      Parsing pages: 1–10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+          at Array.forEach (<anonymous>)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+          at Array.forEach (<anonymous>)
+
+    console.log
+      Parsing pages: 1—10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+          at Array.forEach (<anonymous>)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+          at Array.forEach (<anonymous>)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Parsed 0 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Processing entry: pages_spaces Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'Valid Title',
+        author: 'Author',
+        year: '2024',
+        pages: ' 1 - 10 ',
+        booktitle: 'Conference',
+        location: 'City'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages:  1 - 10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '1', last: '10' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Biblioteca principal falhou, usando parser alternativo
+
+      at BulkArticleProcessor.log [as processBulkUpload] (src/services/BulkArticleService.js:82:17)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Found entry: { entryType: 'inproceedings', citationKey: 'malformed' }
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:34:15)
+
+    console.log
+        title: Test Article
+            author = {Author
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+        year: 2024
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:52:19)
+
+    console.log
+      Parsed 1 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Processing entry: malformed Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: bad_entry Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Parsed 0 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+    console.log
+      Processing entry: no_tags Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry: short_pages Type: inproceedings
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:162:13)
+
+    console.log
+      Processing entry tags: {
+        title: 'Valid Title',
+        author: 'Author',
+        year: '2024',
+        pages: '1',
+        booktitle: 'Conference',
+        location: 'City'
+      }
+
+      at BulkArticleProcessor.log [as processArticleEntry] (src/services/BulkArticleService.js:208:15)
+
+    console.log
+      Parsing pages: 1
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsing pages: -1--10
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:391:13)
+
+    console.log
+      Parsed pages result: { first: '', last: '1' }
+
+      at BulkArticleProcessor.log [as parsePages] (src/services/BulkArticleService.js:401:15)
+
+    console.log
+      Using robust BibTeX parser
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:24:13)
+
+    console.log
+      Parsed 0 entries
+
+      at BulkArticleProcessor.log [as simpleBibtexParser] (src/services/BulkArticleService.js:59:13)
+
+PASS tests/unit/services.session.test.js
+  ● Console
+
+    console.log
+      Hashing password: { receivedPassword: true, passwordLength: 15 }
+
+      at log (src/utils/libs/bcrypt.js:6:11)
+
+    console.log
+      Password hashed: { hashedPasswordLength: 60 }
+
+      at log (src/utils/libs/bcrypt.js:14:11)
+
+    console.log
+      Comparing in bcrypt: {
+        receivedPassword: true,
+        receivedHash: true,
+        passwordLength: 13,
+        hashLength: 60
+      }
+
+      at log (src/utils/libs/bcrypt.js:22:11)
+
+    console.log
+      Hashing password: { receivedPassword: true, passwordLength: 10 }
+
+      at log (src/utils/libs/bcrypt.js:6:11)
+
+    console.log
+      Password hashed: { hashedPasswordLength: 60 }
+
+      at log (src/utils/libs/bcrypt.js:14:11)
+
+    console.log
+      Comparing in bcrypt: {
+        receivedPassword: true,
+        receivedHash: true,
+        passwordLength: 10,
+        hashLength: 60
+      }
+
+      at log (src/utils/libs/bcrypt.js:22:11)
+
+    console.log
+      Hashing password: { receivedPassword: true, passwordLength: 11 }
+
+      at log (src/utils/libs/bcrypt.js:6:11)
+
+    console.log
+      Password hashed: { hashedPasswordLength: 60 }
+
+      at log (src/utils/libs/bcrypt.js:14:11)
+
+    console.log
+      Comparing in bcrypt: {
+        receivedPassword: true,
+        receivedHash: true,
+        passwordLength: 11,
+        hashLength: 60
+      }
+
+      at log (src/utils/libs/bcrypt.js:22:11)
+
+    console.log
+      Hashing password: { receivedPassword: true, passwordLength: 11 }
+
+      at log (src/utils/libs/bcrypt.js:6:11)
+
+    console.log
+      Password hashed: { hashedPasswordLength: 60 }
+
+      at log (src/utils/libs/bcrypt.js:14:11)
+
+    console.log
+      Comparing in bcrypt: {
+        receivedPassword: true,
+        receivedHash: true,
+        passwordLength: 11,
+        hashLength: 60
+      }
+
+      at log (src/utils/libs/bcrypt.js:22:11)
+
+    console.log
+      Processing refresh token: { hasToken: false }
+
+      at log (src/services/SessionService.js:51:11)
+
+    console.log
+      Processing refresh token: { hasToken: false }
+
+      at log (src/services/SessionService.js:51:11)
+
+    console.log
+      Processing refresh token: { hasToken: false }
+
+      at log (src/services/SessionService.js:51:11)
+
+    console.log
+      Processing refresh token: { hasToken: true }
+
+      at log (src/services/SessionService.js:51:11)
+
+    console.log
+      Token decoded: { userId: '691d10a995d771d428489651' }
+
+      at log (src/services/SessionService.js:56:11)
+
+    console.log
+      Found token in DB: { found: false, hasUser: false }
+
+      at log (src/services/SessionService.js:59:11)
+
+    console.log
+      Hashing password: { receivedPassword: true, passwordLength: 5 }
+
+      at log (src/utils/libs/bcrypt.js:6:11)
+
+    console.log
+      Password hashed: { hashedPasswordLength: 60 }
+
+      at log (src/utils/libs/bcrypt.js:14:11)
+
+    console.log
+      Hashing password: { receivedPassword: true, passwordLength: 5 }
+
+      at log (src/utils/libs/bcrypt.js:6:11)
+
+    console.log
+      Password hashed: { hashedPasswordLength: 60 }
+
+      at log (src/utils/libs/bcrypt.js:14:11)
+
+    console.log
+      Processing refresh token: { hasToken: true }
+
+      at log (src/services/SessionService.js:51:11)
+
+    console.log
+      Token decoded: { userId: '691d10a995d771d428489656' }
+
+      at log (src/services/SessionService.js:56:11)
+
+    console.log
+      Found token in DB: { found: true, hasUser: true }
+
+      at log (src/services/SessionService.js:59:11)
+
+    console.log
+      Processing refresh token: { hasToken: true }
+
+      at log (src/services/SessionService.js:51:11)
+
+    console.log
+      Token decoded: { userId: '691d10a995d771d428489660' }
+
+      at log (src/services/SessionService.js:56:11)
+
+    console.log
+      Found token in DB: { found: true, hasUser: false }
+
+      at log (src/services/SessionService.js:59:11)
+
+    console.log
+      Hashing password: { receivedPassword: true, passwordLength: 8 }
+
+      at log (src/utils/libs/bcrypt.js:6:11)
+
+    console.log
+      Password hashed: { hashedPasswordLength: 60 }
+
+      at log (src/utils/libs/bcrypt.js:14:11)
+
+    console.log
+      Processing refresh token: { hasToken: true }
+
+      at log (src/services/SessionService.js:51:11)
+
+    console.log
+      Token decoded: { userId: '691d10a995d771d428489667' }
+
+      at log (src/services/SessionService.js:56:11)
+
+    console.log
+      Found token in DB: { found: true, hasUser: true }
+
+      at log (src/services/SessionService.js:59:11)
+
+    console.log
+      Hashing password: { receivedPassword: true, passwordLength: 8 }
+
+      at log (src/utils/libs/bcrypt.js:6:11)
+
+    console.log
+      Password hashed: { hashedPasswordLength: 60 }
+
+      at log (src/utils/libs/bcrypt.js:14:11)
+
+    console.log
+      Hashing password: { receivedPassword: true, passwordLength: 8 }
+
+      at log (src/utils/libs/bcrypt.js:6:11)
+
+    console.log
+      Password hashed: { hashedPasswordLength: 60 }
+
+      at log (src/utils/libs/bcrypt.js:14:11)
+
+PASS tests/unit/models.test.js
+PASS tests/unit/config.mongo.test.js
+PASS tests/unit/utils.jwt.test.js
+PASS tests/unit/services.user.test.js
+  ● Console
+
+    console.log
+      Hashing password: { receivedPassword: true, passwordLength: 5 }
+
+      at log (src/utils/libs/bcrypt.js:6:11)
+
+    console.log
+      Password hashed: { hashedPasswordLength: 60 }
+
+      at log (src/utils/libs/bcrypt.js:14:11)
+
+    console.log
+      Criando usuário: { email: 'x@y.com', hashedPassword: true, passwordLength: 60 }
+
+      at Module.log (src/services/UserService.js:35:11)
+
+    console.log
+      Hashing password: { receivedPassword: true, passwordLength: 7 }
+
+      at log (src/utils/libs/bcrypt.js:6:11)
+
+    console.log
+      Password hashed: { hashedPasswordLength: 60 }
+
+      at log (src/utils/libs/bcrypt.js:14:11)
+
+PASS tests/unit/services.editions.test.js
+  ● Console
+
+    console.log
+      Deletando edição ed1: removidos 3 artigos relacionados
+
+      at Module.log (src/services/EditionsService.js:66:11)
+
+    console.log
+      Edição ed1 deletada com sucesso
+
+      at Module.log (src/services/EditionsService.js:70:11)
+
+PASS tests/unit/editionmodel.test.js
+PASS tests/unit/services.create.test.js
+  ● Console
+
+    console.log
+      Deletando evento evt1: encontradas 2 edições relacionadas
+
+      at Module.log (src/services/EventsService.js:64:11)
+
+    console.log
+      Deletados 2 artigos relacionados às edições
+
+      at Module.log (src/services/EventsService.js:69:13)
+
+    console.log
+      Deletadas 2 edições do evento
+
+      at Module.log (src/services/EventsService.js:74:11)
+
+    console.log
+      Evento evt1 deletado com sucesso
+
+      at Module.log (src/services/EventsService.js:78:11)
+
+PASS tests/unit/errors.test.js
+----------------------------|---------|----------|---------|---------|-------------------------------------------------------------------
+File                        | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                                                 
+----------------------------|---------|----------|---------|---------|-------------------------------------------------------------------
+All files                   |    78.7 |    72.99 |   75.26 |   79.06 |                                                                   
+ config                     |   28.57 |      100 |       0 |   28.57 |                                                                   
+  logger.js                 |     100 |      100 |     100 |     100 |                                                                   
+  mongo.js                  |   16.66 |      100 |       0 |   16.66 | 9-35                                                              
+ errors                     |     100 |      100 |     100 |     100 |                                                                   
+  baseErrors.js             |     100 |      100 |     100 |     100 |                                                                   
+ models                     |   79.16 |      100 |      25 |   79.16 |                                                                   
+  ArticleModel.js           |     100 |      100 |     100 |     100 |                                                                   
+  EditionsModel.js          |   66.66 |      100 |       0 |   66.66 | 39-40                                                             
+  EmailNotificationModel.js |     100 |      100 |     100 |     100 |                                                                   
+  EventsModel.js            |      60 |      100 |       0 |      60 | 34-35                                                             
+  UserModel.js              |      75 |      100 |       0 |      75 | 46                                                                
+  UserSessionTokenModel.js  |     100 |      100 |     100 |     100 |                                                                   
+ services                   |   76.96 |    72.64 |   73.21 |   77.53 |                                                                   
+  ArticleService.js         |   75.32 |    63.63 |   66.66 |   80.59 | 73-78,170-173,178-179,191-197,208-209,222-224                     
+  BulkArticleService.js     |   66.66 |    71.29 |   57.14 |   66.48 | 98-99,113-114,135-157,246,318,343-364,411-479,491,496-497,504-506 
+  EditionsService.js        |     100 |    78.26 |     100 |     100 | 43-52,75-84                                                       
+  EventsService.js          |   70.58 |       50 |      75 |   72.41 | 82-94                                                             
+  SessionService.js         |   97.43 |       90 |     100 |   97.14 | 67                                                                
+  UserService.js            |     100 |     87.5 |     100 |     100 | 25,58                                                             
+ utils/general              |     100 |      100 |     100 |     100 |                                                                   
+  constants.js              |     100 |      100 |     100 |     100 |                                                                   
+  convertStringToRegexp.js  |     100 |      100 |     100 |     100 |                                                                   
+  formatExpiresAt.js        |     100 |      100 |     100 |     100 |                                                                   
+ utils/libs                 |   91.66 |    72.72 |     100 |   91.17 |                                                                   
+  bcrypt.js                 |     100 |      100 |     100 |     100 |                                                                   
+  emailService.js           |   83.78 |    57.14 |     100 |   83.78 | 17-28,126-127                                                     
+  jwt.js                    |     100 |      100 |     100 |     100 |                                                                   
+----------------------------|---------|----------|---------|---------|-------------------------------------------------------------------
+
+Test Suites: 1 failed, 12 passed, 13 total
+Tests:       1 failed, 427 passed, 428 total
+Snapshots:   0 total
+Time:        32.835 s, estimated 34 s
+Ran all test suites.

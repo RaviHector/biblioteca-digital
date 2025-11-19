@@ -52,7 +52,7 @@ export class InternalServerError extends AppError {
       ERROR_NAMES.INTERNAL_SERVER,
       ERROR_CODES.INTERNAL_SERVER,
       message,
-      false,
+      true,
     );
   }
 }

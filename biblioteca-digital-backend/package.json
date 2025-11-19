@@ -10,7 +10,8 @@
     "start": "node src/index.js",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "prepare": "husky install"
+    "prepare": "",
+    "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --runInBand"
   },
   "dependencies": {
     "adm-zip": "^0.5.10",
@@ -42,5 +43,9 @@
       "package-lock.json",
       ".git"
     ]
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "mongodb-memory-server": "^10.3.0"
   }
 }

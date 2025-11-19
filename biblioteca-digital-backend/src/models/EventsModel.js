@@ -23,7 +23,7 @@ const EventsSchema = new mongoose.Schema(
       trim: true,
     },
   },
-  { versionKey: false }
+  { versionKey: false, timestamps: true }
 );
 
 // Delete all products inside the removed category

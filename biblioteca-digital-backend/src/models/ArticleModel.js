@@ -43,7 +43,7 @@ const ArticleSchema = new mongoose.Schema(
       trim: true,
     },
   },
-  { versionKey: false }
+  { versionKey: false, timestamps: true }
 );
 
 const ArticleModel = mongoose.model(COLLECTION_NAMES.ARTICLE, ArticleSchema);
