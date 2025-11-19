@@ -341,18 +341,57 @@ describe('ArticleService - Error Handling com Parâmetros Errados/Incompletos', 
   // });
 });
 describe("ArticleService.create - chamadas inválidas", () => {
-  it("deve falhar quando chamada sem parâmetros (simula erro do frontend)", async () => {
-    try {
-      await ArticleService.create(); // frontend chamou errado
-     // fail("Deveria ter lançado erro");
-    } catch (error) {
-     // expect(error).toBeDefined();
-      expect(error.message).toContain("autor, titulo, edição, ano"); // ou qualquer texto seu
-    }
+  it("deve criar artigo com dados válidos completos", async () => {
+    const input = {
+      title: 'Research Article',
+      author: ['John Doe'],
+      edition: 'IEEE Journal',
+      year: '2023',
+      first_page: '1',
+      last_page: '10'
+    };
+
+    const created = { _id: 'art_invalid_1', ...input };
+    const populated = { 
+      _id: 'art_invalid_1', 
+      ...input, 
+      edition: { event: { name: 'Journal' }, year: '2023' } 
+    };
+
+    ArticleModel.create.mockResolvedValue(created);
+    ArticleModel.findById.mockReturnValue({ 
+      populate: () => ({ 
+        lean: () => ({ 
+          exec: () => Promise.resolve(populated) 
+        }) 
+      }) 
+    });
+    EmailNotificationModel.find.mockReturnValue({ 
+      lean: () => ({ exec: () => Promise.resolve([]) }) 
+    });
+
+    const result = await ArticleService.create(input);
+
+    expect(ArticleModel.create).toHaveBeenCalledWith(input);
+    expect(result).toEqual(created);
+  });
+
+  it("deve falhar ao criar artigo sem título obrigatório", async () => {
+    const input = {
+      author: ['John Doe'],
+      edition: 'IEEE Journal',
+      year: '2023'
+    };
+
+    ArticleModel.create.mockRejectedValue(
+      new Error("Campo 'title' é obrigatório")
+    );
+
+    await expect(ArticleService.create(input))
+      .rejects
+      .toThrow("Campo 'title' é obrigatório");
   });
 });
-
-
 
 //teste de função bibitex
 describe('ArticleService - Adicionar por BibTeX', () => {
